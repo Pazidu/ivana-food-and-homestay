@@ -1,0 +1,14 @@
+.footer {
+  height: 5vh;
+  width: 100%;
+  background-color: #fcb72c;
+  color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  font-size: 0.8rem;
+}
