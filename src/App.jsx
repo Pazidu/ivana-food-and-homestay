@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Landing from "./Pages/Landing";
-import Signup from "./Pages/Signup";
-import Login from "./Pages/Login";
-import FoodsHome from "./Pages/FoodsHome";
+import Signup from "./Pages/Signup/Signup";
+import Login from "./Pages/Login/Login";
+import FoodsHome from "./Pages/FoodsHome/FoodsHome";
 import FoodsGallery from "./Pages/FoodsGallery";
 import FoodsFeedback from "./Pages/FoodsFeedback";
-import FoodsAbout from "./Pages/FoodsAbout";
+import FoodsAbout from "./Pages/FoodsAbout/FoodsAbout";
 
 function App() {
   return (
