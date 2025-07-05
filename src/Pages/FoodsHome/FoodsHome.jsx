@@ -10,7 +10,6 @@ function FoodsHome() {
     <>
       <Navbar />
       <div className="foodsHomeContainer">
-        <FoodCard />
         <ContactUs />
       </div>
 

@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
 import "./FoodsMenu.css";
+import FoodCard from "../../Components/FoodCard/FoodCard";
 function FoodsMenu() {
   const [activeTopic, setActiveTopic] = React.useState("Rice");
   /* FoodsMenu.css */
@@ -53,6 +54,29 @@ function FoodsMenu() {
             {subItem}
           </button>
         ))}
+      </div>
+      <div className="foodsContainer">
+        {/* <h2>
+          {activeTopic} - {activeSubTopic}
+        </h2> */}
+        {/* Here you can render the food cards based on the active subtopic */}
+        {/* For example, you can map through an array of food items related to the active subtopic */}
+        {/* <FoodCard /> */}
+        {/* Repeat FoodCard for each item in the active subtopic */}
+        <div className="homeContainer">
+          {/* Example FoodCard components, replace with actual data */}
+          <FoodCard />
+          <FoodCard />
+          <FoodCard />
+          <FoodCard />
+        </div>
+        <div className="homeContainer">
+          {/* Example FoodCard components, replace with actual data */}
+          <FoodCard />
+          <FoodCard />
+          <FoodCard />
+          <FoodCard />
+        </div>
       </div>
       <Footer />
     </>
