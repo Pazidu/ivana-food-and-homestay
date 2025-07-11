@@ -7,6 +7,7 @@ function FoodsFeedback() {
     <>
       <Navbar />
       <h1>Feedback</h1>
+
       <Footer />
     </>
   );
