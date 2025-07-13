@@ -1,0 +1,32 @@
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  max-width: 300px;
+  margin: 16px auto;
+  transition: box-shadow 0.2s;
+}
+
+.cardContainer:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.cardContainer img {
+  width: 100%;
+  height: 220px;
+  max-width: 220px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  object-fit: cover;
+}
+
+.cardContainer span {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+}

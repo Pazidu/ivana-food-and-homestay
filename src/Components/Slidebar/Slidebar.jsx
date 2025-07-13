@@ -59,7 +59,7 @@ const Carousel = () => {
         </div>
       </div>
 
-      <div className="carousel-indicators">
+      <div className="carouselindicators-">
         {images.map((_, i) => (
           <span
             key={i}
