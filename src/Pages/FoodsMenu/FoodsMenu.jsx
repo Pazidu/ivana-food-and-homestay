@@ -56,13 +56,6 @@ function FoodsMenu() {
         ))}
       </div>
       <div className="foodsContainer">
-        {/* <h2>
-          {activeTopic} - {activeSubTopic}
-        </h2> */}
-        {/* Here you can render the food cards based on the active subtopic */}
-        {/* For example, you can map through an array of food items related to the active subtopic */}
-        {/* <FoodCard /> */}
-        {/* Repeat FoodCard for each item in the active subtopic */}
         <div className="homeContainer">
           {/* Example FoodCard components, replace with actual data */}
           <FoodCard />

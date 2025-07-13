@@ -4,6 +4,8 @@ import Navbar from "../../Components/Navbar/Navbar";
 import ivanaFront from "../../Assets/ivanaFront.jpg"; // Assuming you have an image in this path
 import "./FoodsAbout.css"; // Assuming you have a CSS file for styling
 // import ContactUs from "../../Components/ContactUs/ContactUs";
+import basmathi from "../../Assets/basmathi.jpg"; // Replace with your actual image path
+import SpecialCard from "../../Components/SpecialCard/SpecialCard";
 
 function FoodsAbout() {
   return (
@@ -24,6 +26,9 @@ function FoodsAbout() {
             </p>
           </div>
         </div>
+        <SpecialCard imagelink={basmathi} topic={"Only basmathi rice"} />
+        <SpecialCard imagelink={basmathi} topic={"Only basmathi rice"} />
+        <SpecialCard imagelink={basmathi} topic={"Only basmathi rice"} />
       </div>
       {/* <ContactUs /> */}
       <Footer />
