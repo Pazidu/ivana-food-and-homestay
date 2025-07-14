@@ -29,7 +29,7 @@ function FoodsMenu() {
   }, [activeTopic]);
 
   return (
-    <>
+    <div className="foodsMenu">
       <Navbar />
       <div className="foodsNav">
         {Object.keys(subTopics).map((item) => (
@@ -72,7 +72,7 @@ function FoodsMenu() {
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 }
 

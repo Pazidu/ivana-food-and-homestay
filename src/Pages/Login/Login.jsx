@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 function Login() {
   return (
-    <>
+    <div className="login">
       <Navbar />
       <div className="login-bg bg-image">
         {/* <img src={loginbg} alt="Login Background" className="w-100 h-100 z-0" /> */}
@@ -63,7 +63,7 @@ function Login() {
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 }
 

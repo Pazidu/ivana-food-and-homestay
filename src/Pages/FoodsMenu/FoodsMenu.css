@@ -1,4 +1,9 @@
+.foodsMenu {
+  height: auto;
+  overflow-y: hidden;
+}
 .foodsNav {
+  margin-top: 10vh;
   background-color: #fcb72c;
   padding: 10px;
   display: flex;

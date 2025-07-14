@@ -4,7 +4,7 @@
   /* flex-direction: column;
   /* align-items: center; */
   justify-content: center;
-  height: 85vh;
+  height: 95vh;
   background: linear-gradient(135deg, #fcb72c, #222);
 }
 .topic {
@@ -13,9 +13,10 @@
 }
 
 .signup-bg {
+  margin-top: auto;
   display: flex;
   flex: 1;
-  max-height: 85vh;
+  max-height: 95vh;
   background: #222;
   color: #fff;
   display: flex;
