@@ -11,7 +11,10 @@ import quality from "../../assets/quality.jpg"; // Replace with your actual imag
 import delivery from "../../assets/delivery.png"; // Replace with your actual image path
 import nasikottu from "../../assets/nasikottu.jpg"; // Replace with your actual image path
 import longfood from "../../assets/long-food.jpg"; // Replace with your actual image path
-import DeliveryIamge from "../../assets/delivery-image.jpg"; // Replace with your actual image path
+import DeliveryIamge from "../../assets/Delivery_image.png"; // Replace with your actual image path
+import uber from "../../assets/uber.png"; // Replace with your actual image path
+import pickme from "../../assets/pickme.png"; // Replace with your actual image path
+
 function FoodsHome() {
   return (
     <div className="home">
@@ -66,8 +69,17 @@ function FoodsHome() {
         <h1 className="orderText">Order Your Favorite Food Now</h1>
         <button className="orderButton">Order Now</button>
       </div>
+
       <div className="deliveryPart">
-        <div className="deliveryBody"></div>
+        <div className="deliveryBody">
+          <h3>Get your foods delivered to your doorstep</h3>
+          <h1>ORDER NOW</h1>
+          <h3>via</h3>
+          <div className="deliverytypes">
+            <img src={uber} alt="" className="dtypes"/>
+            <img src={pickme} alt=""  className="dtypes"/>
+          </div>
+        </div>
         <div className="deliveryImage">
           <img src={DeliveryIamge} alt="" />
         </div>
