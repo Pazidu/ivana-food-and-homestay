@@ -1,8 +1,14 @@
 import React from "react";
 import AddLocationIcon from "@mui/icons-material/AddLocation";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
-// import EmailIcon from "@mui/icons-material/Email";
+import EmailIcon from "@mui/icons-material/Email";
 import "./ContactUs.css"; // Assuming you have a CSS file for styling
+import logo from "../../assets/logo.jpg"; // Replace with your actual logo path
+import facebook from "../../assets/facebook.png"; // Replace with your actual Facebook icon path
+import instagram from "../../assets/instagram.png"; // Replace with your actual Instagram icon path
+import whatsapp from "../../assets/whatsapp.png"; // Replace with your actual WhatsApp icon path
+import tiktok from "../../assets/tiktok.png"; // Replace with your actual TikTok icon path
+import email from "../../assets/gmail.png"; // Replace with your actual Email icon path
 
 function ContactUs() {
   return (
@@ -21,47 +27,60 @@ function ContactUs() {
         </div>
         <div className="social">
           <div className="contactUs">
-            <h1>Contact Us</h1>
+            <img src={logo} alt="" className="contactUsLogoImage" />
             <hr />
-            <p>
-              {/* <AddLocationIcon /> {"  "} No 1, Colombo Road, Kandy, Sri Lanka */}
-            </p>
-            <p>{/* <LocalPhoneIcon /> +94 77 123 4567 */}</p>
-            <p>{/* <EmailIcon /> ivanafoods@gmail.com */}</p>
+            <h5>
+              <AddLocationIcon /> {"  "} No 1, Colombo Road, Kandy, Sri Lanka
+            </h5>
+            {/* <h5>
+              <EmailIcon />
+              {"  "} ivanafoods@gmail.com
+            </h5> */}
           </div>
           <hr />
           <div className="findUS">
-            <h1>Find Us On</h1>
-            <hr />
+            <h1 className="findusonText">Find Us On</h1>
+
             <div className="socialIcons">
               <a
                 href="https://www.facebook.com/IvanaFoodCourt"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <i className="fa fa-facebook"></i>
+                <img src={facebook} alt="" className="socialMediaImage" />
               </a>
+
               <a
                 href="https://www.instagram.com/ivanacourt/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <i className="fa fa-instagram"></i>
+                <img src={instagram} alt="" className="socialMediaImage" />
               </a>
+
               <a
                 href="https://www.twitter.com/IvanaFoodCourt"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <i className="fa fa-whatsapp"></i>
+                <img src={whatsapp} alt="" className="socialMediaImage" />
               </a>
-              {/* <a
-                href="https://www.twitter.com/IvanaFoodCourt"
+
+              <a
+                href="https://www.linkedin.com/company/ivanacourt"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <i className="fa fa-tiktok"></i>
-              </a> */}
+                <img src={tiktok} alt="" className="socialMediaImage" />
+              </a>
+
+              <a
+                href="https://www.linkedin.com/company/ivanacourt"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={email} alt="" className="socialMediaImage" />
+              </a>
             </div>
           </div>
         </div>
