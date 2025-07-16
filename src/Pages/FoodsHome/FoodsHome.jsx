@@ -14,6 +14,7 @@ import longfood from "../../assets/long-food.jpg"; // Replace with your actual i
 import DeliveryIamge from "../../assets/Delivery_image.png"; // Replace with your actual image path
 import uber from "../../assets/uber.png"; // Replace with your actual image path
 import pickme from "../../assets/pickme.png"; // Replace with your actual image path
+import { Link } from "react-router-dom";
 
 function FoodsHome() {
   return (
@@ -67,7 +68,15 @@ function FoodsHome() {
       <div className="ordernowbar">
         <img src={longfood} alt="" className="longimage" />
         <h1 className="orderText">Order Your Favorite Food Now</h1>
-        <button className="orderButton">Order Now</button>
+
+        <button className="orderButton">
+          <Link
+            to="/foods/menu"
+            className="text-decoration-none z-100 text-black"
+          >
+            Order Now
+          </Link>
+        </button>
       </div>
 
       <div className="deliveryPart">
@@ -76,14 +85,23 @@ function FoodsHome() {
           <h1>ORDER NOW</h1>
           <h3>via</h3>
           <div className="deliverytypes">
-            <img src={uber} alt="" className="dtypes"/>
-            <img src={pickme} alt=""  className="dtypes"/>
+            <img src={uber} alt="" className="dtypes" />
+            <img src={pickme} alt="" className="dtypes" />
           </div>
         </div>
         <div className="deliveryImage">
           <img src={DeliveryIamge} alt="" />
         </div>
       </div>
+
+      <div className="contactNoBar">
+        <h2 className="contactText">Call Us</h2>
+        <p className="contactDescription">
+          To get your takeaway ready
+        </p>
+        <button className="contactButton">+94 123 456 789</button>
+      </div>
+
       <ContactUs />
       <Footer />
     </div>
