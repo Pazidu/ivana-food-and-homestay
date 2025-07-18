@@ -8,6 +8,7 @@ import FoodsFeedback from "./Pages/FoodsFeedback/FoodsFeedback";
 import FoodsAbout from "./Pages/FoodsAbout/FoodsAbout";
 import FoodsMenu from "./Pages/FoodsMenu/FoodsMenu";
 import Cart from "./Pages/Cart/Cart";
+import PaymentGateway from "./Pages/PaymentGateway/PaymentGateway";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/payment" element={<PaymentGateway />} />
         <Route path="/foods/home" element={<FoodsHome />} />
         <Route path="/foods/gallery" element={<FoodsGallery />} />
         <Route path="/foods/feedback" element={<FoodsFeedback />} />

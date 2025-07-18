@@ -3,6 +3,7 @@ import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
 import "./Cart.css";
 import cartbg from "../../Assets/cart-bg2.jpg";
+import { Link } from "react-router-dom";
 
 function Cart() {
   return (
@@ -83,7 +84,9 @@ function Cart() {
         </table>
 
         <div className="checkout-container">
-          <button className="checkout-button">Checkout</button>
+          <Link to="/payment" className="checkout-link">
+            <button className="checkout-button">Checkout</button>
+          </Link>
         </div>
       </div>
       <Footer />
