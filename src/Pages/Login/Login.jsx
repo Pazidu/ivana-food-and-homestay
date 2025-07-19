@@ -1,12 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
 import googleSignIn from "../../assets/signGoogle.png"; // Assuming you have a Google sign-in image
 // import loginbg from "../../assets/loginbg.jpg"; // Assuming you have a background image
 import "./Login.css"; // Assuming you have a CSS file for styling
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+// import userFoodsHome from "../User/FoodsHome/FoodsHome"; // Assuming you have a user foods home component
+// import home from "../FoodsHome/FoodsHome"
 
 function Login() {
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+  });
+
+  const navigate = useNavigate();
+
+  const handleChanges = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/auth/login",
+        values
+      );
+      if (response.status === 201) {
+        localStorage.setItem("token", response.data.token);
+        navigate("/home");
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+      // Handle error appropriately, e.g., show a message to the user
+    }
+  };
+
   return (
     <div className="login">
       <Navbar />
@@ -14,7 +45,7 @@ function Login() {
         {/* <img src={loginbg} alt="Login Background" className="w-100 h-100 z-0" /> */}
         {/* <h1 className="login-title">Login</h1> */}
         <div className="login-form-container">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="form-group mb-3">
               <label htmlFor="email" className="form-label">
                 Email :
@@ -24,6 +55,8 @@ function Login() {
                 className="form-control"
                 id="email"
                 placeholder="Enter email"
+                name="email"
+                onChange={handleChanges}
               />
             </div>
             <div className="form-group mb-4">
@@ -35,6 +68,8 @@ function Login() {
                 className="form-control"
                 id="password"
                 placeholder="Password"
+                name="password"
+                onChange={handleChanges}
               />
             </div>
             <button type="submit" className="btn btn-primary w-100">
