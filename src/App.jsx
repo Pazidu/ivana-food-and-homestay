@@ -9,6 +9,7 @@ import FoodsAbout from "./Pages/FoodsAbout/FoodsAbout";
 import FoodsMenu from "./Pages/FoodsMenu/FoodsMenu";
 import Cart from "./Pages/Cart/Cart";
 import PaymentGateway from "./Pages/PaymentGateway/PaymentGateway";
+import Home from "./Pages/UserHome";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/foods/feedback" element={<FoodsFeedback />} />
         <Route path="/foods/about" element={<FoodsAbout />} />
         <Route path="/foods/menu" element={<FoodsMenu />} />
+        <Route path="/home" element={<Home />} />
       </Routes>
     </BrowserRouter>
   );
