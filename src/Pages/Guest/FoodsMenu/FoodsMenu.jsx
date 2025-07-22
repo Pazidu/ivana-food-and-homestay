@@ -1,8 +1,8 @@
 import React from "react";
-import Navbar from "../../Components/Navbar/Navbar";
-import Footer from "../../Components/Footer/Footer";
+import Navbar from "../../../Components/Navbar/Navbar";
+import Footer from "../../../Components/Footer/Footer";
 import "./FoodsMenu.css";
-import FoodCard from "../../Components/FoodCard/FoodCard";
+import FoodCard from "../../../Components/FoodCard/FoodCard";
 function FoodsMenu() {
   const [activeTopic, setActiveTopic] = React.useState("Rice");
   /* FoodsMenu.css */
@@ -30,7 +30,7 @@ function FoodsMenu() {
 
   return (
     <div className="foodsMenu">
-      <Navbar />
+      <Navbar name="Login" />
       <div className="foodsNav">
         {Object.keys(subTopics).map((item) => (
           <button

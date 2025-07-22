@@ -1,9 +1,9 @@
 import React from "react";
-import Navbar from "../../Components/Navbar/Navbar";
-import Footer from "../../Components/Footer/Footer";
+import Navbar from "../../../Components/Navbar/Navbar";
+import Footer from "../../../Components/Footer/Footer";
 import "./Cart.css";
-import cartbg from "../../Assets/cart-bg2.jpg";
 import { Link } from "react-router-dom";
+import cartbg from "../../../assets/cart-bg2.jpg"; // Adjust the path as necessary
 
 function Cart() {
   return (

@@ -1,6 +1,6 @@
 import React from "react";
-import Navbar from "../../Components/Navbar/Navbar.jsx";
-import Footer from "../../Components/Footer/Footer.jsx";
+import Navbar from "../../../Components/Navbar/Navbar.jsx";
+import Footer from "../../../Components/Footer/Footer.jsx";
 import "./Signup.css"; // Assuming you have a CSS file for styling
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -41,7 +41,7 @@ function Signup() {
 
   return (
     <>
-      <Navbar />
+      <Navbar name="Login" />
       <div className="signupContainer">
         <div className="topic">
           <h1>Sign Up</h1>

@@ -1,14 +1,16 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Landing from "./Pages/Landing/Landing";
-import Signup from "./Pages/Signup/Signup";
-import Login from "./Pages/Login/Login";
-import FoodsHome from "./Pages/FoodsHome/FoodsHome";
-import FoodsGallery from "./Pages/FoodsGallery/FoodsGallery";
-import FoodsFeedback from "./Pages/FoodsFeedback/FoodsFeedback";
-import FoodsAbout from "./Pages/FoodsAbout/FoodsAbout";
-import FoodsMenu from "./Pages/FoodsMenu/FoodsMenu";
-import Cart from "./Pages/Cart/Cart";
-import PaymentGateway from "./Pages/PaymentGateway/PaymentGateway";
+import Signup from "./Pages/Guest/Signup/Signup";
+import Login from "./Pages/Guest/Login/Login";
+import FoodsHome from "./Pages/Guest/FoodsHome/FoodsHome";
+import FoodsGallery from "./Pages/Guest/FoodsGallery/FoodsGallery";
+import FoodsFeedback from "./Pages/Guest/FoodsFeedback/FoodsFeedback";
+import FoodsAbout from "./Pages/Guest/FoodsAbout/FoodsAbout";
+import FoodsMenu from "./Pages/Guest/FoodsMenu/FoodsMenu";
+import Cart from "./Pages/User/Cart/Cart";
+import PaymentGateway from "./Pages/User/PaymentGateway/PaymentGateway";
+import UserFoodsHome from "./Pages/User/FoodsHome/FoodsHome";
+import Profile from "./Pages/User/Profile/Profile";
 import Home from "./Pages/UserHome";
 
 function App() {
@@ -25,6 +27,8 @@ function App() {
         <Route path="/foods/feedback" element={<FoodsFeedback />} />
         <Route path="/foods/about" element={<FoodsAbout />} />
         <Route path="/foods/menu" element={<FoodsMenu />} />
+        <Route path="/user/foods/home" element={<UserFoodsHome />} />
+        <Route path="/user/profile" element={<Profile />} />
         <Route path="/home" element={<Home />} />
       </Routes>
     </BrowserRouter>
