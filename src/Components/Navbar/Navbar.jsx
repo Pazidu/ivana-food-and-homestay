@@ -4,7 +4,7 @@ import cart from "../../assets/cart.png";
 import "./Navbar.css"; // Assuming you have a CSS file for styling
 import { Link } from "react-router-dom";
 
-function Navbar() {
+function Navbar(props) {
   return (
     <>
       <nav
@@ -68,7 +68,7 @@ function Navbar() {
             </Link>
             <Link to="/login">
               <button className="btn btn-outline-success" type="submit">
-                Login
+                {props.name}
               </button>
             </Link>
           </div>

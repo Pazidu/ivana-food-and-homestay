@@ -1,25 +1,24 @@
 import React from "react";
-import Navbar from "../../Components/Navbar/Navbar";
-import Footer from "../../Components/Footer/Footer";
-import ContactUs from "../../Components/ContactUs/ContactUs"; // Assuming you have a ContactUs component
+import Navbar from "../../../Components/Navbar/Navbar";
+import Footer from "../../../Components/Footer/Footer";
+import ContactUs from "../../../Components/ContactUs/ContactUs"; // Assuming you have a ContactUs component
 import "./FoodsHome.css"; // Assuming you have a CSS file for styling
-import FoodCard from "../../Components/FoodCard/FoodCard";
-import Slidebar from "../../Components/Slidebar/Slidebar";
-import SpecialCard from "../../Components/SpecialCard/SpecialCard";
-import basmathi from "../../assets/basmathi.jpg"; // Replace with your actual image path
-import quality from "../../assets/quality.jpg"; // Replace with your actual image path
-import delivery from "../../assets/delivery.png"; // Replace with your actual image path
-import nasikottu from "../../assets/nasikottu.jpg"; // Replace with your actual image path
-import longfood from "../../assets/long-food.jpg"; // Replace with your actual image path
-import DeliveryIamge from "../../assets/Delivery_image.png"; // Replace with your actual image path
-import uber from "../../assets/uber.png"; // Replace with your actual image path
-import pickme from "../../assets/pickme.png"; // Replace with your actual image path
+import Slidebar from "../../../Components/Slidebar/Slidebar";
+import SpecialCard from "../../../Components/SpecialCard/SpecialCard";
+import basmathi from "../../../assets/basmathi.jpg"; // Replace with your actual image path
+import quality from "../../../assets/quality.jpg"; // Replace with your actual image path
+import delivery from "../../../assets/delivery.png"; // Replace with your actual image path
+import nasikottu from "../../../assets/nasikottu.jpg"; // Replace with your actual image path
+import longfood from "../../../assets/long-food.jpg"; // Replace with your actual image path
+import DeliveryIamge from "../../../assets/Delivery_image.png"; // Replace with your actual image path
+import uber from "../../../assets/uber.png"; // Replace with your actual image path
+import pickme from "../../../assets/pickme.png"; // Replace with your actual image path
 import { Link } from "react-router-dom";
 
 function FoodsHome() {
   return (
     <div className="home">
-      <Navbar />
+      <Navbar name="Login" />
 
       <div className="special">
         <div className="foodsHomeContainer">
@@ -96,9 +95,7 @@ function FoodsHome() {
 
       <div className="contactNoBar">
         <h2 className="contactText">Call Us</h2>
-        <p className="contactDescription">
-          To get your takeaway ready
-        </p>
+        <p className="contactDescription">To get your takeaway ready</p>
         <button className="contactButton">+94 123 456 789</button>
       </div>
 

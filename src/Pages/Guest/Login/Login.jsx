@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-import Navbar from "../../Components/Navbar/Navbar";
-import Footer from "../../Components/Footer/Footer";
-import googleSignIn from "../../assets/signGoogle.png"; // Assuming you have a Google sign-in image
-// import loginbg from "../../assets/loginbg.jpg"; // Assuming you have a background image
+import Navbar from "../../../Components/Navbar/Navbar";
+import Footer from "../../../Components/Footer/Footer";
+import googleSignIn from "../../../assets/signGoogle.png"; // Adjust the path as necessary
 import "./Login.css"; // Assuming you have a CSS file for styling
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-// import userFoodsHome from "../User/FoodsHome/FoodsHome"; // Assuming you have a user foods home component
-// import home from "../FoodsHome/FoodsHome"
 
 function Login() {
   const [values, setValues] = useState({
@@ -30,7 +27,8 @@ function Login() {
       );
       if (response.status === 201) {
         localStorage.setItem("token", response.data.token);
-        navigate("/home");
+        alert("Login successful!");
+        navigate("/user/foods/home");
       }
     } catch (error) {
       console.error("Error during login:", error);
@@ -40,7 +38,7 @@ function Login() {
 
   return (
     <div className="login">
-      <Navbar />
+      <Navbar name="Signup" />
       <div className="login-bg bg-image">
         {/* <img src={loginbg} alt="Login Background" className="w-100 h-100 z-0" /> */}
         {/* <h1 className="login-title">Login</h1> */}

@@ -23,7 +23,7 @@ function FoodsHome() {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        "http://localhost:5000/auth/User/foods/home",
+        "http://localhost:5000/auth/user/foods/home",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -44,7 +44,7 @@ function FoodsHome() {
 
   return (
     <div className="home">
-      <Navbar />
+      <Navbar name="Pasindu" />
 
       {/* <div className="special">
         <div className="foodsHomeContainer">
