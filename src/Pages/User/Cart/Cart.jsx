@@ -8,7 +8,7 @@ import cartbg from "../../../assets/cart-bg2.jpg"; // Adjust the path as necessa
 function Cart() {
   return (
     <>
-      <Navbar />
+      <Navbar name="USER" />
       <h1>Cart</h1>
       <div
         className="cart-background"
