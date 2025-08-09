@@ -10,7 +10,16 @@
   justify-content: center;
   gap: 12px;
 }
-
+.foodsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  background-color: #000000;
+  max-width: 100%;
+  margin: auto;
+  padding: 40px;
+}
 .foodsButton {
   background: none;
   border: 1px solid black;
