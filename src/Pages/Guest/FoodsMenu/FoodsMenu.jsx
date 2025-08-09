@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../../../Components/Navbar/Navbar";
 import Footer from "../../../Components/Footer/Footer";
 import "./FoodsMenu.css";
@@ -28,6 +28,15 @@ function FoodsMenu() {
     setActiveSubTopic(subTopics[activeTopic][0]);
   }, [activeTopic]);
 
+  const [foods, setFoods] = React.useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/foods/menu")
+      .then((res) => res.json())
+      .then((data) => setFoods(data))
+      .catch((err) => console.error(err));
+  }, []);
+
   return (
     <div className="foodsMenu">
       <Navbar name="Login" />
@@ -42,6 +51,7 @@ function FoodsMenu() {
           </button>
         ))}
       </div>
+
       <div className="foodsSubNav">
         {subTopics[activeTopic].map((subItem) => (
           <button
@@ -55,22 +65,15 @@ function FoodsMenu() {
           </button>
         ))}
       </div>
-      <div className="foodsContainer">
-        <div className="homeContainer">
-          {/* Example FoodCard components, replace with actual data */}
-          <FoodCard />
-          <FoodCard />
-          <FoodCard />
-          <FoodCard />
-        </div>
-        <div className="homeContainer">
-          {/* Example FoodCard components, replace with actual data */}
-          <FoodCard />
-          <FoodCard />
-          <FoodCard />
-          <FoodCard />
-        </div>
+
+      <div className="foodsContainer ">
+        {foods.map((food) => (
+          <div key={food.id}>
+            <FoodCard name={food.name} />
+          </div>
+        ))}
       </div>
+
       <Footer />
     </div>
   );
