@@ -9,14 +9,23 @@ function FoodsMenu() {
 
   // Define subcategories for each main topic
   const subTopics = {
-    Rice: ["Fried Rice", "Fried Rice Set Menu"],
-    Kottu: ["Chicken Kottu", "Vegetable Kottu"],
-    Noodles: ["Chicken Noodles", "Vegetable Noodles"],
-    Spaghetti: ["Spaghetti Bolognese", "Spaghetti Carbonara"],
-    Nasigorang: ["Classic Nasigorang", "Special Nasigorang"],
-    Megorang: ["Classic Me gorang", "Special Me gorang"],
-    Dishes: ["Chicken Curry", "Fish Curry"],
-    Other: ["Snacks", "Drinks"],
+    Rice: [
+      "Fried Rice",
+      "Fried Rice Set Menu",
+      "Special Rice",
+      "Nasigoreng",
+      "Mongolian Rice",
+    ],
+    Noodles: [
+      "Fried Noodles",
+      "Noodles Set Menu",
+      "Special Noodles",
+      "Me Goreng",
+    ],
+    Kottu: ["Nasi Kottu", "Kottu", "Cheese Kottu"],
+    Spaghetti: ["Ivana Spaghetti", "Ivana Pasta"],
+    Dishes: ["Fried Dishes", "Devilled Dishes", "Chopsuey", "Egg"],
+    Other: ["Lasi", "Soup", "Snacks"],
   };
 
   const [activeSubTopic, setActiveSubTopic] = React.useState(
@@ -31,11 +40,17 @@ function FoodsMenu() {
   const [foods, setFoods] = React.useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/foods/menu")
+    fetch(
+      `http://localhost:5000/api/foods/menu?type=${encodeURIComponent(
+        activeSubTopic
+      )}`
+    )
       .then((res) => res.json())
       .then((data) => setFoods(data))
       .catch((err) => console.error(err));
-  }, []);
+  }, [activeSubTopic]);
+
+  const [selectedFood, setSelectedFood] = React.useState(null);
 
   return (
     <div className="foodsMenu">
@@ -68,11 +83,49 @@ function FoodsMenu() {
 
       <div className="foodsContainer ">
         {foods.map((food) => (
-          <div key={food.id}>
-            <FoodCard name={food.name} />
+          <div
+            key={food.id}
+            onClick={() => setSelectedFood(food)}
+            style={{ cursor: "pointer" }}
+          >
+            <FoodCard name={food.name} foodImage={food.image_link} />
           </div>
         ))}
       </div>
+
+      {selectedFood && (
+        <div
+          className="food-popup-overlay"
+          onClick={() => setSelectedFood(null)}
+        >
+          <div className="food-popup" onClick={(e) => e.stopPropagation()}>
+            <button
+              className="food-popup-close"
+              onClick={() => setSelectedFood(null)}
+              aria-label="Close"
+            >
+              &times;
+            </button>
+            <h2>{selectedFood.name}</h2>
+            {selectedFood.image && (
+              <img
+                src={selectedFood.image}
+                alt={selectedFood.name}
+                style={{
+                  width: "100%",
+                  borderRadius: "6px",
+                  marginBottom: "1rem",
+                }}
+              />
+            )}
+            <p>{selectedFood.description}</p>
+            <p>
+              <strong>Price:</strong> {selectedFood.regular_price}
+            </p>
+            {/* Add more details as needed */}
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>
