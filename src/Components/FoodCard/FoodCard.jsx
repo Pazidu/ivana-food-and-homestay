@@ -1,11 +1,11 @@
 import React from "react";
 import "./FoodCard.css"; // Assuming you have a CSS file for styling
-import foodImage from "../../assets/nasikottu.jpg"; // Replace with your actual image path
+// import foodImage from "../../assets/nasikottu.jpg"; // Replace with your actual image path
 function FoodCard(props) {
   return (
     <>
       <div className="food-card">
-        <img src={foodImage} alt="Food Item" className="food-image" />
+        <img src={props.foodImage} alt="Food Item" className="food-image" />
         <div className="food-details">
           <h3 className="food-title">{props.name}</h3>
           {/* <p className="food-description">
