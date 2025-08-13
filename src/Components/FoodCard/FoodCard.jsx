@@ -5,7 +5,7 @@ function FoodCard(props) {
   return (
     <>
       <div className="food-card">
-        <img src={props.foodImage} alt="Food Item" className="food-image" />
+        <img src={props.foodImage} alt="Food image" className="food-image" />
         <div className="food-details">
           <h3 className="food-title">{props.name}</h3>
           {/* <p className="food-description">

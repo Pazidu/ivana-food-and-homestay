@@ -107,22 +107,63 @@ function FoodsMenu() {
               &times;
             </button>
             <h2>{selectedFood.name}</h2>
-            {selectedFood.image && (
-              <img
-                src={selectedFood.image}
-                alt={selectedFood.name}
-                style={{
-                  width: "100%",
-                  borderRadius: "6px",
-                  marginBottom: "1rem",
-                }}
-              />
-            )}
-            <p>{selectedFood.description}</p>
-            <p>
-              <strong>Price:</strong> {selectedFood.regular_price}
-            </p>
-            {/* Add more details as needed */}
+            <div className="popup-container">
+              <div className="selected-food-image-container">
+                {selectedFood.image_link && (
+                  <img
+                    className="selected-food-image"
+                    src={selectedFood.image_link}
+                    alt={selectedFood.name}
+                  />
+                )}
+              </div>
+              <div className="selected-food-details">
+                <p>
+                  {/* <strong>Price:</strong> {selectedFood.regular_price} */}
+                </p>
+                <table className="price-table">
+                  <thead>
+                    <tr>
+                      <th>Regular</th>
+                      <th>Large</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{selectedFood.regular_price}/=</td>
+                      <td>{selectedFood.large_price}/=</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <input
+                          type="number"
+                          min={0}
+                          defaultValue={0}
+                          style={{ width: "60px", marginLeft: "8px" }}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          min={0}
+                          defaultValue={0}
+                          style={{ width: "60px", marginLeft: "8px" }}
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <button
+                  className="add-to-cart-btn"
+                  onClick={() => {
+                    // Implement add to cart logic here
+                    alert("Added to cart!");
+                  }}
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       )}
