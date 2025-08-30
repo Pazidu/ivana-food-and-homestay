@@ -11,7 +11,7 @@ import Cart from "./Pages/User/Cart/Cart";
 import PaymentGateway from "./Pages/User/PaymentGateway/PaymentGateway";
 import UserFoodsHome from "./Pages/User/FoodsHome/FoodsHome";
 import Profile from "./Pages/User/Profile/Profile";
-import Home from "./Pages/UserHome";
+import Home from "./Pages/User/Home";
 
 function App() {
   return (
