@@ -28,7 +28,7 @@ function Login() {
       if (response.status === 201) {
         localStorage.setItem("token", response.data.token);
         alert("Login successful!");
-        navigate("/user/foods/home");
+        navigate("/foods/home");
       }
     } catch (error) {
       console.error("Error during login:", error);
