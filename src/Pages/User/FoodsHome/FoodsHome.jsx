@@ -1,52 +1,26 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Navbar from "../../../Components/Navbar/Navbar";
 import Footer from "../../../Components/Footer/Footer";
-// import ContactUs from "../../Components/ContactUs/ContactUs"; // Assuming you have a ContactUs component
+import ContactUs from "../../../Components/ContactUs/ContactUs"; // Assuming you have a ContactUs component
 import "./FoodsHome.css"; // Assuming you have a CSS file for styling
-// import FoodCard from "../../Components/FoodCard/FoodCard";
-// import Slidebar from "../../Components/Slidebar/Slidebar";
-// import SpecialCard from "../../Components/SpecialCard/SpecialCard";
-// import basmathi from "../../assets/basmathi.jpg"; // Replace with your actual image path
-// import quality from "../../assets/quality.jpg"; // Replace with your actual image path
-// import delivery from "../../assets/delivery.png"; // Replace with your actual image path
-// import nasikottu from "../../assets/nasikottu.jpg"; // Replace with your actual image path
-// import longfood from "../../assets/long-food.jpg"; // Replace with your actual image path
-// import DeliveryIamge from "../../assets/Delivery_image.png"; // Replace with your actual image path
-// import uber from "../../assets/uber.png"; // Replace with your actual image path
-// import pickme from "../../assets/pickme.png"; // Replace with your actual image path
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import Slidebar from "../../../Components/Slidebar/Slidebar";
+import SpecialCard from "../../../Components/SpecialCard/SpecialCard";
+import basmathi from "../../../assets/basmathi.jpg"; // Replace with your actual image path
+import quality from "../../../assets/quality.jpg"; // Replace with your actual image path
+import delivery from "../../../assets/delivery.png"; // Replace with your actual image path
+import nasikottu from "../../../assets/nasikottu.jpg"; // Replace with your actual image path
+import longfood from "../../../assets/long-food.jpg"; // Replace with your actual image path
+import DeliveryIamge from "../../../assets/Delivery_image.png"; // Replace with your actual image path
+import uber from "../../../assets/uber.png"; // Replace with your actual image path
+import pickme from "../../../assets/pickme.png"; // Replace with your actual image path
+import { Link } from "react-router-dom";
 
 function FoodsHome() {
-  const navigate = useNavigate();
-  const fetchUser = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const response = await axios.get(
-        "http://localhost:5000/auth/user/foods/home",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      if (response.status !== 201) {
-        navigate("/login");
-      }
-    } catch (error) {
-      navigate("/login");
-      console.error("Error fetching user data:", error);
-    }
-  };
-  useEffect(() => {
-    fetchUser();
-  }, []);
-
   return (
     <div className="home">
       <Navbar name="Pasindu" />
 
-      {/* <div className="special">
+      <div className="special">
         <div className="foodsHomeContainer">
           <Slidebar />
           <h1 className="specialText">Why We are Special ?</h1>
@@ -71,8 +45,8 @@ function FoodsHome() {
             />
           </div>
         </div>
-      </div> */}
-      {/* <div className="nasiKottu">
+      </div>
+      <div className="nasiKottu">
         <div className="kottuimage">
           <img src={nasikottu} alt="" />
         </div>
@@ -89,8 +63,8 @@ function FoodsHome() {
           </p>
           <button className="kottuButton">Order Now</button>
         </div>
-      </div> */}
-      {/* <div className="ordernowbar">
+      </div>
+      <div className="ordernowbar">
         <img src={longfood} alt="" className="longimage" />
         <h1 className="orderText">Order Your Favorite Food Now</h1>
 
@@ -102,9 +76,9 @@ function FoodsHome() {
             Order Now
           </Link>
         </button>
-      </div> */}
+      </div>
 
-      {/* <div className="deliveryPart">
+      <div className="deliveryPart">
         <div className="deliveryBody">
           <h3>Get your foods delivered to your doorstep</h3>
           <h1>ORDER NOW</h1>
@@ -117,15 +91,15 @@ function FoodsHome() {
         <div className="deliveryImage">
           <img src={DeliveryIamge} alt="" />
         </div>
-      </div> */}
+      </div>
 
-      {/* <div className="contactNoBar">
+      <div className="contactNoBar">
         <h2 className="contactText">Call Us</h2>
         <p className="contactDescription">To get your takeaway ready</p>
         <button className="contactButton">+94 123 456 789</button>
-      </div> */}
+      </div>
 
-      {/* <ContactUs /> */}
+      <ContactUs />
       <Footer />
     </div>
   );

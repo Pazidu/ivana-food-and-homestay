@@ -1,0 +1,134 @@
+/* Main Container */
+.feedback-container {
+  max-width: 800px;
+  margin: 10vh auto;
+  padding: 16px;
+}
+
+/* Sub Navbar */
+.subnavbar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.subnav-btn {
+  margin: auto;
+  background: #f3f4f6;
+  border: 1px solid #d1d5db;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #374151;
+  transition: all 0.2s;
+}
+
+.subnav-btn:hover {
+  background: #e5e7eb;
+}
+
+.subnav-btn.active {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+/* Sections */
+.content-section {
+  margin-top: 12px;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.no-data {
+  color: #6b7280;
+}
+
+/* Cards */
+.card {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.card-user {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.card-text {
+  margin-bottom: 6px;
+}
+
+.card-rating {
+  color: #facc15;
+  font-weight: bold;
+}
+
+.complaint-card {
+  border-left: 4px solid #ef4444;
+}
+
+.card-date {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* Feedback Form */
+.feedback-form-section {
+  margin-top: 24px;
+  padding: 16px;
+  background: #f9fafb;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+}
+
+.feedback-form-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-submit-btn {
+  background-color: #2563eb;
+  color: white;
+  padding: 10px;
+}

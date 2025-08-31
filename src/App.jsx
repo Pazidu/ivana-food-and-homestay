@@ -11,7 +11,6 @@ import Cart from "./Pages/User/Cart/Cart";
 import PaymentGateway from "./Pages/User/PaymentGateway/PaymentGateway";
 import UserFoodsHome from "./Pages/User/FoodsHome/FoodsHome";
 import Profile from "./Pages/User/Profile/Profile";
-import Home from "./Pages/User/Home";
 
 function App() {
   return (
@@ -29,7 +28,7 @@ function App() {
         <Route path="/foods/menu" element={<FoodsMenu />} />
         <Route path="/user/foods/home" element={<UserFoodsHome />} />
         <Route path="/user/profile" element={<Profile />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/user/foods/home" element={<UserFoodsHome />} />
       </Routes>
     </BrowserRouter>
   );

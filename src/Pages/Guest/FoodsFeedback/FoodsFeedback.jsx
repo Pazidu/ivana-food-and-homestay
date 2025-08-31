@@ -1,52 +1,160 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../../../Components/Navbar/Navbar";
-import Footer from "../../../Components/Footer/Footer";
+import "./FoodsFeedback.css";
 
-function FoodsFeedback() {
+export default function FoodsFeedback() {
+  const [activeTab, setActiveTab] = useState("reviews"); // default tab
+  const [reviews, setReviews] = useState([]);
+  const [complaints, setComplaints] = useState([]);
+
+  // Fetch reviews
+  const fetchReviews = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/api/foods/reviews");
+      const data = await res.json();
+      setReviews(data);
+    } catch (err) {
+      console.error("Error fetching reviews:", err);
+    }
+  };
+
+  // Fetch complaints
+  const fetchComplaints = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/api/foods/complaints");
+      const data = await res.json();
+      setComplaints(data);
+    } catch (err) {
+      console.error("Error fetching complaints:", err);
+    }
+  };
+
+  // Fetch data on tab change
+  useEffect(() => {
+    if (activeTab === "reviews") fetchReviews();
+    else fetchComplaints();
+  }, [activeTab]);
+
   return (
     <>
-      <Navbar name="Login"/>
-      <div
-        style={{
-          margin: "10vh 0",
-          background: "#f8f9fa",
-          padding: "10px 0",
-          borderBottom: "1px solid #e0e0e0",
-        }}
-      >
-        <nav style={{ display: "flex", justifyContent: "center", gap: "40px" }}>
-          <a
-            href="#reviews"
-            style={{
-              textDecoration: "none",
-              color: "#333",
-              fontWeight: "500",
-              padding: "8px 16px",
-              borderRadius: "4px",
-              transition: "background 0.2s",
-            }}
+      <Navbar name="Log In" />
+      <div className="feedback-container">
+        {/* Sub Navbar */}
+        <div className="subnavbar">
+          <button
+            className={`subnav-btn ${activeTab === "reviews" ? "active" : ""}`}
+            onClick={() => setActiveTab("reviews")}
           >
             Reviews
-          </a>
-          <a
-            href="#complains"
-            style={{
-              textDecoration: "none",
-              color: "#333",
-              fontWeight: "500",
-              padding: "8px 16px",
-              borderRadius: "4px",
-              transition: "background 0.2s",
-            }}
+          </button>
+          <button
+            className={`subnav-btn ${
+              activeTab === "complaints" ? "active" : ""
+            }`}
+            onClick={() => setActiveTab("complaints")}
           >
-            Complains
-          </a>
-        </nav>
-      </div>
+            Complaints
+          </button>
+        </div>
+            
+        {/* Content Section */}
+        <div className="content-section">
+          {activeTab === "reviews" ? (
+            <div className="reviews-section">
+              <h2 className="section-title">Customer Reviews</h2>
+              {reviews.length === 0 ? (
+                <p className="no-data">No reviews yet.</p>
+              ) : (
+                reviews.map((r) => (
+                  <div key={r.id} className="card">
+                    <p className="card-user">{r.name}</p>
+                    <p className="card-text">{r.comment}</p>
+                    <p className="card-rating">⭐ {r.rating}/5</p>
+                  </div>
+                ))
+              )}
+            </div>
+          ) : (
+            <div className="complaints-section">
+              <h2 className="section-title">Customer Complaints</h2>
+              {complaints.length === 0 ? (
+                <p className="no-data">No complaints yet.</p>
+              ) : (
+                complaints.map((c) => (
+                  <div key={c.id} className="card complaint-card">
+                    <p className="card-user">{c.user}</p>
+                    <p className="card-text">{c.issue}</p>
+                    <p className="card-date">📅 {c.date}</p>
+                  </div>
+                ))
+              )}
+            </div>
+          )}
+        </div>
 
-      <Footer />
+        {/* Feedback Form */}
+        {activeTab === "reviews" && (
+          <div className="feedback-form-section">
+            <h3 className="feedback-form-title">Submit a Review</h3>
+            <form
+              className="feedback-form"
+              onSubmit={async (e) => {
+                e.preventDefault();
+                const formData = new FormData(e.target);
+                const review = {
+                  name: formData.get("name"),
+                  comment: formData.get("comment"),
+                  rating: formData.get("rating"),
+                };
+                try {
+                  const res = await fetch(
+                    "http://localhost:5000/api/foods/reviews",
+                    {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify(review),
+                    }
+                  );
+                  const data = await res.json();
+                  if (!res.ok) {
+                    console.error("Failed to submit review:", data.message);
+                  } else {
+                    e.target.reset();
+                    fetchReviews();
+                  }
+                } catch (err) {
+                  console.error("Error posting review:", err);
+                }
+              }}
+            >
+              <input
+                type="text"
+                name="name"
+                placeholder="Your Name"
+                required
+                className="form-input"
+              />
+              <textarea
+                name="comment"
+                placeholder="Your Review"
+                required
+                className="form-textarea"
+              />
+              <select name="rating" required className="form-select">
+                <option value="">Rating</option>
+                {[1, 2, 3, 4, 5].map((num) => (
+                  <option key={num} value={num}>
+                    {num}
+                  </option>
+                ))}
+              </select>
+              <button type="submit" className="form-submit-btn">
+                Submit Review
+              </button>
+            </form>
+          </div>
+        )}
+      </div>
     </>
   );
 }
-
-export default FoodsFeedback;
