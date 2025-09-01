@@ -11,6 +11,10 @@ import Cart from "./Pages/User/Cart/Cart";
 import PaymentGateway from "./Pages/User/PaymentGateway/PaymentGateway";
 import UserFoodsHome from "./Pages/User/FoodsHome/FoodsHome";
 import Profile from "./Pages/User/Profile/Profile";
+import Menu from "./Pages/Admin/Menu/Menu";
+import Users from "./Pages/Admin/Users/Users";
+import Reviews from "./Pages/Admin/Reviews/Reviews";
+import Complaints from "./Pages/Admin/Complaints/Complaints";
 
 function App() {
   return (
@@ -29,6 +33,11 @@ function App() {
         <Route path="/user/foods/home" element={<UserFoodsHome />} />
         <Route path="/user/profile" element={<Profile />} />
         <Route path="/user/foods/home" element={<UserFoodsHome />} />
+        //admin
+        <Route path="/admin/menu" element={<Menu />} />
+        <Route path="/admin/users" element={<Users />} />
+        <Route path="/admin/reviews" element={<Reviews />} />
+        <Route path="/admin/complaints" element={<Complaints />} />
       </Routes>
     </BrowserRouter>
   );
