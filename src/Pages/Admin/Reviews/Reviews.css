@@ -1,0 +1,63 @@
+/* Reviews.css */
+.reviews {
+  padding: 20px;
+  background: #f9fafc;
+  min-height: 80vh;
+}
+
+.reviews__title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.reviews__table {
+  margin-top: 5vh;
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reviews__table th,
+.reviews__table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.reviews__table th {
+  background: #007bff;
+  color: #fff;
+  font-weight: 600;
+}
+
+.reviews__table tr:hover {
+  background: #f1f5ff;
+}
+
+.reviews__actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s ease-in-out;
+}
+
+.btn--delete {
+  background: #dc3545;
+  color: white;
+}
+
+.btn--delete:hover {
+  background: #b52a37;
+}
