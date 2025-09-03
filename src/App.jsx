@@ -16,6 +16,10 @@ import Users from "./Pages/Admin/Users/Users";
 import Reviews from "./Pages/Admin/Reviews/Reviews";
 import Complaints from "./Pages/Admin/Complaints/Complaints";
 
+import RoomsHome from "./Pages/Guest/Rooms/RoomsHome";
+import RoomsBooking from "./Pages/Guest/Rooms/RoomsBooking";
+import RoomsGallery from "./Pages/Guest/Rooms/RoomsGallery";
+
 function App() {
   return (
     <BrowserRouter>
@@ -33,11 +37,19 @@ function App() {
         <Route path="/user/foods/home" element={<UserFoodsHome />} />
         <Route path="/user/profile" element={<Profile />} />
         <Route path="/user/foods/home" element={<UserFoodsHome />} />
+        
         //admin
         <Route path="/admin/menu" element={<Menu />} />
         <Route path="/admin/users" element={<Users />} />
         <Route path="/admin/reviews" element={<Reviews />} />
         <Route path="/admin/complaints" element={<Complaints />} />
+
+        //Rooms
+         <Route path="/rooms/home" element={<RoomsHome />} />
+        <Route path="/rooms/booking" element={<RoomsBooking />} />
+        <Route path="/rooms/gallery" element={<RoomsGallery />} />
+
+
       </Routes>
     </BrowserRouter>
   );

@@ -15,7 +15,7 @@ function Landing() {
     navigate("/foods/home");
   };
   const handleRoomsClick = () => {
-    navigate("/RoomsHome");
+    navigate("/rooms/home");
   };
 
   return (
