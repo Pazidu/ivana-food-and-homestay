@@ -82,16 +82,6 @@ export default function FoodsFeedback() {
           ) : (
             <div className="complaints-section">
               <h2 className="section-title">Customer Complaints</h2>
-              {complaints.length === 0 ? (
-                <p className="no-data"></p>
-              ) : (
-                complaints.map((c) => (
-                  <div key={c.id} className="card">
-                    <p className="card-user">{c.name}</p>
-                    <p className="card-text">{c.comment}</p>
-                  </div>
-                ))
-              )}
               {/* Complaint Form */}
               <form
                 className="feedback-form"

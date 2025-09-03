@@ -42,9 +42,9 @@ function ReviewsList() {
           </tr>
         </thead>
         <tbody>
-          {reviews.map((review) => (
+          {reviews.map((review, index) => (
             <tr key={review.id}>
-              <td>{review.id}</td>
+              <td>{index + 1}</td>
               <td>{review.name}</td>
               <td>{review.comment}</td>
               <td>{review.rating}/5</td>
