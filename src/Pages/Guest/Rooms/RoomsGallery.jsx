@@ -1,10 +1,14 @@
 import React from "react";
+import RoomsNavbar from "../../../Components/Rooms/RoomsNavbar";
 
 const RoomsGallery = () => {
   return (
     <div>
-      <h2>Rooms Gallery</h2>
-      <p>Photos of our homestay rooms will be shown here.</p>
+      <RoomsNavbar />
+      <div className="rooms-gallery">
+        <h2>Rooms Gallery</h2>
+        <p>Photos of our homestay rooms will be shown here.</p>
+      </div>
     </div>
   );
 };

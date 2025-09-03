@@ -1,0 +1,50 @@
+.rooms-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #800000; /* Maroon */
+  padding: 12px 40px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.rooms-navbar .logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: #d4af37; /* Dark Gold */
+  letter-spacing: 1px;
+}
+
+.rooms-navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+}
+
+.rooms-navbar ul li {
+  display: inline;
+}
+
+.rooms-navbar ul li a {
+  text-decoration: none;
+  color: #f5deb3; /* Lighter gold/beige for text */
+  font-size: 16px;
+  font-weight: 500;
+  transition: color 0.3s, border-bottom 0.3s;
+  padding-bottom: 4px;
+}
+
+.rooms-navbar ul li a:hover {
+  color: #ffd700; /* Bright gold on hover */
+  border-bottom: 2px solid #ffd700;
+}
+
+/* Active link (optional if you use NavLink) */
+.active-link {
+  color: #ffd700;
+  border-bottom: 2px solid #ffd700;
+}
