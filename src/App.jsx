@@ -21,36 +21,40 @@ import RoomsBooking from "./Pages/Guest/Rooms/RoomsBooking";
 import RoomsGallery from "./Pages/Guest/Rooms/RoomsGallery";
 
 function App() {
+  // const isLoggedIn = window.localStorage.getItem("token");
+  // const userType = window.localStorage.getItem("user_type");
+
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/payment" element={<PaymentGateway />} />
-        <Route path="/foods/home" element={<FoodsHome />} />
-        <Route path="/foods/gallery" element={<FoodsGallery />} />
-        <Route path="/foods/feedback" element={<FoodsFeedback />} />
-        <Route path="/foods/about" element={<FoodsAbout />} />
-        <Route path="/foods/menu" element={<FoodsMenu />} />
-        <Route path="/user/foods/home" element={<UserFoodsHome />} />
-        <Route path="/user/profile" element={<Profile />} />
-        <Route path="/user/foods/home" element={<UserFoodsHome />} />
-        
-        //admin
-        <Route path="/admin/menu" element={<Menu />} />
-        <Route path="/admin/users" element={<Users />} />
-        <Route path="/admin/reviews" element={<Reviews />} />
-        <Route path="/admin/complaints" element={<Complaints />} />
-
-        //Rooms
-         <Route path="/rooms/home" element={<RoomsHome />} />
-        <Route path="/rooms/booking" element={<RoomsBooking />} />
-        <Route path="/rooms/gallery" element={<RoomsGallery />} />
-
-
-      </Routes>
+      <div className="App">
+        <ProtectedRoutes></ProtectedRoutes>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/payment" element={<PaymentGateway />} />
+          <Route path="/foods/home" element={<FoodsHome />} />
+          <Route path="/foods/gallery" element={<FoodsGallery />} />
+          <Route path="/foods/feedback" element={<FoodsFeedback />} />
+          <Route path="/foods/about" element={<FoodsAbout />} />
+          <Route path="/foods/menu" element={<FoodsMenu />} />
+          <Route path="/user/foods/home" element={<UserFoodsHome />} />
+          <Route path="/user/profile" element={<Profile />} />
+          <Route path="/user/foods/home" element={<UserFoodsHome />} />
+          //admin
+          <Route element={<ProtectedRoutes />}>
+            <Route path="/admin/menu" element={<Menu />} />
+            <Route path="/admin/users" element={<Users />} />
+            <Route path="/admin/reviews" element={<Reviews />} />
+            <Route path="/admin/complaints" element={<Complaints />} />
+          </Route>
+          //Rooms
+          <Route path="/rooms/home" element={<RoomsHome />} />
+          <Route path="/rooms/booking" element={<RoomsBooking />} />
+          <Route path="/rooms/gallery" element={<RoomsGallery />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }
