@@ -27,8 +27,10 @@ function Login() {
       );
       if (response.status === 201) {
         localStorage.setItem("token", response.data.token);
-        localStorage.setItem("userId", response.data.id);
-        navigate(`/foods/home?id=${response.data.id}`);
+        localStorage.setItem("username", response.data.username); // Store username in localStorage
+        localStorage.setItem("user_type", response.data.user_type); // Store user_type in localStorage
+        alert(`Hello ${response.data.username}`); // Show success alert
+        navigate("/foods/home"); // Navigate to foods home page
       }
     } catch (error) {
       console.error("Error during login:", error);
