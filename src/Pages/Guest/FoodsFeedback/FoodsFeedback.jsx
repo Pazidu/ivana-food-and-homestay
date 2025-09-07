@@ -6,15 +6,26 @@ export default function FoodsFeedback() {
   const [activeTab, setActiveTab] = useState("reviews");
   const [reviews, setReviews] = useState([]);
   const [complaints, setComplaints] = useState([]);
+  const [error, setError] = useState(""); // Added error state
 
-  // Generic fetch function
+  // Generic fetch function with error handling
   const fetchData = async (endpoint, setter) => {
     try {
       const res = await fetch(`http://localhost:5000/api/foods/${endpoint}`);
       const data = await res.json();
-      setter(data);
+
+      if (Array.isArray(data)) {
+        setter(data);
+        setError(""); // clear previous errors
+      } else {
+        console.error(`Expected array but got:`, data);
+        setter([]);
+        setError(data.message || `Unexpected response from ${endpoint}`);
+      }
     } catch (err) {
       console.error(`Error fetching ${endpoint}:`, err);
+      setter([]);
+      setError(`Failed to fetch ${endpoint}`);
     }
   };
 
@@ -30,12 +41,19 @@ export default function FoodsFeedback() {
       const data = await res.json();
       if (!res.ok) {
         console.error(`Failed to submit ${endpoint}:`, data.message);
+        alert(data.message || `Failed to submit ${endpoint}`);
       } else {
         e.target.reset();
         callback();
+        alert(
+          `${
+            endpoint.charAt(0).toUpperCase() + endpoint.slice(1)
+          } submitted successfully!`
+        );
       }
     } catch (err) {
       console.error(`Error posting ${endpoint}:`, err);
+      alert(`Error posting ${endpoint}`);
     }
   };
 
@@ -63,13 +81,14 @@ export default function FoodsFeedback() {
           ))}
         </div>
 
+        {/* Error Message */}
+        {error && <p className="error-message">{error}</p>}
+
         {/* Content Section */}
         <div className="content-section">
           {activeTab === "reviews" ? (
             <div className="reviews-section">
-              {reviews.length === 0 ? (
-                <p className="no-data">No reviews yet.</p>
-              ) : (
+              {reviews.length > 0 ? (
                 reviews.map((r) => (
                   <div key={r.id} className="card">
                     <p className="card-user">{r.name}</p>
@@ -77,6 +96,8 @@ export default function FoodsFeedback() {
                     <p className="card-rating">⭐ {r.rating}/5</p>
                   </div>
                 ))
+              ) : (
+                <p className="no-data">No reviews yet.</p>
               )}
             </div>
           ) : (
@@ -95,8 +116,6 @@ export default function FoodsFeedback() {
                     },
                     () => fetchData("complaints", setComplaints)
                   );
-                  // Show success alert
-                  alert("Complaint submitted successfully!");
                 }}
               >
                 <input
@@ -137,8 +156,6 @@ export default function FoodsFeedback() {
                   },
                   () => fetchData("reviews", setReviews)
                 );
-                //add success message
-                alert("Review submitted successfully!");
               }}
             >
               <input
