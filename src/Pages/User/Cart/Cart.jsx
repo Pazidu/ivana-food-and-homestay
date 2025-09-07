@@ -1,11 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../../../Components/Navbar/Navbar";
 import Footer from "../../../Components/Footer/Footer";
 import "./Cart.css";
 import { Link } from "react-router-dom";
-import cartbg from "../../../assets/cart-bg2.jpg"; // Adjust the path as necessary
+import cartbg from "../../../assets/cart-bg2.jpg";
+import axios from "axios";
 
 function Cart() {
+  const [cartItems, setCartItems] = useState([]);
+
+  // Fetch cart items
+  useEffect(() => {
+    const fetchCart = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const res = await axios.get("http://localhost:5000/api/cart", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setCartItems(res.data);
+      } catch (err) {
+        console.error("Error fetching cart:", err);
+        alert("Failed to load cart. Please login again.");
+      }
+    };
+    fetchCart();
+  }, []);
+
+  // Remove cart item
+  const removeItem = async (id) => {
+    try {
+      const token = localStorage.getItem("token");
+      await axios.delete(`http://localhost:5000/api/cart/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setCartItems(cartItems.filter((item) => item.id !== id));
+    } catch (err) {
+      console.error("Error removing item:", err);
+      alert("Failed to remove item");
+    }
+  };
+
+  const subtotal = cartItems.reduce(
+    (sum, item) => sum + item.unit_price * item.quantity,
+    0
+  );
+
   return (
     <>
       <Navbar name="USER" />
@@ -30,36 +69,24 @@ function Cart() {
             </tr>
           </thead>
           <tbody>
-            {/* Example cart items, replace with dynamic data */}
-            {[
-              {
-                id: 1,
-                name: "Chicken Rice",
-                description: "Normal",
-                unitPrice: 850,
-                quantity: 2,
-              },
-              {
-                id: 2,
-                name: "Egg Nasi Kottu",
-                description: "Full",
-                unitPrice: 1800,
-                quantity: 1,
-              },
-            ].map((item, idx) => (
+            {cartItems.map((item, idx) => (
               <tr key={item.id}>
                 <td style={{ padding: "12px" }}>{idx + 1}</td>
-                <td style={{ padding: "12px" }}>{item.name}</td>
+                <td style={{ padding: "12px" }}>{item.item_name}</td>
                 <td style={{ padding: "12px" }}>{item.description}</td>
                 <td style={{ padding: "12px", textAlign: "right" }}>
-                  {item.unitPrice.toFixed(2)}
+                  {item.unit_price.toFixed(2)}
                 </td>
                 <td style={{ padding: "12px" }}>{item.quantity}</td>
                 <td style={{ padding: "12px", textAlign: "right" }}>
-                  {(item.unitPrice * item.quantity).toFixed(2)}
+                  {(item.unit_price * item.quantity).toFixed(2)}
                 </td>
                 <td style={{ padding: "12px", textAlign: "center" }}>
-                  <button className="remove-button" title="Remove item">
+                  <button
+                    className="remove-button"
+                    title="Remove item"
+                    onClick={() => removeItem(item.id)}
+                  >
                     &times;
                   </button>
                 </td>
@@ -77,7 +104,7 @@ function Cart() {
                 className="subtotal-label"
                 style={{ padding: "12px", textAlign: "right" }}
               >
-                {(850 * 2 + 1800 * 1).toFixed(2)}
+                {subtotal.toFixed(2)}
               </td>
             </tr>
           </tbody>
