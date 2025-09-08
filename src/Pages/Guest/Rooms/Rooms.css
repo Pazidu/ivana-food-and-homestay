@@ -104,6 +104,367 @@
   background: #e6732e;
 }
 
+
+/* Hero Section */
+.rooms-hero {
+  background: url('/images/homestay-hero.jpg') center/cover no-repeat;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  color: white;
+  text-align: center;
+}
+
+.hero-overlay {
+  background: rgba(128, 0, 0, 0.6); /* Maroon overlay */
+  padding: 40px;
+  border-radius: 12px;
+}
+
+.rooms-hero h1 {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+.rooms-hero p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.hero-btn {
+  background: #d4af37; /* Dark Gold */
+  color: #800000; /* Maroon */
+  padding: 14px 28px;
+  font-size: 18px;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.hero-btn:hover {
+  background: #ffd700;
+  transform: scale(1.05);
+}
+
+/* Features Section */
+.rooms-features {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  padding: 60px 20px;
+  background: #fffdf7;
+  flex-wrap: wrap;
+}
+
+.feature-card {
+  background: #fff;
+  border: 2px solid #d4af37;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  width: 300px;
+  transition: all 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+.feature-card .icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.feature-card h3 {
+  color: #800000;
+  margin-bottom: 8px;
+}
+
+/* Testimonials */
+.rooms-testimonials {
+  text-align: center;
+  padding: 60px 20px;
+  background: #800000;
+  color: #f5deb3;
+}
+
+.rooms-testimonials h2 {
+  margin-bottom: 30px;
+}
+
+.testimonial-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.testimonial-card {
+  background: #fff;
+  color: #333;
+  border-radius: 12px;
+  padding: 20px;
+  width: 280px;
+  font-style: italic;
+  border: 2px solid #d4af37;
+}
+
+/* Gallery Preview */
+.rooms-gallery-preview {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.rooms-gallery-preview h2 {
+  color: #800000;
+  margin-bottom: 20px;
+}
+
+.gallery-grid {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.gallery-grid img {
+  width: 250px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid #d4af37;
+  transition: transform 0.3s;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.05);
+}
+
+.gallery-btn {
+  display: inline-block;
+  background: #800000;
+  color: #f5deb3;
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+.gallery-btn:hover {
+  background: #a52a2a;
+}
+
+/* Call To Action */
+.rooms-cta {
+  background: #d4af37;
+  color: #800000;
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.rooms-cta h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.cta-btn {
+  background: #800000;
+  color: #f5deb3;
+  padding: 14px 28px;
+  font-size: 18px;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.cta-btn:hover {
+  background: #a52a2a;
+}
+
+/* Hero Section */
+.rooms-hero {
+  background: url('/images/homestay-hero.jpg') center/cover no-repeat;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  color: white;
+  text-align: center;
+}
+
+.hero-overlay {
+  background: rgba(128, 0, 0, 0.6); /* Maroon overlay */
+  padding: 40px;
+  border-radius: 12px;
+}
+
+.rooms-hero h1 {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+.rooms-hero p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.hero-btn {
+  background: #d4af37; /* Dark Gold */
+  color: #800000; /* Maroon */
+  padding: 14px 28px;
+  font-size: 18px;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.hero-btn:hover {
+  background: #ffd700;
+  transform: scale(1.05);
+}
+
+/* Features Section */
+.rooms-features {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  padding: 60px 20px;
+  background: #fffdf7;
+  flex-wrap: wrap;
+}
+
+.feature-card {
+  background: #fff;
+  border: 2px solid #d4af37;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  width: 300px;
+  transition: all 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+.feature-card .icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.feature-card h3 {
+  color: #800000;
+  margin-bottom: 8px;
+}
+
+/* Testimonials */
+.rooms-testimonials {
+  text-align: center;
+  padding: 60px 20px;
+  background: #800000;
+  color: #f5deb3;
+}
+
+.rooms-testimonials h2 {
+  margin-bottom: 30px;
+}
+
+.testimonial-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.testimonial-card {
+  background: #fff;
+  color: #333;
+  border-radius: 12px;
+  padding: 20px;
+  width: 280px;
+  font-style: italic;
+  border: 2px solid #d4af37;
+}
+
+/* Gallery Preview */
+.rooms-gallery-preview {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.rooms-gallery-preview h2 {
+  color: #800000;
+  margin-bottom: 20px;
+}
+
+.gallery-grid {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.gallery-grid img {
+  width: 250px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid #d4af37;
+  transition: transform 0.3s;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.05);
+}
+
+.gallery-btn {
+  display: inline-block;
+  background: #800000;
+  color: #f5deb3;
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+.gallery-btn:hover {
+  background: #a52a2a;
+}
+
+/* Call To Action */
+.rooms-cta {
+  background: #d4af37;
+  color: #800000;
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.rooms-cta h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.cta-btn {
+  background: #800000;
+  color: #f5deb3;
+  padding: 14px 28px;
+  font-size: 18px;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.cta-btn:hover {
+  background: #a52a2a;
+}
+
 .aboutus-container {
   max-width: 1000px;
   margin: 40px auto;
@@ -160,4 +521,5 @@
 .aboutus-card ul {
   padding-left: 20px;
 }
+
 

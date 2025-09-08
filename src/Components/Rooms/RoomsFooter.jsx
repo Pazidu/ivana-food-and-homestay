@@ -11,7 +11,7 @@ const RoomsFooter = () => {
         <div className="footer-section">
           <h3>Our Location</h3>
           <p>
-            <FaMapMarkerAlt /> Ivana Food and Homestay, Jaffna, Sri Lanka
+            <FaMapMarkerAlt /> Ivana Food and Homestay, Kandy, Sri Lanka
           </p>
           <iframe
             title="Ivana Location"

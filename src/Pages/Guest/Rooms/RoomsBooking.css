@@ -1,0 +1,140 @@
+/* Hero Section */
+.booking-hero {
+  background: url('/images/booking-hero.jpg') center/cover no-repeat;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  position: relative;
+}
+
+.booking-hero .hero-overlay {
+  background: rgba(128, 0, 0, 0.6); /* Maroon overlay */
+  padding: 40px;
+  border-radius: 12px;
+}
+
+.booking-hero h1 {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.booking-hero p {
+  font-size: 18px;
+}
+
+/* Availability Form */
+.booking-form {
+  text-align: center;
+  padding: 40px 20px;
+  background: #fffdf7;
+}
+
+.booking-form h2 {
+  margin-bottom: 20px;
+  color: #800000;
+}
+
+.booking-form form {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.booking-form input,
+.booking-form select {
+  padding: 12px;
+  border: 2px solid #d4af37;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.booking-form button {
+  background: #800000;
+  color: #f5deb3;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.booking-form button:hover {
+  background: #a52a2a;
+}
+
+/* Rooms Section */
+.rooms-list {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.rooms-list h2 {
+  margin-bottom: 30px;
+  color: #800000;
+}
+
+.rooms-grid {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.room-card {
+  background: #fff;
+  border: 2px solid #d4af37;
+  border-radius: 12px;
+  width: 300px;
+  text-align: center;
+  padding: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.room-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+.room-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.room-card h3 {
+  color: #800000;
+  margin-bottom: 10px;
+}
+
+.room-card p {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.price {
+  display: block;
+  font-weight: bold;
+  color: #d4af37;
+  margin-bottom: 15px;
+}
+
+.book-btn {
+  background: #800000;
+  color: #f5deb3;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.book-btn:hover {
+  background: #a52a2a;
+}

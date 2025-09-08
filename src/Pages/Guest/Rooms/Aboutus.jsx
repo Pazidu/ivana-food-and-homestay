@@ -25,7 +25,7 @@ const Aboutus = () => {
 
           <div className="aboutus-card">
             <h3>🌍 Our Vision</h3>
-            <p>To be recognized as a top choice for travelers seeking authentic and comfortable homestay experiences in Jaffna.</p>
+            <p>To be recognized as a top choice for travelers seeking authentic and comfortable homestay experiences in Kandy.</p>
           </div>
 
           <div className="aboutus-card">
