@@ -21,7 +21,6 @@ import RoomsBooking from "./Pages/Guest/Rooms/RoomsBooking";
 import RoomsGallery from "./Pages/Guest/Rooms/RoomsGallery";
 import Aboutus from "./Pages/Guest/Rooms/Aboutus";
 
-
 function App() {
   return (
     <BrowserRouter>
@@ -40,7 +39,6 @@ function App() {
         <Route path="/rooms/booking" element={<RoomsBooking />} />
         <Route path="/rooms/gallery" element={<RoomsGallery />} />
         <Route path="/rooms/aboutus" element={<Aboutus />} />
-
 
         {/* user protected */}
         <Route
@@ -62,7 +60,7 @@ function App() {
         <Route
           path="/user/profile"
           element={
-            <ProtectedRoute role={["user", "admin"]}>
+            <ProtectedRoute role="user">
               <Profile />
             </ProtectedRoute>
           }
