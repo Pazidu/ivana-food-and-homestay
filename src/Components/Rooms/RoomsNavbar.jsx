@@ -11,6 +11,7 @@ const RoomsNavbar = () => {
         <li><Link to="/rooms/home">Home</Link></li>
         <li><Link to="/rooms/booking">Booking</Link></li>
         <li><Link to="/rooms/gallery">Gallery</Link></li>
+        <li><Link to="/rooms/aboutus">About us</Link></li>
       </ul>
     </nav>
   );
