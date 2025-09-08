@@ -103,3 +103,61 @@
 .booking-form button:hover {
   background: #e6732e;
 }
+
+.aboutus-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.aboutus-container h2 {
+  color: #800000; /* Maroon */
+  margin-bottom: 15px;
+  font-size: 28px;
+}
+
+.aboutus-intro {
+  font-size: 16px;
+  color: #444;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.aboutus-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.aboutus-card {
+  background: #fffdf7;
+  border: 2px solid #d4af37; /* Dark Gold */
+  border-radius: 10px;
+  padding: 20px;
+  text-align: left;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.aboutus-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.aboutus-card h3 {
+  color: #800000; /* Maroon */
+  margin-bottom: 10px;
+}
+
+.aboutus-card p,
+.aboutus-card ul {
+  color: #333;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.aboutus-card ul {
+  padding-left: 20px;
+}
+

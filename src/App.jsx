@@ -19,6 +19,8 @@ import Complaints from "./Pages/Admin/Complaints/Complaints";
 import RoomsHome from "./Pages/Guest/Rooms/RoomsHome";
 import RoomsBooking from "./Pages/Guest/Rooms/RoomsBooking";
 import RoomsGallery from "./Pages/Guest/Rooms/RoomsGallery";
+import Aboutus from "./Pages/Guest/Rooms/Aboutus";
+
 
 function App() {
   return (
@@ -33,9 +35,12 @@ function App() {
         <Route path="/foods/feedback" element={<FoodsFeedback />} />
         <Route path="/foods/about" element={<FoodsAbout />} />
         <Route path="/foods/menu" element={<FoodsMenu />} />
+
         <Route path="/rooms/home" element={<RoomsHome />} />
         <Route path="/rooms/booking" element={<RoomsBooking />} />
         <Route path="/rooms/gallery" element={<RoomsGallery />} />
+        <Route path="/rooms/aboutus" element={<Aboutus />} />
+
 
         {/* user protected */}
         <Route
