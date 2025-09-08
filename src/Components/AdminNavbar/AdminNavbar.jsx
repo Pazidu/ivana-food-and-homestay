@@ -1,9 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../assets/logo.jpg";
 import "./AdminNavbar.css"; // Assuming you have a CSS file for styling
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
-function Navbar(props) {
+function Navbar() {
+  const [user, setUser] = useState(null);
+  const [showMenu, setShowMenu] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const username = localStorage.getItem("username");
+    if (token && username) {
+      setUser({ username });
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    localStorage.removeItem("user_type");
+    setUser(null);
+    navigate("/login");
+  };
   return (
     <>
       <nav
@@ -57,11 +76,31 @@ function Navbar(props) {
               </li>
               {/* Dropdown code commented out */}
             </ul>
-            <Link to="/login">
-              <button className="btn btn-outline-success" type="submit">
-                {props.name}
-              </button>
-            </Link>
+            {!user ? (
+              <Link to="/login">
+                <button className="btn btn-outline-success" type="button">
+                  Login
+                </button>
+              </Link>
+            ) : (
+              <div className="user-dropdown">
+                <button
+                  className="btn btn-outline-success"
+                  type="button"
+                  onClick={() => setShowMenu((prev) => !prev)} // Toggle menu on click
+                >
+                  {user.username}
+                </button>
+                {showMenu && (
+                  <div className="dropdown-menu-custom">
+                    <button onClick={() => Navigate("/user/profile")}>
+                      Profile
+                    </button>
+                    <button onClick={handleLogout}>Logout</button>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </nav>

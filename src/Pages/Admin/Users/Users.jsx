@@ -133,6 +133,7 @@ function UsersList() {
             <th>Address</th>
             <th>City</th>
             <th>Phone</th>
+            <th>User Type</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -145,16 +146,8 @@ function UsersList() {
               <td>{user.address}</td>
               <td>{user.city}</td>
               <td>{user.phone}</td>
+              <td>{user.user_type}</td>
               <td className="users__actions">
-                {/* <button
-                  className="btn btn--edit"
-                  onClick={() => {
-                    setFormData(user);
-                    setShowModal(true);
-                  }}
-                >
-                  Edit
-                </button> */}
                 <button
                   className="btn btn--delete"
                   onClick={() => handleDelete(user.id)}

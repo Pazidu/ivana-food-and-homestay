@@ -13,6 +13,7 @@ import {
   Divider,
   InputAdornment,
 } from "@mui/material";
+import axios from "axios";
 
 const PaymentGateway = () => {
   const [cardNumber, setCardNumber] = useState("");
@@ -21,12 +22,28 @@ const PaymentGateway = () => {
   const [name, setName] = useState("");
   const [processing, setProcessing] = useState(false);
 
-  const handlePay = () => {
+  const handlePay = async () => {
     setProcessing(true);
-    setTimeout(() => {
+
+    try {
+      // Simulate payment delay
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      // Clear cart from backend
+      const token = localStorage.getItem("token");
+      await axios.delete("http://localhost:5000/api/cart/clear", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      alert("Payment Successful! Cart cleared.");
+      // Redirect to menu or orders page
+      window.location.href = "/foods/menu";
+    } catch (error) {
+      console.error("Error clearing cart:", error);
+      alert("Payment succeeded but failed to clear cart. Try again.");
+    } finally {
       setProcessing(false);
-      alert("Payment Successful!");
-    }, 1500);
+    }
   };
 
   return (

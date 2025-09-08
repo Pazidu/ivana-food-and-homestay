@@ -1,51 +1,37 @@
 import React from "react";
 import Navbar from "../../../Components/Navbar/Navbar";
 import Footer from "../../../Components/Footer/Footer";
-import ContactUs from "../../../Components/ContactUs/ContactUs"; // Assuming you have a ContactUs component
-import "./FoodsHome.css"; // Assuming you have a CSS file for styling
+import ContactUs from "../../../Components/ContactUs/ContactUs";
+import "./FoodsHome.css";
 import Slidebar from "../../../Components/Slidebar/Slidebar";
 import SpecialCard from "../../../Components/SpecialCard/SpecialCard";
-import basmathi from "../../../assets/basmathi.jpg"; // Replace with your actual image path
-import quality from "../../../assets/quality.jpg"; // Replace with your actual image path
-import delivery from "../../../assets/delivery.png"; // Replace with your actual image path
-import nasikottu from "../../../assets/nasikottu.jpg"; // Replace with your actual image path
-import longfood from "../../../assets/long-food.jpg"; // Replace with your actual image path
-import DeliveryIamge from "../../../assets/Delivery_image.png"; // Replace with your actual image path
-import uber from "../../../assets/uber.png"; // Replace with your actual image path
-import pickme from "../../../assets/pickme.png"; // Replace with your actual image path
+import basmathi from "../../../assets/basmathi.jpg";
+import quality from "../../../assets/quality.jpg";
+import delivery from "../../../assets/delivery.png";
+import nasikottu from "../../../assets/nasikottu.jpg";
+import longfood from "../../../assets/long-food.jpg";
+import DeliveryIamge from "../../../assets/Delivery_image.png";
+import uber from "../../../assets/uber.png";
+import pickme from "../../../assets/pickme.png";
 import { Link } from "react-router-dom";
 
 function FoodsHome() {
   return (
     <div className="home">
-      <Navbar name="Login" />
-
+      <Navbar />
+      {/* ✅ Page content */}
       <div className="special">
         <div className="foodsHomeContainer">
           <Slidebar />
           <h1 className="specialText">Why We are Special ?</h1>
           <div className="specialItems">
-            <SpecialCard
-              imagelink={basmathi}
-              topic={
-                "Only basmathi rice Only basmathi rice Only basmathi rice Only basmathi rice Only basmathi rice Only basmathi rice Only basmathi rice Only basmathi rice"
-              }
-            />
-            <SpecialCard
-              imagelink={quality}
-              topic={
-                "Quality Ingredents Quality Ingredents Quality Ingredents Quality Ingredents Quality Ingredents Quality Ingredents Quality Ingredents Quality Ingredents"
-              }
-            />
-            <SpecialCard
-              imagelink={delivery}
-              topic={
-                "Door step delivery Door step delivery Door step delivery Door step delivery Door step delivery Door step delivery Door step delivery Door step delivery"
-              }
-            />
+            <SpecialCard imagelink={basmathi} topic={"Only basmathi rice..."} />
+            <SpecialCard imagelink={quality} topic={"Quality Ingredents..."} />
+            <SpecialCard imagelink={delivery} topic={"Door step delivery..."} />
           </div>
         </div>
       </div>
+
       <div className="nasiKottu">
         <div className="kottuimage">
           <img src={nasikottu} alt="" />
@@ -55,19 +41,15 @@ function FoodsHome() {
           <p className="kottuDescription">
             Nasik Kottu is a traditional South Indian dish made with finely
             chopped vegetables, spices, and rice, often served with a variety of
-            chutneys.Nasik Kottu is a traditional South Indian dish made with
-            finely chopped vegetables, spices, and rice, often served with a
-            variety of chutneys.Nasik Kottu is a traditional South Indian dish
-            made with finely chopped vegetables, spices, and rice, often served
-            with a variety of chutneys.
+            chutneys.
           </p>
           <button className="kottuButton">Order Now</button>
         </div>
       </div>
+
       <div className="ordernowbar">
         <img src={longfood} alt="" className="longimage" />
         <h1 className="orderText">Order Your Favorite Food Now</h1>
-
         <button className="orderButton">
           <Link
             to="/foods/menu"
