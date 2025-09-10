@@ -29,18 +29,37 @@ const PaymentGateway = () => {
       // Simulate payment delay
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
-      // Clear cart from backend
+      // Get pending order from localStorage
+      const orderData = JSON.parse(localStorage.getItem("pendingOrder"));
+
+      if (!orderData) {
+        alert("No order found! Please try again.");
+        setProcessing(false);
+        return;
+      }
+
       const token = localStorage.getItem("token");
+
+      // Save order in backend (after payment success)
+      await axios.post("http://localhost:5000/api/orders", orderData, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      // Clear cart from backend
       await axios.delete("http://localhost:5000/api/cart/clear", {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      alert("Payment Successful! Cart cleared.");
-      // Redirect to menu or orders page
-      window.location.href = "/foods/menu";
+      // Remove pending order from localStorage
+      localStorage.removeItem("pendingOrder");
+
+      alert("Payment Successful! Order saved and cart cleared.");
+      window.location.href = "/foods/menu"; // redirect after payment
     } catch (error) {
-      console.error("Error clearing cart:", error);
-      alert("Payment succeeded but failed to clear cart. Try again.");
+      console.error("Error processing payment:", error);
+      alert(
+        "Payment succeeded but failed to save order or clear cart. Try again."
+      );
     } finally {
       setProcessing(false);
     }

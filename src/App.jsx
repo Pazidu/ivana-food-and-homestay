@@ -12,6 +12,7 @@ import Cart from "./Pages/User/Cart/Cart";
 import PaymentGateway from "./Pages/User/PaymentGateway/PaymentGateway";
 import UserFoodsHome from "./Pages/User/FoodsHome/FoodsHome";
 import Profile from "./Pages/User/Profile/Profile";
+import Orders from "./Pages/Admin/Orders/Orders";
 import Menu from "./Pages/Admin/Menu/Menu";
 import Users from "./Pages/Admin/Users/Users";
 import Reviews from "./Pages/Admin/Reviews/Reviews";
@@ -69,6 +70,14 @@ function App() {
 
         {/* admin protected */}
         <Route
+          path="/admin/orders"
+          element={
+            <ProtectedRoute role="admin">
+              <Orders />
+            </ProtectedRoute>
+          }
+        />
+        <Route
           path="/admin/menu"
           element={
             <ProtectedRoute role="admin">
@@ -94,6 +103,14 @@ function App() {
         />
         <Route
           path="/admin/complaints"
+          element={
+            <ProtectedRoute role="admin">
+              <Complaints />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/user/profile"
           element={
             <ProtectedRoute role="admin">
               <Complaints />

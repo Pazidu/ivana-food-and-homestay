@@ -3,19 +3,35 @@ import Navbar from "../../../Components/Navbar/Navbar";
 import Footer from "../../../Components/Footer/Footer";
 import "./FoodsMenu.css";
 import FoodCard from "../../../Components/FoodCard/FoodCard";
+import { useLocation } from "react-router-dom";
 
 function FoodsMenu() {
+  const location = useLocation();
+  const { topic, subTopic } = location.state || {};
   const [activeTopic, setActiveTopic] = useState("Rice");
   const subTopics = {
-    Rice: ["Fried Rice", "Fried Rice Set Menu", "Special Rice", "Nasigoreng", "Mongolian Rice"],
-    Noodles: ["Fried Noodles", "Noodles Set Menu", "Special Noodles", "Me Goreng"],
+    Rice: [
+      "Fried Rice",
+      "Fried Rice Set Menu",
+      "Special Rice",
+      "Nasigoreng",
+      "Mongolian Rice",
+    ],
+    Noodles: [
+      "Fried Noodles",
+      "Noodles Set Menu",
+      "Special Noodles",
+      "Me Goreng",
+    ],
     Kottu: ["Nasi Kottu", "Kottu", "Cheese Kottu"],
     Spaghetti: ["Ivana Spaghetti", "Ivana Pasta"],
     Dishes: ["Fried Dishes", "Devilled Dishes", "Chopsuey", "Egg"],
     Other: ["Lasi", "Soup", "Snacks"],
   };
 
-  const [activeSubTopic, setActiveSubTopic] = useState(subTopics[activeTopic][0]);
+  const [activeSubTopic, setActiveSubTopic] = useState(
+    subTopics[activeTopic][0]
+  );
   const [foods, setFoods] = useState([]);
   const [selectedFood, setSelectedFood] = useState(null);
   const [regularQty, setRegularQty] = useState(0);
@@ -26,11 +42,19 @@ function FoodsMenu() {
   }, [activeTopic]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/foods/menu?type=${encodeURIComponent(activeSubTopic)}`)
+    fetch(
+      `http://localhost:5000/api/foods/menu?type=${encodeURIComponent(
+        activeSubTopic
+      )}`
+    )
       .then((res) => res.json())
       .then((data) => setFoods(data))
       .catch((err) => console.error(err));
   }, [activeSubTopic]);
+
+  useEffect(() => {
+    setActiveSubTopic(subTopic || subTopics[activeTopic][0]);
+  }, [activeTopic, subTopic]);
 
   const handleAddToCart = async () => {
     if (!selectedFood) return;
@@ -47,9 +71,17 @@ function FoodsMenu() {
 
     const itemsToAdd = [];
     if (regularQty > 0)
-      itemsToAdd.push({ item_id: selectedFood.id, description: "Regular", quantity: regularQty });
+      itemsToAdd.push({
+        item_id: selectedFood.id,
+        description: "Regular",
+        quantity: regularQty,
+      });
     if (largeQty > 0)
-      itemsToAdd.push({ item_id: selectedFood.id, description: "Large", quantity: largeQty });
+      itemsToAdd.push({
+        item_id: selectedFood.id,
+        description: "Large",
+        quantity: largeQty,
+      });
 
     try {
       const res = await fetch("http://localhost:5000/api/cart/add", {
@@ -100,7 +132,9 @@ function FoodsMenu() {
         {subTopics[activeTopic].map((subItem) => (
           <button
             key={subItem}
-            className={`foodsSubButton${activeSubTopic === subItem ? " active" : ""}`}
+            className={`foodsSubButton${
+              activeSubTopic === subItem ? " active" : ""
+            }`}
             onClick={() => setActiveSubTopic(subItem)}
           >
             {subItem}
@@ -111,7 +145,11 @@ function FoodsMenu() {
       {/* Food list */}
       <div className="foodsContainer">
         {foods.map((food) => (
-          <div key={food.id} onClick={() => setSelectedFood(food)} style={{ cursor: "pointer" }}>
+          <div
+            key={food.id}
+            onClick={() => setSelectedFood(food)}
+            style={{ cursor: "pointer" }}
+          >
             <FoodCard name={food.name} foodImage={food.image_link} />
           </div>
         ))}
@@ -119,16 +157,26 @@ function FoodsMenu() {
 
       {/* Food popup */}
       {selectedFood && (
-        <div className="food-popup-overlay" onClick={() => setSelectedFood(null)}>
+        <div
+          className="food-popup-overlay"
+          onClick={() => setSelectedFood(null)}
+        >
           <div className="food-popup" onClick={(e) => e.stopPropagation()}>
-            <button className="food-popup-close" onClick={() => setSelectedFood(null)}>
+            <button
+              className="food-popup-close"
+              onClick={() => setSelectedFood(null)}
+            >
               &times;
             </button>
             <h2>{selectedFood.name}</h2>
             <div className="popup-container">
               <div className="selected-food-image-container">
                 {selectedFood.image_link && (
-                  <img className="selected-food-image" src={selectedFood.image_link} alt={selectedFood.name} />
+                  <img
+                    className="selected-food-image"
+                    src={selectedFood.image_link}
+                    alt={selectedFood.name}
+                  />
                 )}
               </div>
               <div className="selected-food-details">
@@ -146,10 +194,24 @@ function FoodsMenu() {
                     </tr>
                     <tr>
                       <td>
-                        <input type="number" min={0} value={regularQty} onChange={(e) => setRegularQty(Number(e.target.value))} style={{ width: "60px" }} />
+                        <input
+                          type="number"
+                          min={0}
+                          value={regularQty}
+                          onChange={(e) =>
+                            setRegularQty(Number(e.target.value))
+                          }
+                          style={{ width: "60px" }}
+                        />
                       </td>
                       <td>
-                        <input type="number" min={0} value={largeQty} onChange={(e) => setLargeQty(Number(e.target.value))} style={{ width: "60px" }} />
+                        <input
+                          type="number"
+                          min={0}
+                          value={largeQty}
+                          onChange={(e) => setLargeQty(Number(e.target.value))}
+                          style={{ width: "60px" }}
+                        />
                       </td>
                     </tr>
                   </tbody>

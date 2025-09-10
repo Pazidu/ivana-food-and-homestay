@@ -55,6 +55,11 @@ function Navbar() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
+                <Link to="/admin/orders" className="nav-link" aria-current="page">
+                  Orders
+                </Link>
+              </li>
+              <li className="nav-item">
                 <Link to="/admin/menu" className="nav-link" aria-current="page">
                   Menu
                 </Link>
