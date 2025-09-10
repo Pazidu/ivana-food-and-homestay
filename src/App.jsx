@@ -99,6 +99,14 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/user/profile"
+          element={
+            <ProtectedRoute role="admin">
+              <Complaints />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
