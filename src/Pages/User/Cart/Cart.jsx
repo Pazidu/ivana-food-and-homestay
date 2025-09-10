@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../../../Components/Navbar/Navbar";
 import Footer from "../../../Components/Footer/Footer";
 import "./Cart.css";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import cartbg from "../../../assets/cart-bg2.jpg";
 import axios from "axios";
 
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
+  const navigate = useNavigate();
 
   // Fetch cart items
   useEffect(() => {
@@ -40,10 +41,34 @@ function Cart() {
     }
   };
 
+  // Subtotal calculation
   const subtotal = cartItems.reduce(
     (sum, item) => sum + item.unit_price * item.quantity,
     0
   );
+
+  // Checkout: save order temporarily and redirect to payment
+  const handleCheckout = () => {
+    if (cartItems.length === 0) {
+      alert("Your cart is empty!");
+      return;
+    }
+
+    // Prepare order data (replace dummy info with actual user info if available)
+    const orderData = {
+      userName: "Guest User",
+      address: "No.123, Main Street",
+      phone: "0712345678",
+      items: cartItems,
+      totalPrice: subtotal,
+    };
+
+    // Save order temporarily in localStorage
+    localStorage.setItem("pendingOrder", JSON.stringify(orderData));
+
+    // Redirect to payment page
+    navigate("/payment");
+  };
 
   return (
     <>
@@ -111,9 +136,9 @@ function Cart() {
         </table>
 
         <div className="checkout-container">
-          <Link to="/payment" className="checkout-link">
-            <button className="checkout-button">Checkout</button>
-          </Link>
+          <button className="checkout-button" onClick={handleCheckout}>
+            Checkout
+          </button>
         </div>
       </div>
       <Footer />

@@ -17,7 +17,7 @@ function Signup() {
   });
   const [otpSent, setOtpSent] = useState(false);
   const [otp, setOtp] = useState("");
-  const [resending, setResending] = useState(false);
+  // const [resending, setResending] = useState(false);
   const navigate = useNavigate();
 
   const handleChanges = (e) => {

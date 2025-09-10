@@ -37,13 +37,21 @@ function FoodsHome() {
           <img src={nasikottu} alt="" />
         </div>
         <div className="kottuText">
-          <h1>Nasik Kottu</h1>
+          <h1>Nasi Kottu</h1>
           <p className="kottuDescription">
-            Nasik Kottu is a traditional South Indian dish made with finely
+            Nasi Kottu is a traditional South Indian dish made with finely
             chopped vegetables, spices, and rice, often served with a variety of
             chutneys.
           </p>
-          <button className="kottuButton">Order Now</button>
+          <button className="kottuButton">
+            <Link
+              to="/foods/menu"
+              state={{ topic: "Kottu", subTopic: "Nasi Kottu" }}
+              className="text-decoration-none z-100 text-black"
+            >
+              Order now
+            </Link>
+          </button>
         </div>
       </div>
 
