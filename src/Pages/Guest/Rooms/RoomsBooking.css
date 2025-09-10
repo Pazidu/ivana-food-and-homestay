@@ -138,3 +138,353 @@
 .book-btn:hover {
   background: #a52a2a;
 }
+
+/* Availability Form */
+.booking-form form {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.booking-form input,
+.booking-form select {
+  padding: 12px;
+  border: 2px solid #d4af37;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.react-datepicker-wrapper {
+  display: inline-block;
+}
+
+.react-datepicker__day--disabled {
+  text-decoration: line-through;
+  color: #aaa !important;
+}
+
+/* Hero Section */
+.booking-hero {
+  background: url('/images/booking-hero.jpg') center/cover no-repeat;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  color: white;
+  text-align: center;
+}
+.booking-hero .hero-overlay {
+  background: rgba(128, 0, 0, 0.6); /* Maroon overlay */
+  padding: 40px;
+  border-radius: 12px;
+}
+.booking-hero h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+.booking-hero p {
+  font-size: 18px;
+}
+
+/* Booking Form */
+.booking-form {
+  padding: 40px 20px;
+  background: #fffdf7;
+  text-align: center;
+}
+.booking-form h2 {
+  color: #800000;
+  margin-bottom: 20px;
+}
+.booking-form form {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.form-control {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.form-control label {
+  font-weight: bold;
+  color: #800000;
+  margin-bottom: 6px;
+}
+.booking-form input,
+.booking-form select {
+  padding: 12px;
+  border: 2px solid #d4af37;
+  border-radius: 6px;
+  font-size: 16px;
+}
+.search-btn {
+  background: #800000;
+  color: #f5deb3;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.search-btn:hover {
+  background: #a52a2a;
+}
+
+/* Rooms Section */
+.rooms-list {
+  text-align: center;
+  padding: 60px 20px;
+}
+.rooms-list h2 {
+  margin-bottom: 30px;
+  color: #800000;
+}
+.rooms-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.room-card {
+  background: #fff;
+  border: 2px solid #d4af37;
+  border-radius: 12px;
+  width: 320px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.room-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+.room-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.room-info {
+  padding: 20px;
+}
+.room-info h3 {
+  color: #800000;
+  margin-bottom: 10px;
+}
+.room-info p {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.price {
+  display: block;
+  font-weight: bold;
+  color: #d4af37;
+  margin-bottom: 15px;
+}
+.book-btn {
+  background: #800000;
+  color: #f5deb3;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.book-btn:hover {
+  background: #a52a2a;
+}
+
+/* Calendar Styling */
+.react-datepicker {
+  border: 2px solid #d4af37 !important;
+  border-radius: 8px !important;
+}
+.react-datepicker__header {
+  background-color: #800000 !important;
+  color: #fff !important;
+}
+.react-datepicker__day--disabled {
+  text-decoration: line-through;
+  color: #aaa !important;
+}
+
+/* Hero */
+.booking-hero {
+  background: url('/images/booking-hero.jpg') center/cover no-repeat;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  text-align: center;
+  color: white;
+}
+.hero-overlay {
+  background: rgba(128, 0, 0, 0.65);
+  padding: 40px;
+  border-radius: 12px;
+}
+.hero-overlay h1 {
+  font-size: 38px;
+  margin-bottom: 8px;
+}
+.hero-overlay p {
+  font-size: 18px;
+}
+
+/* Form */
+.booking-form {
+  text-align: center;
+  padding: 30px;
+  background: #fffdf7;
+}
+.booking-form h2 {
+  color: #800000;
+  margin-bottom: 15px;
+}
+.form-control {
+  display: inline-block;
+  margin: 0 10px;
+}
+.form-control label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #800000;
+}
+select {
+  padding: 8px 12px;
+  border: 2px solid #d4af37;
+  border-radius: 6px;
+}
+.search-btn {
+  margin-left: 20px;
+  padding: 10px 24px;
+  background: #800000;
+  color: #f5deb3;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.search-btn:hover {
+  background: #a52a2a;
+}
+
+/* Calendar */
+.calendar-section {
+  padding: 40px;
+  text-align: center;
+}
+.calendar-section h2 {
+  margin-bottom: 20px;
+  color: #800000;
+}
+.selected-dates {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #800000;
+}
+
+/* Rooms */
+.rooms-list {
+  text-align: center;
+  padding: 60px 20px;
+}
+.rooms-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.room-card {
+  background: #fff;
+  border: 2px solid #d4af37;
+  border-radius: 12px;
+  width: 300px;
+  overflow: hidden;
+}
+.room-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+.room-info {
+  padding: 15px;
+}
+.room-info h3 {
+  color: #800000;
+}
+.price {
+  display: block;
+  color: #d4af37;
+  font-weight: bold;
+  margin: 8px 0;
+}
+.book-btn {
+  background: #800000;
+  color: #f5deb3;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.book-btn:hover {
+  background: #a52a2a;
+}
+
+
+/* Form Layout */
+.form-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+  min-width: 180px;
+}
+
+.form-control label {
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #800000;
+}
+
+input[type="date"],
+select {
+  padding: 8px 10px;
+  border: 2px solid #d4af37;
+  border-radius: 6px;
+}
+
+.search-btn {
+  background: #800000;
+  color: #f5deb3;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 24px;
+}
+
+.search-btn:hover {
+  background: #a52a2a;
+}
+
+/* Calendar */
+.calendar-section {
+  margin: 40px auto;
+  max-width: 900px;
+  text-align: center;
+}
+.calendar-section h2 {
+  margin-bottom: 20px;
+  color: #800000;
+}
