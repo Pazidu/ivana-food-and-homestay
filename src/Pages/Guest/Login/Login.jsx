@@ -35,9 +35,10 @@ function Login() {
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("username", response.data.username);
         localStorage.setItem("role", response.data.user_type);
+        localStorage.setItem("userId", response.data.id);
         alert(`Hello ${response.data.username}`);
         if (response.data.user_type === "admin") {
-          navigate("/admin/menu");
+          navigate("/admin/orders");
         } else {
           navigate("/foods/home");
         }
