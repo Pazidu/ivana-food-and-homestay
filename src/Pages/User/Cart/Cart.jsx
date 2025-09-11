@@ -8,6 +8,7 @@ import axios from "axios";
 
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
   // Fetch cart items
@@ -24,7 +25,27 @@ function Cart() {
         alert("Failed to load cart. Please login again.");
       }
     };
+
+    const fetchUser = async () => {
+      try {
+        const userId = localStorage.getItem("userId");
+        if (!userId) return;
+        const token = localStorage.getItem("token");
+
+        const res = await axios.get(
+          `http://localhost:5000/api/users/${userId}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+        setUser(res.data);
+      } catch (err) {
+        console.error("Error fetching user info:", err);
+      }
+    };
+
     fetchCart();
+    fetchUser();
   }, []);
 
   // Remove cart item
@@ -54,11 +75,16 @@ function Cart() {
       return;
     }
 
-    // Prepare order data (replace dummy info with actual user info if available)
+    if (!user) {
+      alert("User info not loaded. Please login again.");
+      return;
+    }
+
+    // Prepare order data using fetched user info
     const orderData = {
-      userName: "Guest User",
-      address: "No.123, Main Street",
-      phone: "0712345678",
+      userName: user.username,
+      address: user.address,
+      phone: user.phone,
       items: cartItems,
       totalPrice: subtotal,
     };
@@ -72,7 +98,7 @@ function Cart() {
 
   return (
     <>
-      <Navbar name="USER" />
+      <Navbar name={user ? user.username : "USER"} />
       <h1>Cart</h1>
       <div
         className="cart-background"

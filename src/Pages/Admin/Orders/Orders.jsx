@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./Orders.css";
+import Footer from "../../../Components/Footer/Footer";
+import AdminNavbar from "../../../Components/AdminNavbar/AdminNavbar";
 
-function Orders() {
+function OrdersList() {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
@@ -17,7 +19,7 @@ function Orders() {
       await fetch(`http://localhost:5000/api/orders/${orderId}`, {
         method: "DELETE",
       });
-      setOrders(orders.filter((order) => order._id !== orderId));
+      setOrders(orders.filter((order) => order.id !== orderId)); // ✅ use id
     } catch (error) {
       console.error("Error deleting order:", error);
     }
@@ -25,10 +27,11 @@ function Orders() {
 
   return (
     <div className="orders">
-      <h2 className="orders__title">Orders</h2>
+      {/* <h2 className="orders__title">Orders</h2> */}
       <table className="orders__table">
         <thead>
           <tr>
+            <th>No</th>
             <th>User Name</th>
             <th>Address</th>
             <th>Phone</th>
@@ -39,23 +42,24 @@ function Orders() {
         </thead>
         <tbody>
           {orders.length > 0 ? (
-            orders.map((order) => (
-              <tr key={order._id}>
+            orders.map((order, index) => (
+              <tr key={order.id}>
+                <td>{index + 1}</td>
                 <td>{order.userName}</td>
                 <td>{order.address}</td>
                 <td>{order.phone}</td>
                 <td>
                   {order.items.map((item, index) => (
                     <div key={index}>
-                      {item.name} × {item.quantity}
+                      {item.item_name} × {item.quantity}
                     </div>
                   ))}
                 </td>
-                <td>${order.totalPrice}</td>
+                <td>Rs.{order.totalPrice}</td>
                 <td>
                   <button
                     className="orders__btn"
-                    onClick={() => handleComplete(order._id)}
+                    onClick={() => handleComplete(order.id)}
                   >
                     Complete
                   </button>
@@ -72,6 +76,16 @@ function Orders() {
         </tbody>
       </table>
     </div>
+  );
+}
+
+function Orders() {
+  return (
+    <>
+      <AdminNavbar name="Admin" />
+      <OrdersList />
+      <Footer />
+    </>
   );
 }
 
