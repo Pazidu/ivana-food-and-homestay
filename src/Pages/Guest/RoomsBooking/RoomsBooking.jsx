@@ -5,8 +5,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
-import RoomsNavbar from "../../../Components/Rooms/RoomsNavbar";
-import RoomsFooter from "../../../Components/Rooms/RoomsFooter";
+import RoomsNavbar from "../../../Components/RoomsNavbar/RoomsNavbar";
+import RoomsFooter from "../../../Components/RoomsFooter/RoomsFooter";
 import "./RoomsBooking.css";
 
 const localizer = momentLocalizer(moment);
@@ -43,8 +43,8 @@ const RoomsBooking = () => {
   });
 
   const isDayBooked = (date) => {
-    return bookedDays.some(
-      (booked) => moment(booked).isSame(moment(date), "day")
+    return bookedDays.some((booked) =>
+      moment(booked).isSame(moment(date), "day")
     );
   };
 

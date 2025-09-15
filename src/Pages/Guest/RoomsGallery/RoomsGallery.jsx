@@ -1,6 +1,6 @@
 import React from "react";
-import RoomsNavbar from "../../../Components/Rooms/RoomsNavbar";
-import RoomsFooter from "../../../Components/Rooms/RoomsFooter";
+import RoomsNavbar from "../../../Components/RoomsNavbar/RoomsNavbar";
+import RoomsFooter from "../../../Components/RoomsFooter/RoomsFooter";
 
 const RoomsGallery = () => {
   return (
@@ -10,7 +10,7 @@ const RoomsGallery = () => {
         <h2>Rooms Gallery</h2>
         <p>Photos of our homestay rooms will be shown here.</p>
       </div>
-      <RoomsFooter/>
+      <RoomsFooter />
     </div>
   );
 };
