@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import logo from "../../assets/logo.jpg";
-import cart from "../../assets/cart.png";
+import cartImg from "../../assets/cart.png";
 import "./Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -26,20 +26,20 @@ function Navbar() {
   };
 
   return (
-    <nav
-      className="navbar navbar-expand-lg"
-      style={{ backgroundColor: "black" }}
-    >
+    <nav className="navbar navbar-expand-lg">
       <div className="container-fluid">
+        {/* Brand Logo */}
         <Link to="/foods/home" className="navbar-brand">
           <img
             src={logo}
             alt="Logo"
-            width="35"
-            height="35"
+            width="40"
+            height="40"
             className="d-inline-block align-text-top"
           />
         </Link>
+
+        {/* Mobile Toggler */}
         <button
           className="navbar-toggler"
           type="button"
@@ -48,14 +48,15 @@ function Navbar() {
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
-          style={{ backgroundColor: "yellow" }}
         >
           <span className="navbar-toggler-icon"></span>
         </button>
+
+        {/* Links */}
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link to="/foods/home" className="nav-link" aria-current="page">
+              <Link to="/foods/home" className="nav-link">
                 Home
               </Link>
             </li>
@@ -80,13 +81,16 @@ function Navbar() {
               </Link>
             </li>
           </ul>
+        </div>
 
+        {/* Right Corner Section */}
+        <div className="navbar-right">
           {/* Cart */}
           <Link to="/cart" className="cart">
-            <img src={cart} alt="" />
+            <img src={cartImg} alt="cart" />
           </Link>
 
-          {/* Login / Username */}
+          {/* Login / User */}
           {!user ? (
             <Link to="/login">
               <button className="btn btn-outline-success" type="button">
@@ -98,7 +102,7 @@ function Navbar() {
               <button
                 className="btn btn-outline-success"
                 type="button"
-                onClick={() => setShowMenu((prev) => !prev)} // Toggle menu on click
+                onClick={() => setShowMenu((prev) => !prev)}
               >
                 {user.username}
               </button>
