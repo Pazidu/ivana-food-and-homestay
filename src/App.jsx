@@ -3,6 +3,7 @@ import ProtectedRoute from "./Components/ProtectedRoute";
 import Landing from "./Pages/Landing/Landing";
 import Signup from "./Pages/Guest/Signup/Signup";
 import Login from "./Pages/Guest/Login/Login";
+import LoginHomeStay from "./Pages/Guest/LoginHomeStay/LoginHomeStay";
 import FoodsHome from "./Pages/Guest/FoodsHome/FoodsHome";
 import FoodsGallery from "./Pages/Guest/FoodsGallery/FoodsGallery";
 import FoodsFeedback from "./Pages/Guest/FoodsFeedback/FoodsFeedback";
@@ -17,10 +18,10 @@ import Menu from "./Pages/Admin/Menu/Menu";
 import Users from "./Pages/Admin/Users/Users";
 import Reviews from "./Pages/Admin/Reviews/Reviews";
 import Complaints from "./Pages/Admin/Complaints/Complaints";
-import RoomsHome from "./Pages/Guest/Rooms/RoomsHome";
-import RoomsBooking from "./Pages/Guest/Rooms/RoomsBooking";
-import RoomsGallery from "./Pages/Guest/Rooms/RoomsGallery";
-import Aboutus from "./Pages/Guest/Rooms/Aboutus";
+import RoomsHome from "./Pages/Guest/RoomsHome/RoomsHome";
+import RoomsBooking from "./Pages/Guest/RoomsBooking/RoomsBooking";
+import RoomsGallery from "./Pages/Guest/RoomsGallery/RoomsGallery";
+import RoomsAbout from "./Pages/Guest/RoomsAbout/RoomsAbout";
 
 function App() {
   return (
@@ -36,10 +37,11 @@ function App() {
         <Route path="/foods/about" element={<FoodsAbout />} />
         <Route path="/foods/menu" element={<FoodsMenu />} />
 
+        <Route path="/rooms/login" element={<LoginHomeStay />} />
         <Route path="/rooms/home" element={<RoomsHome />} />
         <Route path="/rooms/booking" element={<RoomsBooking />} />
         <Route path="/rooms/gallery" element={<RoomsGallery />} />
-        <Route path="/rooms/aboutus" element={<Aboutus />} />
+        <Route path="/rooms/aboutus" element={<RoomsAbout />} />
 
         {/* user protected */}
         <Route
@@ -62,7 +64,6 @@ function App() {
           path="/user/profile"
           element={
             <ProtectedRoute role="user">
-
               <Profile />
             </ProtectedRoute>
           }

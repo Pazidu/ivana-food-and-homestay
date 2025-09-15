@@ -41,10 +41,18 @@ export default function Profile() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSave = (e) => {
+  const handleSave = async (e) => {
     e.preventDefault();
-    setUser(form); // later you can send PUT to backend
-    setEditing(false);
+    try {
+      const token = localStorage.getItem("token");
+      await axios.put("http://localhost:5000/auth/user/profile", form, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setUser(form);
+      setEditing(false);
+    } catch (err) {
+      console.error("Error saving profile:", err);
+    }
   };
 
   if (!user) {

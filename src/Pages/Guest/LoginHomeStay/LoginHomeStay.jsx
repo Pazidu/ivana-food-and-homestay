@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../../../Components/Navbar/Navbar";
-import Footer from "../../../Components/Footer/Footer";
+import RoomsNavbar from "../../../Components/RoomsNavbar/RoomsNavbar";
+import RoomsFooter from "../../../Components/RoomsFooter/RoomsFooter";
 import googleSignIn from "../../../assets/signGoogle.png";
-import "./Login.css";
+import "./LoginHomeStay.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
-function Login() {
+function LoginHomeStay  () {
   const [values, setValues] = useState({ email: "", password: "" });
   const [showModal, setShowModal] = useState(false);
   const [step, setStep] = useState("email"); // email -> otp -> newPassword
@@ -114,7 +114,7 @@ function Login() {
 
   return (
     <div className="login">
-      <Navbar name="Signup" />
+      <RoomsNavbar />
       <div className="login-bg bg-image">
         <div className="login-form-container">
           <form onSubmit={handleSubmit}>
@@ -249,9 +249,9 @@ function Login() {
           </div>
         </div>
       )}
-      <Footer />
+      <RoomsFooter />
     </div>
   );
 }
 
-export default Login;
+export default LoginHomeStay;
