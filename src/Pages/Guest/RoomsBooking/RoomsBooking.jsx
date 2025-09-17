@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import DatePicker from "react-datepicker";
@@ -14,25 +14,37 @@ const localizer = momentLocalizer(moment);
 const RoomsBooking = () => {
   const [checkIn, setCheckIn] = useState(null);
   const [checkOut, setCheckOut] = useState(null);
-  const [guests, setGuests] = useState(1);
+  const [rooms, setRooms] = useState([]);
+  const [showRooms, setShowRooms] = useState(false);
 
-  // Example booked dates
-  const bookedEvents = [
-    {
-      title: "Booked",
-      start: new Date(2025, 8, 5),
-      end: new Date(2025, 8, 7),
-      allDay: true,
-    },
-    {
-      title: "Booked",
-      start: new Date(2025, 8, 12),
-      end: new Date(2025, 8, 14),
-      allDay: true,
-    },
-  ];
+  // Guest details
+  const [guestName, setGuestName] = useState("");
+  const [guestEmail, setGuestEmail] = useState("");
+  const [guestPhone, setGuestPhone] = useState("");
 
-  // Flatten booked days for disabling in datepicker
+  const [bookedEvents, setBookedEvents] = useState([]);
+
+  // Fetch all bookings for calendar
+  useEffect(() => {
+    const fetchBookings = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/bookings/all");
+        const data = await res.json();
+        const events = data.bookings.map((b) => ({
+          title: `${b.guestName} - Booked`,
+          start: new Date(b.checkIn),
+          end: new Date(b.checkOut),
+          allDay: true,
+        }));
+        setBookedEvents(events);
+      } catch (err) {
+        console.error("Failed to fetch bookings:", err);
+        setBookedEvents([]);
+      }
+    };
+    fetchBookings();
+  }, []);
+
   const bookedDays = [];
   bookedEvents.forEach((event) => {
     const start = moment(event.start);
@@ -42,30 +54,91 @@ const RoomsBooking = () => {
     }
   });
 
-  const isDayBooked = (date) => {
-    return bookedDays.some((booked) =>
-      moment(booked).isSame(moment(date), "day")
-    );
-  };
+  const isDayBooked = (date) =>
+    bookedDays.some((b) => moment(b).isSame(moment(date), "day"));
 
-  const handleSearch = (e) => {
+  // Search rooms based on selected dates
+  const handleSearch = async (e) => {
     e.preventDefault();
     if (!checkIn || !checkOut) {
       alert("Please select check-in and check-out dates.");
       return;
     }
-    alert(
-      `Searching rooms from ${moment(checkIn).format("YYYY-MM-DD")} to ${moment(
-        checkOut
-      ).format("YYYY-MM-DD")} for ${guests} guest(s).`
-    );
+
+    try {
+      const res = await fetch(
+        `http://localhost:5000/api/bookings?checkIn=${checkIn.toISOString()}&checkOut=${checkOut.toISOString()}`
+      );
+      const data = await res.json();
+      setRooms(data.rooms || []);
+      setShowRooms(true);
+    } catch (err) {
+      console.error("Failed to fetch rooms availability", err);
+      alert("Failed to fetch rooms availability");
+    }
+  };
+
+  // Handle booking a room
+  const handleBookNow = async (room) => {
+    if (!checkIn || !checkOut || !guestName || !guestEmail || !guestPhone) {
+      alert("Please fill all details.");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:5000/api/bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          roomId: room.id,
+          checkIn,
+          checkOut,
+          guestName,
+          guestEmail,
+          guestPhone,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert(`✅ Booking successful! ID: ${data.bookingId}`);
+        setShowRooms(false);
+        setGuestName("");
+        setGuestEmail("");
+        setGuestPhone("");
+
+        // Refresh rooms availability after booking
+        const roomsRes = await fetch(
+          `http://localhost:5000/api/rooms?checkIn=${checkIn.toISOString()}&checkOut=${checkOut.toISOString()}`
+        );
+        const roomsData = await roomsRes.json();
+        setRooms(roomsData.rooms || []);
+
+        // Refresh calendar events
+        setBookedEvents((prev) => [
+          ...prev,
+          {
+            title: `${guestName} - Booked`,
+            start: new Date(checkIn),
+            end: new Date(checkOut),
+            allDay: true,
+          },
+        ]);
+      } else {
+        alert(`❌ Booking failed: ${data.message}`);
+      }
+    } catch (err) {
+      console.error(err);
+      alert("⚠️ Server error. Try again later.");
+    }
   };
 
   return (
-    <div>
+    <div className="rooms-booking-page">
       <RoomsNavbar />
 
-      {/* Hero */}
+      {/* Hero Section */}
       <section className="booking-hero">
         <div className="hero-overlay">
           <h1>Book Your Stay at Ivana Homestay</h1>
@@ -76,36 +149,32 @@ const RoomsBooking = () => {
       {/* Booking Form */}
       <section className="booking-form">
         <h2>Plan Your Stay</h2>
-        <form onSubmit={handleSearch} className="form-inline">
-          <DatePicker
-            selected={checkIn}
-            onChange={(date) => setCheckIn(date)}
-            selectsStart
-            startDate={checkIn}
-            endDate={checkOut}
-            placeholderText="Check-In"
-            filterDate={(date) => !isDayBooked(date)}
-          />
-
-          <DatePicker
-            selected={checkOut}
-            onChange={(date) => setCheckOut(date)}
-            selectsEnd
-            startDate={checkIn}
-            endDate={checkOut}
-            minDate={checkIn}
-            placeholderText="Check-Out"
-            filterDate={(date) => !isDayBooked(date)}
-          />
-
-          <select value={guests} onChange={(e) => setGuests(e.target.value)}>
-            <option value="1">1 Guest</option>
-            <option value="2">2 Guests</option>
-            <option value="3">3 Guests</option>
-            <option value="4">4 Guests</option>
-            <option value="5">5 Guests</option>
-          </select>
-
+        <form onSubmit={handleSearch} className="form-grid">
+          <div className="form-control">
+            <label>Check-In</label>
+            <DatePicker
+              selected={checkIn}
+              onChange={(date) => setCheckIn(date)}
+              selectsStart
+              startDate={checkIn}
+              endDate={checkOut}
+              placeholderText="Select Check-In"
+              filterDate={(date) => !isDayBooked(date)}
+            />
+          </div>
+          <div className="form-control">
+            <label>Check-Out</label>
+            <DatePicker
+              selected={checkOut}
+              onChange={(date) => setCheckOut(date)}
+              selectsEnd
+              startDate={checkIn}
+              endDate={checkOut}
+              minDate={checkIn}
+              placeholderText="Select Check-Out"
+              filterDate={(date) => !isDayBooked(date)}
+            />
+          </div>
           <button type="submit" className="search-btn">
             Search Rooms
           </button>
@@ -133,6 +202,66 @@ const RoomsBooking = () => {
           })}
         />
       </section>
+
+      {/* Rooms Popup */}
+      {showRooms && (
+        <div className="rooms-popup">
+          <div className="popup-content">
+            <button className="close-btn" onClick={() => setShowRooms(false)}>
+              ✖
+            </button>
+            <h2>Available Rooms</h2>
+            <div className="rooms-grid">
+              {rooms.map((room) => (
+                <div key={room.id} className="room-card">
+                  <img src={room.image} alt={room.type} />
+                  <div className="room-info">
+                    <h3>{room.type} Room</h3>
+                    <p>Guests: {room.guests}</p>
+                    <p>Facilities: {room.facilities.join(", ")}</p>
+                    <span className="price">${room.price} / night</span>
+                    <p>
+                      Available:{" "}
+                      <strong>
+                        {room.available > 0 ? room.available : "Fully Booked"}
+                      </strong>
+                    </p>
+
+                    {room.available > 0 && (
+                      <div className="guest-form">
+                        <input
+                          type="text"
+                          placeholder="Full Name"
+                          value={guestName}
+                          onChange={(e) => setGuestName(e.target.value)}
+                        />
+                        <input
+                          type="email"
+                          placeholder="Email"
+                          value={guestEmail}
+                          onChange={(e) => setGuestEmail(e.target.value)}
+                        />
+                        <input
+                          type="tel"
+                          placeholder="Phone Number"
+                          value={guestPhone}
+                          onChange={(e) => setGuestPhone(e.target.value)}
+                        />
+                        <button
+                          className="book-btn"
+                          onClick={() => handleBookNow(room)}
+                        >
+                          Book Now
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       <RoomsFooter />
     </div>
