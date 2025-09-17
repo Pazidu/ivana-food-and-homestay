@@ -1,490 +1,219 @@
-/* Hero Section */
+/* RoomsBooking.css */
+
+/* --- General Page --- */
+.rooms-booking-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f9fafc;
+  font-family: Arial, sans-serif;
+}
+
+/* --- Hero Section --- */
 .booking-hero {
-  background: url('/images/booking-hero.jpg') center/cover no-repeat;
-  height: 60vh;
+  height: 40vh;
+  background: url("/images/hero.jpg") center/cover no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
   color: #fff;
   text-align: center;
-  position: relative;
 }
 
-.booking-hero .hero-overlay {
-  background: rgba(128, 0, 0, 0.6); /* Maroon overlay */
-  padding: 40px;
-  border-radius: 12px;
+.hero-overlay {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 20px 40px;
+  border-radius: 10px;
 }
 
 .booking-hero h1 {
-  font-size: 40px;
+  font-size: 2.5rem;
   margin-bottom: 10px;
 }
 
 .booking-hero p {
-  font-size: 18px;
+  font-size: 1.2rem;
 }
 
-/* Availability Form */
+/* --- Booking Form --- */
 .booking-form {
-  text-align: center;
-  padding: 40px 20px;
-  background: #fffdf7;
-}
-
-.booking-form h2 {
-  margin-bottom: 20px;
-  color: #800000;
-}
-
-.booking-form form {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-.booking-form input,
-.booking-form select {
-  padding: 12px;
-  border: 2px solid #d4af37;
-  border-radius: 6px;
-  font-size: 16px;
-}
-
-.booking-form button {
-  background: #800000;
-  color: #f5deb3;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.booking-form button:hover {
-  background: #a52a2a;
-}
-
-/* Rooms Section */
-.rooms-list {
-  text-align: center;
-  padding: 60px 20px;
-}
-
-.rooms-list h2 {
-  margin-bottom: 30px;
-  color: #800000;
-}
-
-.rooms-grid {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  flex-wrap: wrap;
-}
-
-.room-card {
+  padding: 30px 20px;
   background: #fff;
-  border: 2px solid #d4af37;
+  max-width: 900px;
+  margin: -50px auto 40px;
   border-radius: 12px;
-  width: 300px;
-  text-align: center;
-  padding: 20px;
-  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
-.room-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-}
-
-.room-card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 15px;
-}
-
-.room-card h3 {
-  color: #800000;
-  margin-bottom: 10px;
-}
-
-.room-card p {
-  font-size: 14px;
-  margin-bottom: 10px;
-}
-
-.price {
-  display: block;
-  font-weight: bold;
-  color: #d4af37;
-  margin-bottom: 15px;
-}
-
-.book-btn {
-  background: #800000;
-  color: #f5deb3;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.book-btn:hover {
-  background: #a52a2a;
-}
-
-/* Availability Form */
-.booking-form form {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-.booking-form input,
-.booking-form select {
-  padding: 12px;
-  border: 2px solid #d4af37;
-  border-radius: 6px;
-  font-size: 16px;
-}
-
-.react-datepicker-wrapper {
-  display: inline-block;
-}
-
-.react-datepicker__day--disabled {
-  text-decoration: line-through;
-  color: #aaa !important;
-}
-
-/* Hero Section */
-.booking-hero {
-  background: url('/images/booking-hero.jpg') center/cover no-repeat;
-  height: 60vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  color: white;
-  text-align: center;
-}
-.booking-hero .hero-overlay {
-  background: rgba(128, 0, 0, 0.6); /* Maroon overlay */
-  padding: 40px;
-  border-radius: 12px;
-}
-.booking-hero h1 {
-  font-size: 42px;
-  margin-bottom: 10px;
-}
-.booking-hero p {
-  font-size: 18px;
-}
-
-/* Booking Form */
-.booking-form {
-  padding: 40px 20px;
-  background: #fffdf7;
-  text-align: center;
-}
 .booking-form h2 {
-  color: #800000;
+  text-align: center;
   margin-bottom: 20px;
+  color: #333;
 }
-.booking-form form {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 15px;
+  align-items: end;
 }
+
 .form-control {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
 }
+
 .form-control label {
+  margin-bottom: 5px;
   font-weight: bold;
-  color: #800000;
-  margin-bottom: 6px;
+  color: #555;
 }
-.booking-form input,
-.booking-form select {
-  padding: 12px;
-  border: 2px solid #d4af37;
-  border-radius: 6px;
-  font-size: 16px;
-}
+
 .search-btn {
-  background: #800000;
-  color: #f5deb3;
+  background: #007bff;
+  color: #fff;
   border: none;
-  padding: 12px 28px;
+  padding: 12px 20px;
   border-radius: 6px;
-  font-size: 16px;
   cursor: pointer;
-  transition: all 0.3s;
-}
-.search-btn:hover {
-  background: #a52a2a;
-}
-
-/* Rooms Section */
-.rooms-list {
-  text-align: center;
-  padding: 60px 20px;
-}
-.rooms-list h2 {
-  margin-bottom: 30px;
-  color: #800000;
-}
-.rooms-grid {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
-}
-.room-card {
-  background: #fff;
-  border: 2px solid #d4af37;
-  border-radius: 12px;
-  width: 320px;
-  overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-.room-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-}
-.room-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-.room-info {
-  padding: 20px;
-}
-.room-info h3 {
-  color: #800000;
-  margin-bottom: 10px;
-}
-.room-info p {
-  font-size: 14px;
-  margin-bottom: 10px;
-}
-.price {
-  display: block;
   font-weight: bold;
-  color: #d4af37;
-  margin-bottom: 15px;
-}
-.book-btn {
-  background: #800000;
-  color: #f5deb3;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-.book-btn:hover {
-  background: #a52a2a;
+  transition: 0.3s;
 }
 
-/* Calendar Styling */
-.react-datepicker {
-  border: 2px solid #d4af37 !important;
-  border-radius: 8px !important;
-}
-.react-datepicker__header {
-  background-color: #800000 !important;
-  color: #fff !important;
-}
-.react-datepicker__day--disabled {
-  text-decoration: line-through;
-  color: #aaa !important;
-}
-
-/* Hero */
-.booking-hero {
-  background: url('/images/booking-hero.jpg') center/cover no-repeat;
-  height: 50vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  text-align: center;
-  color: white;
-}
-.hero-overlay {
-  background: rgba(128, 0, 0, 0.65);
-  padding: 40px;
-  border-radius: 12px;
-}
-.hero-overlay h1 {
-  font-size: 38px;
-  margin-bottom: 8px;
-}
-.hero-overlay p {
-  font-size: 18px;
-}
-
-/* Form */
-.booking-form {
-  text-align: center;
-  padding: 30px;
-  background: #fffdf7;
-}
-.booking-form h2 {
-  color: #800000;
-  margin-bottom: 15px;
-}
-.form-control {
-  display: inline-block;
-  margin: 0 10px;
-}
-.form-control label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 6px;
-  color: #800000;
-}
-select {
-  padding: 8px 12px;
-  border: 2px solid #d4af37;
-  border-radius: 6px;
-}
-.search-btn {
-  margin-left: 20px;
-  padding: 10px 24px;
-  background: #800000;
-  color: #f5deb3;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
 .search-btn:hover {
-  background: #a52a2a;
+  background: #0056b3;
 }
 
-/* Calendar */
+/* --- Calendar --- */
 .calendar-section {
-  padding: 40px;
+  padding: 30px 20px;
   text-align: center;
 }
+
 .calendar-section h2 {
   margin-bottom: 20px;
-  color: #800000;
-}
-.selected-dates {
-  margin-top: 10px;
-  font-weight: bold;
-  color: #800000;
+  color: #333;
 }
 
-/* Rooms */
-.rooms-list {
-  text-align: center;
-  padding: 60px 20px;
-}
-.rooms-grid {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-.room-card {
-  background: #fff;
-  border: 2px solid #d4af37;
-  border-radius: 12px;
-  width: 300px;
-  overflow: hidden;
-}
-.room-card img {
+/* --- Rooms Popup --- */
+.rooms-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
-.room-info {
-  padding: 15px;
-}
-.room-info h3 {
-  color: #800000;
-}
-.price {
-  display: block;
-  color: #d4af37;
-  font-weight: bold;
-  margin: 8px 0;
-}
-.book-btn {
-  background: #800000;
-  color: #f5deb3;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-.book-btn:hover {
-  background: #a52a2a;
-}
-
-
-/* Form Layout */
-.form-grid {
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
+  align-items: flex-start;
+  padding: 50px 20px;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.popup-content {
+  background: #fff;
+  width: 100%;
+  max-width: 1000px;
+  border-radius: 12px;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #555;
+}
+
+.rooms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
-  flex-wrap: wrap;
   margin-top: 20px;
 }
 
-.form-control {
+.room-card {
+  background: #fdfdfd;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  min-width: 180px;
 }
 
-.form-control label {
-  margin-bottom: 6px;
+.room-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.room-info {
+  padding: 15px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.room-info h3 {
+  margin: 0 0 8px 0;
+  color: #333;
+}
+
+.room-info p {
+  margin: 4px 0;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.room-info .price {
+  margin-top: 8px;
   font-weight: bold;
-  color: #800000;
+  color: #007bff;
 }
 
-input[type="date"],
-select {
+.guest-form {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.guest-form input {
   padding: 8px 10px;
-  border: 2px solid #d4af37;
   border-radius: 6px;
+  border: 1px solid #ccc;
 }
 
-.search-btn {
-  background: #800000;
-  color: #f5deb3;
-  padding: 12px 24px;
+.book-btn {
+  margin-top: 5px;
+  padding: 10px;
+  background: #28a745;
+  color: #fff;
+  font-weight: bold;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  margin-top: 24px;
+  transition: 0.3s;
 }
 
-.search-btn:hover {
-  background: #a52a2a;
+.book-btn:hover {
+  background: #1e7e34;
 }
 
-/* Calendar */
-.calendar-section {
-  margin: 40px auto;
-  max-width: 900px;
-  text-align: center;
-}
-.calendar-section h2 {
-  margin-bottom: 20px;
-  color: #800000;
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  .rooms-popup {
+    padding: 20px 10px;
+  }
 }

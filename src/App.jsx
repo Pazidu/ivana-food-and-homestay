@@ -68,6 +68,14 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/rooms/booking"
+          element={
+            <ProtectedRoute role="user">
+              <RoomsBooking />
+            </ProtectedRoute>
+          }
+        />
 
         {/* admin protected */}
         <Route
