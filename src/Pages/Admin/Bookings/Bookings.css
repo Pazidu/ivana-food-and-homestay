@@ -1,0 +1,90 @@
+.bookings {
+  padding: 20px;
+  background: #f9fafc;
+  min-height: 80vh;
+  color: #222;
+}
+
+.bookings__title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.bookings__table {
+  margin-top: 5vh;
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bookings__table th,
+.bookings__table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.bookings__table th {
+  background: #007bff;
+  color: #fff;
+  font-weight: 600;
+}
+
+.bookings__table tr:hover {
+  background: #f1f5ff;
+}
+
+.bookings__actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+/* ===== Buttons ===== */
+.btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s ease-in-out;
+}
+
+.btn--delete {
+  background: #dc3545;
+  color: white;
+}
+
+.btn--delete:hover {
+  background: #b52a37;
+}
+
+/* ===== Empty row ===== */
+.bookings__empty {
+  text-align: center;
+  color: #666;
+  padding: 15px;
+  font-style: italic;
+}
+
+/* ===== Responsive (optional) ===== */
+@media (max-width: 768px) {
+  .bookings {
+    padding: 16px;
+    overflow-x: auto;
+  }
+
+  .bookings__title {
+    font-size: 22px;
+  }
+
+  .btn {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+}

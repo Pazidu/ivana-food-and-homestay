@@ -60,6 +60,11 @@ function Navbar() {
                 </Link>
               </li>
               <li className="nav-item">
+                <Link to="/admin/bookings" className="nav-link" aria-current="page">
+                  Bookings
+                </Link>
+              </li>
+              <li className="nav-item">
                 <Link to="/admin/menu" className="nav-link" aria-current="page">
                   Menu
                 </Link>

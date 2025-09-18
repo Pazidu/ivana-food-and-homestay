@@ -54,9 +54,10 @@ const RoomsBooking = () => {
     }
   });
 
-  const isDayBooked = (date) =>
-    bookedDays.some((b) => moment(b).isSame(moment(date), "day"));
+  // const isDayBooked = (date) =>
+  //   bookedDays.some((b) => moment(b).isSame(moment(date), "day"));
 
+  // Search rooms based on selected dates
   // Search rooms based on selected dates
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -69,6 +70,7 @@ const RoomsBooking = () => {
       const res = await fetch(
         `http://localhost:5000/api/bookings?checkIn=${checkIn.toISOString()}&checkOut=${checkOut.toISOString()}`
       );
+
       const data = await res.json();
       setRooms(data.rooms || []);
       setShowRooms(true);
@@ -159,7 +161,7 @@ const RoomsBooking = () => {
               startDate={checkIn}
               endDate={checkOut}
               placeholderText="Select Check-In"
-              filterDate={(date) => !isDayBooked(date)}
+              minDate={new Date()} // block past dates only
             />
           </div>
           <div className="form-control">
@@ -170,9 +172,8 @@ const RoomsBooking = () => {
               selectsEnd
               startDate={checkIn}
               endDate={checkOut}
-              minDate={checkIn}
+              minDate={checkIn || new Date()} // block past dates + before checkIn
               placeholderText="Select Check-Out"
-              filterDate={(date) => !isDayBooked(date)}
             />
           </div>
           <button type="submit" className="search-btn">
