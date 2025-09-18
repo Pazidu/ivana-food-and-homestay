@@ -1,26 +1,123 @@
 .aboutUS {
-  height: 100%;
-  overflow-y: auto;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fafafa;
+  color: #333;
 }
-.aboutContainer {
-  position: relative;
-  background-color: black;
-}
-.coverImg {
+
+/* Hero Section */
+.heroSection {
   width: 100%;
-  height: 95vh;
-  object-fit: cover;
+  padding: 6rem 10%;
+  background: url("/ivanaFront.jpg") no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
-.imageOverlayText {
-  position: absolute;
-  height: 300px;
-  width: 400px;
-  top: 60%;
-  left: 15%;
-  transform: translate(-50%, -50%);
+.heroText {
+  background: rgba(0, 0, 0, 0.55);
   color: #fff;
-  background: rgba(194, 194, 194, 0.5);
-  padding: 20px;
-  border-radius: 8px;
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 500px;
+}
+.heroText h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #ffd700;
+}
+.heroText p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Sections */
+.about-section {
+  padding: 3rem 10%;
   text-align: center;
+}
+.about-section h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #800000;
+}
+
+/* Cards */
+.about-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+.about-card.reverse {
+  flex-direction: row-reverse;
+}
+.about-card.contact-card {
+  justify-content: center;
+  text-align: center;
+}
+
+/* Founder larger photo 1:1 ratio */
+.founder-card .founder-img {
+  width: 280px;
+  aspect-ratio: 1 / 1; /* ensures 1:1 ratio */
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Highlight founder card */
+.highlight {
+  background: #fff7e6; /* subtle gold background */
+  border: 2px solid #ffd700;
+}
+
+/* Square Image for other cards */
+.square-img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 3px solid #800000;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.card-text h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+.card-text p {
+  font-size: 0.95rem;
+  margin: 0.3rem 0;
+  color: #555;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .heroSection {
+    padding: 4rem 5%;
+    justify-content: center;
+  }
+  .heroText {
+    max-width: 90%;
+    text-align: center;
+  }
+  .about-card {
+    flex-direction: column !important;
+    text-align: center;
+  }
+  .square-img {
+    width: 140px;
+    height: 140px;
+  }
+  .founder-card .founder-img {
+    width: 200px;
+    height: 200px; /* keeps 1:1 ratio automatically */
+  }
 }
