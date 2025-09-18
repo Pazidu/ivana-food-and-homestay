@@ -18,8 +18,10 @@ const RoomsNavbar = () => {
 
   return (
     <nav className="rooms-navbar">
-      {/* Logo */}
-      <div className="logo">Ivana Homestay</div>
+      {/* Logo (clickable link to homepage) */}
+      <Link to="/rooms/home" className="logo">
+        Ivana Homestay
+      </Link>
 
       {/* Hamburger (visible on mobile) */}
       <div

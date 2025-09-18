@@ -19,7 +19,12 @@
   font-weight: bold;
   color: #d4af37; /* Dark Gold */
   letter-spacing: 1px;
-  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.rooms-navbar .logo:hover {
+  color: #ffd700; /* Bright gold on hover */
 }
 
 /* Nav Links */
