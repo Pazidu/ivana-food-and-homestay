@@ -4,7 +4,8 @@ import "./RoomsNavbar.css";
 
 const RoomsNavbar = () => {
   const [user, setUser] = useState(null);
-  const [showMenu, setShowMenu] = useState(false);
+  const [showMenu, setShowMenu] = useState(false); // profile dropdown
+  const [menuOpen, setMenuOpen] = useState(false); // hamburger dropdown
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -14,23 +15,47 @@ const RoomsNavbar = () => {
     setUser(null);
     navigate("/login");
   };
+
   return (
     <nav className="rooms-navbar">
+      {/* Logo */}
       <div className="logo">Ivana Homestay</div>
-      <ul>
+
+      {/* Hamburger (visible on mobile) */}
+      <div
+        className="hamburger"
+        onClick={() => setMenuOpen((prev) => !prev)}
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      {/* Nav Links */}
+      <ul className={menuOpen ? "show" : ""}>
         <li>
-          <Link to="/rooms/home">Home</Link>
+          <Link to="/rooms/home" onClick={() => setMenuOpen(false)}>
+            Home
+          </Link>
         </li>
         <li>
-          <Link to="/rooms/booking">Booking</Link>
+          <Link to="/rooms/booking" onClick={() => setMenuOpen(false)}>
+            Booking
+          </Link>
         </li>
         <li>
-          <Link to="/rooms/gallery">Gallery</Link>
+          <Link to="/rooms/gallery" onClick={() => setMenuOpen(false)}>
+            Gallery
+          </Link>
         </li>
         <li>
-          <Link to="/rooms/aboutus">About us</Link>
+          <Link to="/rooms/aboutus" onClick={() => setMenuOpen(false)}>
+            About us
+          </Link>
         </li>
       </ul>
+
+      {/* Right Section (Login / User Dropdown) */}
       {!user ? (
         <Link to="/rooms/login">
           <button className="btn btn-outline-success" type="button">
@@ -42,7 +67,7 @@ const RoomsNavbar = () => {
           <button
             className="btn btn-outline-success"
             type="button"
-            onClick={() => setShowMenu((prev) => !prev)} // Toggle menu on click
+            onClick={() => setShowMenu((prev) => !prev)}
           >
             {user.username}
           </button>

@@ -25,7 +25,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  /* gap: 20px; */
   padding: 20px;
   max-width: 100%;
   margin: auto;
@@ -39,7 +38,6 @@
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  /* margin: 20px; */
   overflow: hidden;
   max-width: 100%;
   margin: auto;
@@ -117,7 +115,7 @@ h1 {
 }
 .ordernowbar {
   position: relative;
-  height: 300px; /* set any height you want */
+  height: 300px; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -217,7 +215,6 @@ h3 {
 }
 .contactText {
   font-size: 2rem;
-  /* margin-bottom: 10px; */
 }
 .contactDescription {
   font-size: 3rem;
