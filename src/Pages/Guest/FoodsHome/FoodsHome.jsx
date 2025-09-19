@@ -68,18 +68,31 @@ function FoodsHome() {
         </button>
       </div>
 
+      {/* ✅ Delivery Section with Links */}
       <div className="deliveryPart">
         <div className="deliveryBody">
           <h3>Get your foods delivered to your doorstep</h3>
           <h1>ORDER NOW</h1>
           <h3>via</h3>
           <div className="deliverytypes">
-            <img src={uber} alt="" className="dtypes" />
-            <img src={pickme} alt="" className="dtypes" />
+            <a
+              href="https://www.ubereats.com/lk/feed?diningMode=DELIVERY&pl=JTdCJTIyYWRkcmVzcyUyMiUzQSUyMkl2YW5hJTIwRm9vZCUyMENvdXJ0JTIyJTJDJTIycmVmZXJlbmNlJTIyJTNBJTIyQ2hJSnNlRDRlUUJuNHpvUk1UUXplcUJRV2tVJTIyJTJDJTIycmVmZXJlbmNlVHlwZSUyMiUzQSUyMmdvb2dsZV9wbGFjZXMlMjIlMkMlMjJsYXRpdHVkZSUyMiUzQTcuMjg4NDkyMSUyQyUyMmxvbmdpdHVkZSUyMiUzQTgwLjY2OTM0OTklN0Q%3D"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={uber} alt="Uber Eats" className="dtypes" />
+            </a>
+            <a
+              href="https://pickme.lk/services/food/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={pickme} alt="PickMe Food" className="dtypes" />
+            </a>
           </div>
         </div>
         <div className="deliveryImage">
-          <img src={DeliveryIamge} alt="" />
+          <img src={DeliveryIamge} alt="Delivery" />
         </div>
       </div>
 

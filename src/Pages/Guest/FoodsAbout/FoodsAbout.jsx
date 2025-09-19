@@ -68,7 +68,7 @@ function FoodsAbout() {
         <h2>Contact & Location</h2>
         <div className="about-card contact-card">
           <div className="card-text">
-            <p>📍 123 Main Street, Jaffna, Sri Lanka</p>
+            <p>📍 Kandy, Sri Lanka</p>
             <p>📞 +94 77 123 4567</p>
             <p>📧 info@ivanafood.com</p>
           </div>
