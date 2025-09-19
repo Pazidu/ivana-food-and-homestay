@@ -3,19 +3,35 @@ import logo from "../../assets/logo.jpg";
 import cartImg from "../../assets/cart.png";
 import "./Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Navbar() {
   const [user, setUser] = useState(null);
   const [showMenu, setShowMenu] = useState(false);
+  const [cartCount, setCartCount] = useState(0); // Cart count state
   const navigate = useNavigate();
 
+  // Load user info on mount
   useEffect(() => {
     const token = localStorage.getItem("token");
     const username = localStorage.getItem("username");
     if (token && username) {
       setUser({ username });
+      fetchCartCount(token); // Fetch cart count when user is logged in
     }
   }, []);
+
+  // Fetch cart count from backend
+  const fetchCartCount = async (token) => {
+    try {
+      const response = await axios.get("http://localhost:5000/api/cart", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setCartCount(response.data.length); // Count items
+    } catch (err) {
+      console.error("Error fetching cart count:", err);
+    }
+  };
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -30,13 +46,7 @@ function Navbar() {
       <div className="container-fluid">
         {/* Brand Logo */}
         <Link to="/foods/home" className="navbar-brand">
-          <img
-            src={logo}
-            alt="Logo"
-            width="40"
-            height="40"
-            className="d-inline-block align-text-top"
-          />
+          <img src={logo} alt="Logo" width="40" height="40" />
         </Link>
 
         {/* Mobile Toggler */}
@@ -86,8 +96,9 @@ function Navbar() {
         {/* Right Corner Section */}
         <div className="navbar-right">
           {/* Cart */}
-          <Link to="/cart" className="cart">
+          <Link to="/cart" className="cart" style={{ position: "relative" }}>
             <img src={cartImg} alt="cart" />
+            {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
           </Link>
 
           {/* Login / User */}
