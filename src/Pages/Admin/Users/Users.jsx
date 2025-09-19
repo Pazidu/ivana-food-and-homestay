@@ -2,15 +2,13 @@ import React, { useEffect, useState } from "react";
 import AdminNavbar from "../../../Components/AdminNavbar/AdminNavbar";
 import Footer from "../../../Components/Footer/Footer";
 import axios from "axios";
-import "./Users.css"; // Make sure you renamed CSS from menu to users
+import "./Users.css";
 
 function UsersList() {
   const [users, setUsers] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
     id: null,
-    name: "",
-    email: "",
     role: "",
   });
 
@@ -30,40 +28,37 @@ function UsersList() {
     }
   };
 
+  const handleEdit = (user) => {
+    setFormData({
+      id: user.id,
+      role: user.user_type,
+    });
+    setShowModal(true);
+  };
+
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleCloseModal = () => {
     setShowModal(false);
-    setFormData({
-      id: null,
-      name: "",
-      email: "",
-      role: "",
-    });
+    setFormData({ id: null, role: "" });
   };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (formData.id) {
-        // Edit user
-        const res = await axios.put(
-          `http://localhost:5000/api/users/${formData.id}`,
-          formData
-        );
-        setUsers(
-          users.map((user) => (user.id === formData.id ? res.data : user))
-        );
-      } else {
-        // Add new user
-        const res = await axios.post(
-          "http://localhost:5000/api/users",
-          formData
-        );
-        setUsers([...users, res.data]);
-      }
+      const payload = { user_type: formData.role };
+
+      const res = await axios.put(
+        `http://localhost:5000/api/users/${formData.id}`,
+        payload
+      );
+
+      setUsers(
+        users.map((user) => (user.id === formData.id ? res.data : user))
+      );
+
       handleCloseModal();
     } catch (err) {
       console.error(err);
@@ -74,41 +69,25 @@ function UsersList() {
     <div className="users">
       <h2 className="users__title">Users</h2>
 
-      {/* Add/Edit Modal */}
+      {/* Edit Modal */}
       {showModal && (
         <div className="modal">
           <div className="modal__content">
-            <h3 className="modal__title">
-              {formData.id ? "Edit User" : "Add User"}
-            </h3>
+            <h3 className="modal__title">Change User Role</h3>
             <form className="modal__form" onSubmit={handleFormSubmit}>
-              <input
-                type="text"
-                name="name"
-                placeholder="Name"
-                value={formData.name}
-                onChange={handleInputChange}
-                required
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={formData.email}
-                onChange={handleInputChange}
-                required
-              />
-              <input
-                type="text"
+              <select
                 name="role"
-                placeholder="Role"
                 value={formData.role}
                 onChange={handleInputChange}
                 required
-              />
+              >
+                <option value="">Select Role</option>
+                <option value="admin">admin</option>
+                <option value="user">user</option>
+              </select>
               <div className="modal__actions">
                 <button type="submit" className="btn btn--submit">
-                  Submit
+                  Save
                 </button>
                 <button
                   type="button"
@@ -148,6 +127,12 @@ function UsersList() {
               <td>{user.phone}</td>
               <td>{user.user_type}</td>
               <td className="users__actions">
+                <button
+                  className="btn btn--edit"
+                  onClick={() => handleEdit(user)}
+                >
+                  Change Role
+                </button>
                 <button
                   className="btn btn--delete"
                   onClick={() => handleDelete(user.id)}

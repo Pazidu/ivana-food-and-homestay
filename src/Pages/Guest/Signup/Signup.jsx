@@ -17,46 +17,52 @@ function Signup() {
   });
   const [otpSent, setOtpSent] = useState(false);
   const [otp, setOtp] = useState("");
-  // const [resending, setResending] = useState(false);
   const navigate = useNavigate();
 
   const handleChanges = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
-  // Step 1: Request OTP without creating user
+  // Step 1: Request OTP
   const handleSendOtp = async (e) => {
     e.preventDefault();
-    try {
-      // Validate password match before sending OTP
-      if (values.password !== values.confirmPassword) {
-        return alert("Passwords do not match");
-      }
+    if (values.password !== values.confirmPassword) {
+      return alert("Passwords do not match");
+    }
 
-      await axios.post("http://localhost:5000/auth/send-otp", {
+    if (!values.email) return alert("Email is required to send OTP");
+
+    try {
+      const res = await axios.post("http://localhost:5000/auth/send-otp", {
         email: values.email,
         purpose: "verifyEmail",
       });
 
-      setOtpSent(true);
-      alert("OTP sent to your email.");
+      if (res.data.success) {
+        setOtpSent(true);
+        alert("OTP sent to your email.");
+      } else {
+        alert(res.data.error || "Failed to send OTP");
+      }
     } catch (err) {
-      console.error("Error sending OTP:", err);
-      alert(err.response?.data?.message || "Failed to send OTP");
+      console.error("Error sending OTP:", err.response?.data || err);
+      alert(err.response?.data?.error || "Failed to send OTP");
     }
   };
 
   // Step 2: Verify OTP & create user
   const handleOtpVerify = async () => {
+    if (!values.email || !otp) return alert("Email or OTP is missing");
+
     try {
       const res = await axios.post("http://localhost:5000/auth/verify-otp", {
         email: values.email,
-        otp,
+        otp: otp.toString(),
         purpose: "verifyEmail",
       });
 
       if (res.data.success) {
-        // OTP verified ✅ → now create user
+        // OTP verified → create user
         const {
           username,
           email,
@@ -66,24 +72,32 @@ function Signup() {
           password,
           confirmPassword,
         } = values;
-        await axios.post("http://localhost:5000/auth/signup", {
-          username,
-          email,
-          address,
-          city,
-          phone,
-          password,
-          confirmPassword,
-        });
 
-        alert("Signup successful! You can now login.");
-        navigate("/login");
+        const signupRes = await axios.post(
+          "http://localhost:5000/auth/signup",
+          {
+            username,
+            email,
+            address,
+            city,
+            phone,
+            password,
+            confirmPassword,
+          }
+        );
+
+        if (signupRes.data.message) {
+          alert(signupRes.data.message);
+          navigate("/login");
+        } else {
+          alert("Signup completed but no confirmation message received");
+        }
       } else {
         alert(res.data.message || "OTP verification failed");
       }
     } catch (err) {
-      console.error("Error verifying OTP:", err);
-      alert("Error verifying OTP");
+      console.error("Error verifying OTP:", err.response?.data || err);
+      alert(err.response?.data?.error || "Error verifying OTP");
     }
   };
 
