@@ -22,6 +22,7 @@ import RoomsHome from "./Pages/Guest/RoomsHome/RoomsHome";
 import RoomsBooking from "./Pages/Guest/RoomsBooking/RoomsBooking";
 import RoomsGallery from "./Pages/Guest/RoomsGallery/RoomsGallery";
 import RoomsAbout from "./Pages/Guest/RoomsAbout/RoomsAbout";
+import AdminBookings from "./Pages/Admin/Bookings/Bookings";
 
 function App() {
   return (
@@ -115,6 +116,14 @@ function App() {
           element={
             <ProtectedRoute role="admin">
               <Complaints />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/bookings"
+          element={
+            <ProtectedRoute role="admin">
+              <AdminBookings />
             </ProtectedRoute>
           }
         />

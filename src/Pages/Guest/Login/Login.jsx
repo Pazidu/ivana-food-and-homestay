@@ -59,7 +59,8 @@ function Login() {
         localStorage.setItem("role", user_type);
         localStorage.setItem("userId", id);
         alert(`Hello ${username}`);
-        navigate("/user/profile"); // redirect after login
+        if (user_type === "admin") navigate("/admin/orders");
+        else navigate("/user/profile"); // redirect after login
       }
     } catch (error) {
       console.error("Error during login:", error);
