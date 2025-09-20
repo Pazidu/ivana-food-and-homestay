@@ -97,6 +97,7 @@ function FoodsMenu() {
 
         if (res.ok) {
           alert("Items added to cart!");
+          window.dispatchEvent(new Event("storage"));
         } else {
           const errData = await res.json();
           alert(errData.error || "Failed to add to cart");
@@ -111,6 +112,7 @@ function FoodsMenu() {
       const updatedCart = [...existingCart, ...itemsToAdd];
       localStorage.setItem("guestCart", JSON.stringify(updatedCart));
       alert("Items added to cart (Guest Mode)!");
+      window.dispatchEvent(new Event("storage"));
     }
 
     // Reset after adding
