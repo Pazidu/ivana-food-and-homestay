@@ -38,8 +38,19 @@ function FoodsMenu() {
   const [largeQty, setLargeQty] = useState(0);
 
   useEffect(() => {
-    setActiveSubTopic(subTopics[activeTopic][0]);
-  }, [activeTopic]);
+    fetch(
+      `http://localhost:5000/api/foods/menu?type=${encodeURIComponent(
+        activeSubTopic
+      )}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        // filter out hidden items
+        const visibleFoods = data.filter((food) => !food.is_hidden);
+        setFoods(visibleFoods);
+      })
+      .catch((err) => console.error(err));
+  }, [activeSubTopic]);
 
   useEffect(() => {
     fetch(

@@ -85,7 +85,17 @@ function MenuList() {
       console.error(err);
     }
   };
-
+  // Add hide/unhide action
+  const handleHide = async (id, hide) => {
+    try {
+      const res = await axios.put(`http://localhost:5000/api/menu/hide/${id}`, {
+        hide,
+      });
+      setMenuItems(menuItems.map((item) => (item.id === id ? res.data : item)));
+    } catch (err) {
+      console.error(err);
+    }
+  };
   return (
     <div className="menu">
       <h2 className="menu__title">Menu Items</h2>
@@ -174,7 +184,7 @@ function MenuList() {
               </button>
             </div>
           </div>
-        </div>  
+        </div>
       )}
 
       {/* Menu Table */}
@@ -209,11 +219,21 @@ function MenuList() {
                 >
                   Edit
                 </button>
+
                 <button
                   className="btn btn--delete"
                   onClick={() => confirmDelete(item.id)}
                 >
                   Delete
+                </button>
+
+                <button
+                  className={`btn ${
+                    item.is_hidden ? "btn--show" : "btn--hide"
+                  }`}
+                  onClick={() => handleHide(item.id, !item.is_hidden)}
+                >
+                  {item.is_hidden ? "Show" : "Hide"}
                 </button>
               </td>
             </tr>
