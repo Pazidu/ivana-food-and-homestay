@@ -51,7 +51,7 @@ function OrdersList() {
                 <td>
                   {order.items.map((item, index) => (
                     <div key={index}>
-                      {item.item_name} × {item.quantity}
+                      {item.item_name} ({item.description}) × {item.quantity}
                     </div>
                   ))}
                 </td>

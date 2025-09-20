@@ -60,7 +60,7 @@ function Login() {
         localStorage.setItem("userId", id);
         alert(`Hello ${username}`);
         if (user_type === "admin") navigate("/admin/orders");
-        else navigate("/user/profile"); // redirect after login
+        else navigate("/foods/home"); // redirect after login
       }
     } catch (error) {
       console.error("Error during login:", error);

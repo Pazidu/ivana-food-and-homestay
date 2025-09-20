@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../../../Components/Navbar/Navbar";
+import Footer from "../../../Components/Footer/Footer";
 import "./FoodsFeedback.css";
 
 export default function FoodsFeedback() {
@@ -186,6 +187,7 @@ export default function FoodsFeedback() {
           </div>
         )}
       </div>
+      <Footer />
     </>
   );
 }

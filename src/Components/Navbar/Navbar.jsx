@@ -8,36 +8,50 @@ import axios from "axios";
 function Navbar() {
   const [user, setUser] = useState(null);
   const [showMenu, setShowMenu] = useState(false);
-  const [cartCount, setCartCount] = useState(0); // Cart count state
+  const [cartCount, setCartCount] = useState(0);
   const navigate = useNavigate();
 
-  // Load user info on mount
+  // 🔹 Reusable function to update cart count
+  const updateCartCount = async () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      try {
+        const response = await axios.get("http://localhost:5000/api/cart", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setCartCount(response.data.length);
+      } catch (err) {
+        console.error("Error fetching cart count:", err);
+      }
+    } else {
+      const guestCart = JSON.parse(localStorage.getItem("guestCart")) || [];
+      setCartCount(guestCart.length);
+    }
+  };
+
+  // 🔹 Load on mount
   useEffect(() => {
     const token = localStorage.getItem("token");
     const username = localStorage.getItem("username");
     if (token && username) {
       setUser({ username });
-      fetchCartCount(token); // Fetch cart count when user is logged in
     }
-  }, []);
+    updateCartCount();
 
-  // Fetch cart count from backend
-  const fetchCartCount = async (token) => {
-    try {
-      const response = await axios.get("http://localhost:5000/api/cart", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setCartCount(response.data.length); // Count items
-    } catch (err) {
-      console.error("Error fetching cart count:", err);
-    }
-  };
+    // Listen for cart updates (triggered by Menu)
+    window.addEventListener("storage", updateCartCount);
+
+    return () => {
+      window.removeEventListener("storage", updateCartCount);
+    };
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
     localStorage.removeItem("user_type");
     setUser(null);
+    setCartCount(0);
     navigate("/login");
   };
 
