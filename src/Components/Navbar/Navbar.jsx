@@ -45,7 +45,7 @@ function Navbar() {
     <nav className="navbar navbar-expand-lg">
       <div className="container-fluid">
         {/* Brand Logo */}
-        <Link to="/foods/home" className="navbar-brand">
+        <Link to="/" className="navbar-brand">
           <img src={logo} alt="Logo" width="40" height="40" />
         </Link>
 

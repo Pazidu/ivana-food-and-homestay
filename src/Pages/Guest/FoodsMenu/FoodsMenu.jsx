@@ -63,51 +63,60 @@ function FoodsMenu() {
       return;
     }
 
-    const token = localStorage.getItem("token"); // JWT from login
-    if (!token) {
-      alert("Please login first!");
-      return;
-    }
-
     const itemsToAdd = [];
     if (regularQty > 0)
       itemsToAdd.push({
         item_id: selectedFood.id,
+        name: selectedFood.name,
         description: "Regular",
         quantity: regularQty,
+        price: selectedFood.regular_price,
       });
     if (largeQty > 0)
       itemsToAdd.push({
         item_id: selectedFood.id,
+        name: selectedFood.name,
         description: "Large",
         quantity: largeQty,
+        price: selectedFood.large_price,
       });
 
-    try {
-      const res = await fetch("http://localhost:5000/api/cart/add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, // send JWT
-        },
-        body: JSON.stringify(itemsToAdd),
-      });
+    const token = localStorage.getItem("token");
 
-      if (res.ok) {
-        alert("Items added to cart!");
-        setRegularQty(0);
-        setLargeQty(0);
-        setSelectedFood(null);
-      } else if (res.status === 403) {
-        alert("Session expired or invalid token. Please login again.");
-      } else {
-        const errData = await res.json();
-        alert(errData.error || "Failed to add to cart");
+    if (token) {
+      // 🔹 Logged-in user → save to backend
+      try {
+        const res = await fetch("http://localhost:5000/api/cart/add", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(itemsToAdd),
+        });
+
+        if (res.ok) {
+          alert("Items added to cart!");
+        } else {
+          const errData = await res.json();
+          alert(errData.error || "Failed to add to cart");
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Error adding to cart");
       }
-    } catch (err) {
-      console.error(err);
-      alert("Error adding to cart");
+    } else {
+      // 🔹 Guest user → save to localStorage
+      const existingCart = JSON.parse(localStorage.getItem("guestCart")) || [];
+      const updatedCart = [...existingCart, ...itemsToAdd];
+      localStorage.setItem("guestCart", JSON.stringify(updatedCart));
+      alert("Items added to cart (Guest Mode)!");
     }
+
+    // Reset after adding
+    setRegularQty(0);
+    setLargeQty(0);
+    setSelectedFood(null);
   };
 
   return (

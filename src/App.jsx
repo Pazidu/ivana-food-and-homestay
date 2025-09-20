@@ -45,22 +45,8 @@ function App() {
         <Route path="/rooms/aboutus" element={<RoomsAbout />} />
 
         {/* user protected */}
-        <Route
-          path="/cart"
-          element={
-            <ProtectedRoute role="user">
-              <Cart />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/payment"
-          element={
-            <ProtectedRoute role="user">
-              <PaymentGateway />
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/payment" element={<PaymentGateway />} />
         <Route
           path="/user/profile"
           element={
