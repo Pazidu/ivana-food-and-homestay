@@ -7,6 +7,7 @@ import "./Users.css";
 function UsersList() {
   const [users, setUsers] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [confirmDeleteId, setConfirmDeleteId] = useState(null);
   const [formData, setFormData] = useState({
     id: null,
     role: "",
@@ -23,6 +24,8 @@ function UsersList() {
     try {
       await axios.delete(`http://localhost:5000/api/users/${id}`);
       setUsers(users.filter((user) => user.id !== id));
+      setShowModal(false);
+      setConfirmDeleteId(null);
     } catch (err) {
       console.error(err);
     }
@@ -33,7 +36,7 @@ function UsersList() {
       id: user.id,
       role: user.user_type,
     });
-    setShowModal(true);
+    setShowModal("edit");
   };
 
   const handleInputChange = (e) => {
@@ -43,6 +46,7 @@ function UsersList() {
   const handleCloseModal = () => {
     setShowModal(false);
     setFormData({ id: null, role: "" });
+    setConfirmDeleteId(null);
   };
 
   const handleFormSubmit = async (e) => {
@@ -69,10 +73,10 @@ function UsersList() {
     <div className="users">
       <h2 className="users__title">Users</h2>
 
-      {/* Edit Modal */}
-      {showModal && (
-        <div className="modal">
-          <div className="modal__content">
+      {/* ===== Change Role Modal ===== */}
+      {showModal === "edit" && (
+        <div className="modal-overlay">
+          <div className="modal">
             <h3 className="modal__title">Change User Role</h3>
             <form className="modal__form" onSubmit={handleFormSubmit}>
               <select
@@ -98,6 +102,26 @@ function UsersList() {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* ===== Delete Warning Modal ===== */}
+      {showModal === "delete" && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <p>Are you sure you want to delete this user?</p>
+            <div className="modal-buttons">
+              <button
+                className="btn--confirm"
+                onClick={() => handleDelete(confirmDeleteId)}
+              >
+                Yes
+              </button>
+              <button className="btn--cancel" onClick={handleCloseModal}>
+                No
+              </button>
+            </div>
           </div>
         </div>
       )}
@@ -135,7 +159,10 @@ function UsersList() {
                 </button>
                 <button
                   className="btn btn--delete"
-                  onClick={() => handleDelete(user.id)}
+                  onClick={() => {
+                    setConfirmDeleteId(user.id);
+                    setShowModal("delete");
+                  }}
                 >
                   Delete
                 </button>

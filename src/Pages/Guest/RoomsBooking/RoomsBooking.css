@@ -1,65 +1,50 @@
-/* RoomsBooking.css */
-
-/* --- General Page --- */
 .rooms-booking-page {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background: #f9fafc;
   font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  min-height: 100vh;
 }
 
-/* --- Hero Section --- */
+/* Hero Section */
 .booking-hero {
-  height: 40vh;
-  background: url("/images/hero.jpg") center/cover no-repeat;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
+  height: 250px;
+  background: url("/path/to/hero-image.jpg") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #fff;
   text-align: center;
 }
 
 .hero-overlay {
-  background: rgba(0, 0, 0, 0.5);
-  padding: 20px 40px;
-  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
 }
 
-.booking-hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-}
-
-.booking-hero p {
-  font-size: 1.2rem;
-}
-
-/* --- Booking Form --- */
+/* Booking Form */
 .booking-form {
   padding: 30px 20px;
-  background: #fff;
-  max-width: 900px;
-  margin: -50px auto 40px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  max-width: 800px;
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .booking-form h2 {
   text-align: center;
   margin-bottom: 20px;
-  color: #333;
 }
 
 .form-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr auto;
-  gap: 15px;
-  align-items: end;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
 }
 
 .form-control {
+  flex: 1 1 200px;
   display: flex;
   flex-direction: column;
 }
@@ -67,153 +52,168 @@
 .form-control label {
   margin-bottom: 5px;
   font-weight: bold;
-  color: #555;
 }
 
 .search-btn {
-  background: #007bff;
+  padding: 10px 20px;
+  background-color: #800000;
   color: #fff;
   border: none;
-  padding: 12px 20px;
-  border-radius: 6px;
+  border-radius: 5px;
   cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s;
+  align-self: center;
+  margin-top: 10px;
 }
 
 .search-btn:hover {
-  background: #0056b3;
+  background-color: #a00000;
 }
 
-/* --- Calendar --- */
+/* Calendar Section */
 .calendar-section {
-  padding: 30px 20px;
+  padding: 20px;
   text-align: center;
+  margin-bottom: 30px;
 }
 
 .calendar-section h2 {
-  margin-bottom: 20px;
-  color: #333;
+  margin-bottom: 15px;
 }
 
-/* --- Rooms Popup --- */
+/* Rooms Popup */
 .rooms-popup {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.6);
   display: flex;
+  align-items: center;
   justify-content: center;
-  align-items: flex-start;
-  padding: 50px 20px;
   z-index: 1000;
-  overflow-y: auto;
 }
 
 .popup-content {
-  background: #fff;
-  width: 100%;
+  background-color: #fff;
+  width: 90%;
   max-width: 1000px;
-  border-radius: 12px;
+  max-height: 90%;
+  overflow-y: auto;
+  border-radius: 10px;
   padding: 20px;
   position: relative;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center all children horizontally */
 }
 
 .close-btn {
   position: absolute;
   top: 15px;
-  right: 20px;
-  font-size: 1.5rem;
-  background: none;
+  right: 15px;
+  background: transparent;
   border: none;
+  font-size: 24px;
   cursor: pointer;
-  color: #555;
 }
 
 .rooms-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 20px;
-  margin-top: 20px;
+  justify-content: center; /* Center room cards */
 }
 
 .room-card {
-  background: #fdfdfd;
+  background-color: #f9f9f9;
+  width: 250px;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
   display: flex;
   flex-direction: column;
+  align-items: center; /* Center content inside card */
 }
 
 .room-card img {
   width: 100%;
-  height: 160px;
+  height: 150px;
   object-fit: cover;
 }
 
 .room-info {
   padding: 15px;
-  flex: 1;
   display: flex;
   flex-direction: column;
+  align-items: center; /* Center text & form */
 }
 
 .room-info h3 {
-  margin: 0 0 8px 0;
-  color: #333;
+  margin: 10px 0;
+  font-size: 18px;
 }
 
 .room-info p {
-  margin: 4px 0;
-  color: #555;
-  font-size: 0.9rem;
+  font-size: 14px;
+  margin: 5px 0;
 }
 
-.room-info .price {
-  margin-top: 8px;
+.price {
+  display: block;
+  margin: 10px 0;
   font-weight: bold;
-  color: #007bff;
+  color: #800000;
 }
 
-.guest-form {
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.guest-form input {
-  padding: 8px 10px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
+.book-btn,
+.back-btn {
+  padding: 10px 15px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .book-btn {
-  margin-top: 5px;
-  padding: 10px;
-  background: #28a745;
+  background-color: #800000;
   color: #fff;
-  font-weight: bold;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.3s;
 }
 
 .book-btn:hover {
-  background: #1e7e34;
+  background-color: #a00000;
 }
 
-/* --- Responsive --- */
-@media (max-width: 768px) {
-  .form-grid {
-    grid-template-columns: 1fr;
-  }
-  .rooms-popup {
-    padding: 20px 10px;
-  }
+.back-btn {
+  background-color: #ccc;
+}
+
+.back-btn:hover {
+  background-color: #aaa;
+}
+
+/* Guest Form */
+.guest-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+  width: 80%; /* Form smaller than card */
+  align-items: center; /* Center inputs & button */
+}
+
+.guest-form input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+  max-width: 300px; /* Consistent input width */
+}
+
+.guest-form button {
+  width: fit-content;
+  align-self: center;
+  padding: 10px 20px;
 }
