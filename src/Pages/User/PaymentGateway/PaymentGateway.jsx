@@ -1,7 +1,4 @@
-import React, { useState } from "react";
-import CreditCardIcon from "@mui/icons-material/CreditCard";
-import LockIcon from "@mui/icons-material/Lock";
-import PaymentIcon from "@mui/icons-material/Payment";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -13,48 +10,66 @@ import {
   Divider,
   InputAdornment,
 } from "@mui/material";
+import CreditCardIcon from "@mui/icons-material/CreditCard";
+import LockIcon from "@mui/icons-material/Lock";
+import PaymentIcon from "@mui/icons-material/Payment";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const PaymentGateway = () => {
+  const [order, setOrder] = useState(null);
   const [cardNumber, setCardNumber] = useState("");
   const [expiry, setExpiry] = useState("");
   const [cvv, setCvv] = useState("");
   const [name, setName] = useState("");
   const [processing, setProcessing] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const orderData = JSON.parse(localStorage.getItem("pendingOrder"));
+    if (
+      !orderData ||
+      !orderData.userName ||
+      !orderData.address ||
+      !orderData.phone
+    ) {
+      alert("Guest info missing. Please go back and enter details.");
+      navigate("/cart");
+    } else {
+      setOrder(orderData);
+      setName(orderData.userName); // prefill cardholder name
+    }
+  }, [navigate]);
 
   const handlePay = async () => {
+    if (!order) return;
     setProcessing(true);
 
     try {
       // Simulate payment delay
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
-      // Get pending order from localStorage
-      const orderData = JSON.parse(localStorage.getItem("pendingOrder"));
+      const token = localStorage.getItem("token"); // may be null for guests
 
-      if (!orderData) {
-        alert("No order found! Please try again.");
-        setProcessing(false);
-        return;
+      // Save order in backend
+      await axios.post(
+        "http://localhost:5000/api/orders",
+        order,
+        token ? { headers: { Authorization: `Bearer ${token}` } } : undefined
+      );
+
+      // Clear cart: for guests clear localStorage
+      if (!token) {
+        localStorage.removeItem("guestCart");
+      } else {
+        await axios.delete("http://localhost:5000/api/cart/clear", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
       }
 
-      const token = localStorage.getItem("token");
-
-      // Save order in backend (after payment success)
-      await axios.post("http://localhost:5000/api/orders", orderData, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      // Clear cart from backend
-      await axios.delete("http://localhost:5000/api/cart/clear", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      // Remove pending order from localStorage
       localStorage.removeItem("pendingOrder");
-
-      alert("Payment Successful! Order saved and cart cleared.");
-      window.location.href = "/foods/menu"; // redirect after payment
+      alert("Payment Successful! Order saved.");
+      navigate("/foods/menu");
     } catch (error) {
       console.error("Error processing payment:", error);
       alert(
@@ -64,6 +79,8 @@ const PaymentGateway = () => {
       setProcessing(false);
     }
   };
+
+  if (!order) return null; // prevent rendering until order is loaded
 
   return (
     <Box
@@ -170,12 +187,7 @@ const PaymentGateway = () => {
                 color="primary"
                 fullWidth
                 size="large"
-                sx={{
-                  mt: 1,
-                  borderRadius: 2,
-                  fontWeight: 600,
-                  boxShadow: 2,
-                }}
+                sx={{ mt: 1, borderRadius: 2, fontWeight: 600, boxShadow: 2 }}
                 disabled={!cardNumber || !expiry || !cvv || !name || processing}
                 onClick={handlePay}
               >

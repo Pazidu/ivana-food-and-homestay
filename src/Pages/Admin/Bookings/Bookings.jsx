@@ -6,6 +6,8 @@ import "./Bookings.css";
 
 function BookingsList() {
   const [bookings, setBookings] = useState([]);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
 
   useEffect(() => {
     fetchBookings();
@@ -20,16 +22,26 @@ function BookingsList() {
     }
   };
 
-  const handleDelete = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this booking?"))
-      return;
+  const handleDeleteClick = (id) => {
+    setDeleteId(id);
+    setShowConfirm(true); // open modal
+  };
 
+  const confirmDelete = async () => {
     try {
-      await axios.delete(`http://localhost:5000/api/bookings/${id}`);
-      setBookings(bookings.filter((b) => b.id !== id));
+      await axios.delete(`http://localhost:5000/api/bookings/${deleteId}`);
+      setBookings(bookings.filter((b) => b.id !== deleteId));
     } catch (err) {
       console.error("Error deleting booking:", err);
+    } finally {
+      setShowConfirm(false);
+      setDeleteId(null);
     }
+  };
+
+  const cancelDelete = () => {
+    setShowConfirm(false);
+    setDeleteId(null);
   };
 
   return (
@@ -63,7 +75,7 @@ function BookingsList() {
                 <td className="bookings__actions">
                   <button
                     className="btn btn--delete"
-                    onClick={() => handleDelete(b.id)}
+                    onClick={() => handleDeleteClick(b.id)}
                   >
                     Delete
                   </button>
@@ -72,13 +84,30 @@ function BookingsList() {
             ))
           ) : (
             <tr>
-              <td colSpan="6" className="bookings__empty">
+              <td colSpan="8" className="bookings__empty">
                 No bookings found
               </td>
             </tr>
           )}
         </tbody>
       </table>
+
+      {/* Confirmation Modal */}
+      {showConfirm && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <p>Are you sure you want to delete this booking?</p>
+            <div className="modal-buttons">
+              <button className="btn btn--confirm" onClick={confirmDelete}>
+                Yes
+              </button>
+              <button className="btn btn--cancel" onClick={cancelDelete}>
+                No
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

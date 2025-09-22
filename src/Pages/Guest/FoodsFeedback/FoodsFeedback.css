@@ -1,134 +1,156 @@
-/* Main Container */
+/* FoodsFeedback.css */
+
+/* Global Container */
 .feedback-container {
-  max-width: 800px;
-  margin: 10vh auto;
-  padding: 16px;
+  margin-top: 10vh; /* Adjust based on Navbar height */
+  background-color: #121212;
+  min-height: 100vh;
+  color: #e5e5e5;
+  padding: 2rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Sub Navbar */
 .subnavbar {
   display: flex;
-  gap: 12px;
-  margin-bottom: 16px;
+  justify-content: center;
+  margin-bottom: 2rem;
+  gap: 1rem;
 }
 
 .subnav-btn {
-  margin: auto;
-  background: #f3f4f6;
-  border: 1px solid #d1d5db;
-  padding: 8px 16px;
+  background-color: #1e1e1e;
+  color: #b5b5b5;
+  border: none;
+  padding: 0.6rem 1.2rem;
   border-radius: 6px;
   cursor: pointer;
-  font-weight: 500;
-  color: #374151;
-  transition: all 0.2s;
+  transition: all 0.3s ease;
 }
 
 .subnav-btn:hover {
-  background: #e5e7eb;
+  background-color: #2c2c2c;
+  color: #ffffff;
 }
 
 .subnav-btn.active {
-  background: #2563eb;
-  color: white;
-  border-color: #2563eb;
+  background-color: #fcb72c;
+  color: #ffffff;
+  font-weight: bold;
 }
 
-/* Sections */
+/* Error Message */
+.error-message {
+  color: #ff4d4d;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Content Section */
 .content-section {
-  margin-top: 12px;
+  margin-bottom: 2rem;
 }
 
-.section-title {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 12px;
+/* Reviews Section */
+.reviews-section {
+  display: grid;
+  gap: 1rem;
 }
 
-.no-data {
-  color: #6b7280;
-}
-
-/* Cards */
 .card {
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
-  padding: 12px;
-  margin-bottom: 12px;
+  background-color: #1e1e1e;
+  padding: 1rem;
   border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
 }
 
 .card-user {
   font-weight: bold;
-  margin-bottom: 4px;
+  color: #ffffff;
+  margin-bottom: 0.3rem;
 }
 
 .card-text {
-  margin-bottom: 6px;
+  font-size: 0.95rem;
+  color: #cfcfcf;
+  margin-bottom: 0.5rem;
 }
 
 .card-rating {
-  color: #facc15;
-  font-weight: bold;
+  font-size: 0.85rem;
+  color: #ffd700;
 }
 
-.complaint-card {
-  border-left: 4px solid #ef4444;
+.no-data {
+  text-align: center;
+  color: #999999;
 }
 
-.card-date {
-  font-size: 14px;
-  color: #6b7280;
-}
-
-/* Feedback Form */
-.feedback-form-section {
-  margin-top: 24px;
-  padding: 16px;
-  background: #f9fafb;
+/* Complaints Section */
+.complaints-section {
+  background-color: #181818;
+  padding: 1rem;
   border-radius: 8px;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  color: #ffffff;
+  margin-bottom: 1rem;
+  border-left: 4px solid #fcb72c;
+  padding-left: 0.6rem;
+}
+
+/* Forms */
+.feedback-form-section {
+  background-color: #181818;
+  padding: 1rem;
+  border-radius: 8px;
 }
 
 .feedback-form-title {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 16px;
+  color: #ffffff;
+  margin-bottom: 1rem;
 }
 
 .feedback-form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0.8rem;
 }
 
 .form-input,
 .form-textarea,
 .form-select {
-  padding: 10px 12px;
-  border: 1px solid #d1d5db;
+  background-color: #1e1e1e;
+  color: #e5e5e5;
+  border: 1px solid #333333;
+  padding: 0.7rem;
   border-radius: 6px;
-  font-size: 14px;
-  width: 100%;
-  box-sizing: border-box;
+  outline: none;
+  transition: border 0.3s ease;
 }
 
 .form-input:focus,
 .form-textarea:focus,
 .form-select:focus {
-  outline: none;
-  border-color: #2563eb;
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+  border-color: #fcb72c;
 }
 
 .form-textarea {
   resize: vertical;
-  min-height: 80px;
+  min-height: 100px;
 }
 
 .form-submit-btn {
-  background-color: #2563eb;
-  color: white;
-  padding: 10px;
+  background-color: #fcb72c;
+  color: #ffffff;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.form-submit-btn:hover {
+  background-color: #fcb72c;
 }

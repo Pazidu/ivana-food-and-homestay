@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AdminNavbar from "../../../Components/AdminNavbar/AdminNavbar";
 import axios from "axios";
-import "./Menu.css"; // Import CSS
+import "./Menu.css";
 import Footer from "../../../Components/Footer/Footer";
 
 function MenuList() {
@@ -16,6 +16,10 @@ function MenuList() {
     image_link: "",
   });
 
+  // ⚡ new states for delete warning
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
+
   useEffect(() => {
     axios
       .get("http://localhost:5000/api/menu")
@@ -23,12 +27,22 @@ function MenuList() {
       .catch((err) => console.error(err));
   }, []);
 
-  const handleDelete = async (id) => {
+  // Show delete modal
+  const confirmDelete = (id) => {
+    setDeleteId(id);
+    setShowDeleteModal(true);
+  };
+
+  // Perform actual delete
+  const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:5000/api/menu/${id}`);
-      setMenuItems(menuItems.filter((item) => item.id !== id));
+      await axios.delete(`http://localhost:5000/api/menu/${deleteId}`);
+      setMenuItems(menuItems.filter((item) => item.id !== deleteId));
     } catch (err) {
       console.error(err);
+    } finally {
+      setShowDeleteModal(false);
+      setDeleteId(null);
     }
   };
 
@@ -52,7 +66,6 @@ function MenuList() {
     e.preventDefault();
     try {
       if (formData.id) {
-        // Edit item
         const res = await axios.put(
           `http://localhost:5000/api/menu/${formData.id}`,
           formData
@@ -61,7 +74,6 @@ function MenuList() {
           menuItems.map((item) => (item.id === formData.id ? res.data : item))
         );
       } else {
-        // Add new item
         const res = await axios.post(
           "http://localhost:5000/api/menu",
           formData
@@ -73,7 +85,17 @@ function MenuList() {
       console.error(err);
     }
   };
-
+  // Add hide/unhide action
+  const handleHide = async (id, hide) => {
+    try {
+      const res = await axios.put(`http://localhost:5000/api/menu/hide/${id}`, {
+        hide,
+      });
+      setMenuItems(menuItems.map((item) => (item.id === id ? res.data : item)));
+    } catch (err) {
+      console.error(err);
+    }
+  };
   return (
     <div className="menu">
       <h2 className="menu__title">Menu Items</h2>
@@ -84,11 +106,9 @@ function MenuList() {
 
       {/* Add/Edit Modal */}
       {showModal && (
-        <div className="modal">
-          <div className="modal__content">
-            <h3 className="modal__title">
-              {formData.id ? "Edit Menu Item" : "Add Menu Item"}
-            </h3>
+        <div className="modal-overlay">
+          <div className="modal">
+            <h3>{formData.id ? "Edit Menu Item" : "Add Menu Item"}</h3>
             <form className="modal__form" onSubmit={handleFormSubmit}>
               <input
                 type="text"
@@ -130,19 +150,39 @@ function MenuList() {
                 onChange={handleInputChange}
                 required
               />
-              <div className="modal__actions">
-                <button type="submit" className="btn btn--submit">
+              <div className="modal-buttons">
+                <button type="submit" className="btn--confirm">
                   Submit
                 </button>
                 <button
                   type="button"
-                  className="btn btn--cancel"
+                  className="btn--cancel"
                   onClick={handleCloseModal}
                 >
                   Cancel
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* ⚡ Delete Confirmation Modal */}
+      {showDeleteModal && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <p>Are you sure you want to delete this menu item?</p>
+            <div className="modal-buttons">
+              <button className="btn--confirm" onClick={handleDelete}>
+                Yes
+              </button>
+              <button
+                className="btn--cancel"
+                onClick={() => setShowDeleteModal(false)}
+              >
+                No
+              </button>
+            </div>
           </div>
         </div>
       )}
@@ -179,11 +219,21 @@ function MenuList() {
                 >
                   Edit
                 </button>
+
                 <button
                   className="btn btn--delete"
-                  onClick={() => handleDelete(item.id)}
+                  onClick={() => confirmDelete(item.id)}
                 >
                   Delete
+                </button>
+
+                <button
+                  className={`btn ${
+                    item.is_hidden ? "btn--show" : "btn--hide"
+                  }`}
+                  onClick={() => handleHide(item.id, !item.is_hidden)}
+                >
+                  {item.is_hidden ? "Show" : "Hide"}
                 </button>
               </td>
             </tr>

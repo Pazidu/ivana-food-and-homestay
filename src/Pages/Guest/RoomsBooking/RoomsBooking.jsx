@@ -17,6 +17,9 @@ const RoomsBooking = () => {
   const [rooms, setRooms] = useState([]);
   const [showRooms, setShowRooms] = useState(false);
 
+  // NEW: selected room state
+  const [selectedRoom, setSelectedRoom] = useState(null);
+
   // Guest details
   const [guestName, setGuestName] = useState("");
   const [guestEmail, setGuestEmail] = useState("");
@@ -45,19 +48,6 @@ const RoomsBooking = () => {
     fetchBookings();
   }, []);
 
-  const bookedDays = [];
-  bookedEvents.forEach((event) => {
-    const start = moment(event.start);
-    const end = moment(event.end);
-    for (let d = start; d.isSameOrBefore(end); d.add(1, "days")) {
-      bookedDays.push(d.toDate());
-    }
-  });
-
-  // const isDayBooked = (date) =>
-  //   bookedDays.some((b) => moment(b).isSame(moment(date), "day"));
-
-  // Search rooms based on selected dates
   // Search rooms based on selected dates
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -68,7 +58,7 @@ const RoomsBooking = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:5000/api/bookings?checkIn=${checkIn.toISOString()}&checkOut=${checkOut.toISOString()}`
+        `http://localhost:5000/api/rooms?checkIn=${checkIn.toISOString()}&checkOut=${checkOut.toISOString()}`
       );
 
       const data = await res.json();
@@ -80,8 +70,8 @@ const RoomsBooking = () => {
     }
   };
 
-  // Handle booking a room
-  const handleBookNow = async (room) => {
+  // Confirm booking
+  const handleConfirmBooking = async () => {
     if (!checkIn || !checkOut || !guestName || !guestEmail || !guestPhone) {
       alert("Please fill all details.");
       return;
@@ -92,7 +82,7 @@ const RoomsBooking = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          roomId: room.id,
+          roomId: selectedRoom.id,
           checkIn,
           checkOut,
           guestName,
@@ -106,18 +96,12 @@ const RoomsBooking = () => {
       if (response.ok) {
         alert(`✅ Booking successful! ID: ${data.bookingId}`);
         setShowRooms(false);
+        setSelectedRoom(null);
         setGuestName("");
         setGuestEmail("");
         setGuestPhone("");
 
-        // Refresh rooms availability after booking
-        const roomsRes = await fetch(
-          `http://localhost:5000/api/rooms?checkIn=${checkIn.toISOString()}&checkOut=${checkOut.toISOString()}`
-        );
-        const roomsData = await roomsRes.json();
-        setRooms(roomsData.rooms || []);
-
-        // Refresh calendar events
+        // Refresh calendar
         setBookedEvents((prev) => [
           ...prev,
           {
@@ -161,7 +145,7 @@ const RoomsBooking = () => {
               startDate={checkIn}
               endDate={checkOut}
               placeholderText="Select Check-In"
-              minDate={new Date()} // block past dates only
+              minDate={new Date()}
             />
           </div>
           <div className="form-control">
@@ -172,7 +156,7 @@ const RoomsBooking = () => {
               selectsEnd
               startDate={checkIn}
               endDate={checkOut}
-              minDate={checkIn || new Date()} // block past dates + before checkIn
+              minDate={checkIn || new Date()}
               placeholderText="Select Check-Out"
             />
           </div>
@@ -211,55 +195,80 @@ const RoomsBooking = () => {
             <button className="close-btn" onClick={() => setShowRooms(false)}>
               ✖
             </button>
-            <h2>Available Rooms</h2>
-            <div className="rooms-grid">
-              {rooms.map((room) => (
-                <div key={room.id} className="room-card">
-                  <img src={room.image} alt={room.type} />
-                  <div className="room-info">
-                    <h3>{room.type} Room</h3>
-                    <p>Guests: {room.guests}</p>
-                    <p>Facilities: {room.facilities.join(", ")}</p>
-                    <span className="price">${room.price} / night</span>
-                    <p>
-                      Available:{" "}
-                      <strong>
-                        {room.available > 0 ? room.available : "Fully Booked"}
-                      </strong>
-                    </p>
 
-                    {room.available > 0 && (
-                      <div className="guest-form">
-                        <input
-                          type="text"
-                          placeholder="Full Name"
-                          value={guestName}
-                          onChange={(e) => setGuestName(e.target.value)}
-                        />
-                        <input
-                          type="email"
-                          placeholder="Email"
-                          value={guestEmail}
-                          onChange={(e) => setGuestEmail(e.target.value)}
-                        />
-                        <input
-                          type="tel"
-                          placeholder="Phone Number"
-                          value={guestPhone}
-                          onChange={(e) => setGuestPhone(e.target.value)}
-                        />
-                        <button
-                          className="book-btn"
-                          onClick={() => handleBookNow(room)}
-                        >
-                          Book Now
-                        </button>
+            {!selectedRoom ? (
+              <>
+                <h2>Available Rooms</h2>
+                <div className="rooms-grid">
+                  {rooms.map((room) => (
+                    <div key={room.id} className="room-card">
+                      <img src={room.image} alt={room.type} />
+                      <div className="room-info">
+                        <h3>{room.type} Room</h3>
+                        <p>Guests: {room.guests}</p>
+                        <p>Facilities: {room.facilities.join(", ")}</p>
+                        <span className="price">${room.price} / night</span>
+                        <p>
+                          Available:{" "}
+                          <strong>
+                            {room.available > 0
+                              ? room.available
+                              : "Fully Booked"}
+                          </strong>
+                        </p>
+
+                        {room.available > 0 && (
+                          <button
+                            className="book-btn"
+                            onClick={() => setSelectedRoom(room)}
+                          >
+                            Book Now
+                          </button>
+                        )}
                       </div>
-                    )}
-                  </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </>
+            ) : (
+              <>
+                <h2>Guest Details</h2>
+                <p>
+                  Booking <strong>{selectedRoom.type} Room </strong> from{" "}
+                  {moment(checkIn).format("MMM D")} to{" "}
+                  {moment(checkOut).format("MMM D")}
+                </p>
+                <div className="guest-form">
+                  <input
+                    type="text"
+                    placeholder="Full Name"
+                    value={guestName}
+                    onChange={(e) => setGuestName(e.target.value)}
+                  />
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    value={guestEmail}
+                    onChange={(e) => setGuestEmail(e.target.value)}
+                  />
+                  <input
+                    type="tel"
+                    placeholder="Phone Number"
+                    value={guestPhone}
+                    onChange={(e) => setGuestPhone(e.target.value)}
+                  />
+                  <button className="book-btn" onClick={handleConfirmBooking}>
+                    Confirm Booking
+                  </button>
+                  <button
+                    className="back-btn"
+                    onClick={() => setSelectedRoom(null)}
+                  >
+                    ← Back to Rooms
+                  </button>
+                </div>
+              </>
+            )}
           </div>
         </div>
       )}
