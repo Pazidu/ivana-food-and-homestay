@@ -73,3 +73,29 @@
 .orders__table td:nth-child(5) {
   text-align: left;
 }
+.orders__navbar {
+  display: flex;
+  justify-content: center;
+  margin-top: 10vh;
+  margin-bottom: 0;
+  gap: 15px;
+}
+
+.orders__navbar button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  background: #e0e0e0;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.orders__navbar button:hover {
+  background: #d6d6d6;
+}
+
+.orders__navbar button.active {
+  background: #007bff;
+  color: white;
+}
