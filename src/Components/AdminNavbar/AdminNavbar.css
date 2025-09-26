@@ -115,3 +115,17 @@
     display: block;
   }
 }
+.navbar-collapse {
+  display: flex;
+  justify-content: center; /* centers horizontally */
+}
+
+.navbar-nav {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+}
+
+.navbar-nav .nav-item {
+  margin: 0 10px; /* space between links */
+}

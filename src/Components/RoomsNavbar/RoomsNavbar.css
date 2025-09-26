@@ -13,22 +13,34 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-/* Logo */
-.rooms-navbar .logo {
+/* ==================== BRAND ==================== */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.brand-logo {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+
+.brand-text {
   font-size: 22px;
   font-weight: bold;
   color: #d4af37; /* Dark Gold */
   letter-spacing: 1px;
-  text-decoration: none;
   transition: color 0.3s ease;
 }
 
-.rooms-navbar .logo:hover {
-  color: #ffd700; /* Bright gold on hover */
+.brand-text:hover {
+  color: #ffd700;
 }
 
-/* Nav Links */
-.rooms-navbar ul {
+/* ==================== NAV LINKS ==================== */
+.nav-links {
   list-style: none;
   display: flex;
   gap: 25px;
@@ -36,11 +48,7 @@
   padding: 0;
 }
 
-.rooms-navbar ul li {
-  display: inline;
-}
-
-.rooms-navbar ul li a {
+.nav-links li a {
   text-decoration: none;
   color: #f5deb3; /* Warm beige */
   font-size: 16px;
@@ -49,27 +57,30 @@
   padding-bottom: 4px;
 }
 
-.rooms-navbar ul li a:hover {
-  color: #ffd700; /* Bright gold */
-  border-bottom: 2px solid #ffd700;
-}
-
-/* Active link */
-.active-link {
+.nav-links li a:hover,
+.nav-links li a.active-link {
   color: #ffd700;
   border-bottom: 2px solid #ffd700;
 }
 
-/* ==================== BUTTON ==================== */
+/* ==================== BUTTONS ==================== */
 .btn {
   background-color: transparent;
-  color: #ffd700;
   border: 2px solid #ffd700;
   border-radius: 20px;
   padding: 0.3rem 1rem;
   font-size: 0.9rem;
   font-weight: 600;
   transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.login-btn {
+  color: #ffd700;
+}
+
+.user-btn {
+  color: #ffd700;
 }
 
 .btn:hover {
@@ -83,7 +94,7 @@
   position: relative;
 }
 
-.dropdown-menu-custom {
+.dropdown-menu {
   position: absolute;
   right: 0;
   top: 110%;
@@ -98,7 +109,7 @@
   z-index: 2000;
 }
 
-.dropdown-menu-custom button {
+.dropdown-menu button {
   background: none;
   border: none;
   padding: 0.5rem 0.9rem;
@@ -109,7 +120,7 @@
   transition: background 0.2s ease;
 }
 
-.dropdown-menu-custom button:hover {
+.dropdown-menu button:hover {
   background-color: #ffd700;
   color: #800000;
   border-radius: 4px;
@@ -126,7 +137,7 @@
   }
 }
 
-/* ==================== HAMBURGER MENU (Mobile) ==================== */
+/* ==================== HAMBURGER MENU ==================== */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -142,14 +153,13 @@
   transition: 0.3s;
 }
 
-/* ==================== MOBILE RESPONSIVE ==================== */
+/* ==================== RESPONSIVE ==================== */
 @media (max-width: 992px) {
   .rooms-navbar {
     padding: 12px 20px;
   }
 
-  /* Hide nav links by default */
-  .rooms-navbar ul {
+  .nav-links {
     position: absolute;
     top: 8vh;
     right: 0;
@@ -162,19 +172,17 @@
     display: none;
   }
 
-  /* Show when active */
-  .rooms-navbar ul.show {
+  .nav-links.show {
     display: flex;
   }
 
-  .rooms-navbar ul li a {
+  .nav-links li a {
     font-size: 18px;
     padding: 0.6rem 0;
     width: 100%;
     text-align: center;
   }
 
-  /* Show hamburger */
   .hamburger {
     display: flex;
   }

@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import "./Profile.css";
 import axios from "axios";
 import Navbar from "../../../Components/Navbar/Navbar";
+import RoomsNavbar from "../../../Components/RoomsNavbar/RoomsNavbar"; // import RoomsNavbar
+import { useLocation } from "react-router-dom";
 
 export default function Profile() {
   const [user, setUser] = useState(null);
   const [editing, setEditing] = useState(false);
   const [form, setForm] = useState({});
+  const location = useLocation();
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -59,9 +62,13 @@ export default function Profile() {
     return <p>Loading profile...</p>;
   }
 
+  // Decide which navbar to render
+  const isRoomsSection = location.pathname.startsWith("/rooms");
+
   return (
     <>
-      <Navbar name={user.username} />
+      {isRoomsSection ? <RoomsNavbar /> : <Navbar name={user.username} />}
+
       <div className="profile-container">
         <h2 className="profile-title">User Profile</h2>
         {!editing ? (
