@@ -30,6 +30,7 @@ function App() {
       <Routes>
         {/* guest */}
         <Route path="/" element={<Landing />} />
+
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/foods/home" element={<FoodsHome />} />

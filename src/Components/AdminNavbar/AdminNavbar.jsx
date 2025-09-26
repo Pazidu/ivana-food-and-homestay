@@ -30,16 +30,16 @@ function Navbar() {
         style={{ backgroundColor: "black" }}
       >
         <div className="container-fluid">
-          <Link to="/admin" className="navbar-brand">
-            <img
-              src={logo}
-              alt="Logo"
-              width="35"
-              height="35"
-              className="d-inline-block
+          {/* <Link to="/admin" className="navbar-brand"> */}
+          <img
+            src={logo}
+            alt="Logo"
+            width="35"
+            height="35"
+            className="d-inline-block
             align-text-top"
-            />
-          </Link>
+          />
+          {/* </Link> */}
           <button
             className="navbar-toggler"
             type="button"
@@ -55,12 +55,20 @@ function Navbar() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link to="/admin/orders" className="nav-link" aria-current="page">
+                <Link
+                  to="/admin/orders"
+                  className="nav-link"
+                  aria-current="page"
+                >
                   Orders
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/admin/bookings" className="nav-link" aria-current="page">
+                <Link
+                  to="/admin/bookings"
+                  className="nav-link"
+                  aria-current="page"
+                >
                   Bookings
                 </Link>
               </li>
