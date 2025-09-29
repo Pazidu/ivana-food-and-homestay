@@ -14,26 +14,30 @@ function MenuList() {
     regular_price: "",
     large_price: "",
     image_link: "",
+    image: null,
   });
-
-  // ⚡ new states for delete warning
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
 
+  // Fetch menu items
+  const fetchMenu = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/api/menu");
+      setMenuItems(res.data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/menu")
-      .then((res) => setMenuItems(res.data))
-      .catch((err) => console.error(err));
+    fetchMenu();
   }, []);
 
-  // Show delete modal
   const confirmDelete = (id) => {
     setDeleteId(id);
     setShowDeleteModal(true);
   };
 
-  // Perform actual delete
   const handleDelete = async () => {
     try {
       await axios.delete(`http://localhost:5000/api/menu/${deleteId}`);
@@ -46,10 +50,6 @@ function MenuList() {
     }
   };
 
-  const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
   const handleCloseModal = () => {
     setShowModal(false);
     setFormData({
@@ -59,33 +59,57 @@ function MenuList() {
       regular_price: "",
       large_price: "",
       image_link: "",
+      image: null,
     });
   };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
+      let imageUrl = formData.image_link;
+
+      // Upload new image to Firebase
+      if (formData.image) {
+        const form = new FormData();
+        form.append("image", formData.image);
+
+        const uploadRes = await axios.post(
+          "http://localhost:5000/api/menu/upload-image",
+          form,
+          { headers: { "Content-Type": "multipart/form-data" } }
+        );
+        imageUrl = uploadRes.data.url;
+      }
+
+      const payload = {
+        name: formData.name,
+        type: formData.type,
+        regular_price: formData.regular_price,
+        large_price: formData.large_price,
+        image_link: imageUrl,
+      };
+
       if (formData.id) {
+        // Edit menu item
         const res = await axios.put(
           `http://localhost:5000/api/menu/${formData.id}`,
-          formData
+          payload
         );
         setMenuItems(
           menuItems.map((item) => (item.id === formData.id ? res.data : item))
         );
       } else {
-        const res = await axios.post(
-          "http://localhost:5000/api/menu",
-          formData
-        );
+        // Add new menu item
+        const res = await axios.post("http://localhost:5000/api/menu", payload);
         setMenuItems([...menuItems, res.data]);
       }
+
       handleCloseModal();
     } catch (err) {
       console.error(err);
     }
   };
-  // Add hide/unhide action
+
   const handleHide = async (id, hide) => {
     try {
       const res = await axios.put(`http://localhost:5000/api/menu/hide/${id}`, {
@@ -96,10 +120,10 @@ function MenuList() {
       console.error(err);
     }
   };
+
   return (
     <div className="menu">
       <h2 className="menu__title">Menu Items</h2>
-
       <button className="btn btn--add" onClick={() => setShowModal(true)}>
         + Add New Item
       </button>
@@ -115,7 +139,9 @@ function MenuList() {
                 name="name"
                 placeholder="Name"
                 value={formData.name}
-                onChange={handleInputChange}
+                onChange={(e) =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
                 required
               />
               <input
@@ -123,7 +149,9 @@ function MenuList() {
                 name="type"
                 placeholder="Type"
                 value={formData.type}
-                onChange={handleInputChange}
+                onChange={(e) =>
+                  setFormData({ ...formData, type: e.target.value })
+                }
                 required
               />
               <input
@@ -131,7 +159,9 @@ function MenuList() {
                 name="regular_price"
                 placeholder="Regular Price"
                 value={formData.regular_price}
-                onChange={handleInputChange}
+                onChange={(e) =>
+                  setFormData({ ...formData, regular_price: e.target.value })
+                }
                 required
               />
               <input
@@ -139,17 +169,27 @@ function MenuList() {
                 name="large_price"
                 placeholder="Large Price"
                 value={formData.large_price}
-                onChange={handleInputChange}
+                onChange={(e) =>
+                  setFormData({ ...formData, large_price: e.target.value })
+                }
                 required
               />
               <input
-                type="text"
-                name="image_link"
-                placeholder="Image Link"
-                value={formData.image_link}
-                onChange={handleInputChange}
-                required
+                type="file"
+                name="image"
+                accept="image/*"
+                onChange={(e) =>
+                  setFormData({ ...formData, image: e.target.files[0] })
+                }
+                required={!formData.id}
               />
+              {formData.image && (
+                <img
+                  src={URL.createObjectURL(formData.image)}
+                  alt="Preview"
+                  className="modal__preview"
+                />
+              )}
               <div className="modal-buttons">
                 <button type="submit" className="btn--confirm">
                   Submit
@@ -167,7 +207,7 @@ function MenuList() {
         </div>
       )}
 
-      {/* ⚡ Delete Confirmation Modal */}
+      {/* Delete Confirmation Modal */}
       {showDeleteModal && (
         <div className="modal-overlay">
           <div className="modal">
@@ -219,14 +259,12 @@ function MenuList() {
                 >
                   Edit
                 </button>
-
                 <button
                   className="btn btn--delete"
                   onClick={() => confirmDelete(item.id)}
                 >
                   Delete
                 </button>
-
                 <button
                   className={`btn ${
                     item.is_hidden ? "btn--show" : "btn--hide"
@@ -244,7 +282,7 @@ function MenuList() {
   );
 }
 
-function Menu() {
+export default function Menu() {
   return (
     <>
       <AdminNavbar name="Admin" />
@@ -253,5 +291,3 @@ function Menu() {
     </>
   );
 }
-
-export default Menu;

@@ -172,7 +172,16 @@ function FoodsMenu() {
             onClick={() => setSelectedFood(food)}
             style={{ cursor: "pointer" }}
           >
-            <FoodCard name={food.name} foodImage={food.image_link} />
+            <FoodCard
+              name={food.name}
+              foodImage={
+                food.image_link?.startsWith("http")
+                  ? food.image_link
+                  : `https://firebasestorage.googleapis.com/v0/b/YOUR_BUCKET_NAME/o/${encodeURIComponent(
+                      food.image_link
+                    )}?alt=media`
+              }
+            />
           </div>
         ))}
       </div>
@@ -196,7 +205,13 @@ function FoodsMenu() {
                 {selectedFood.image_link && (
                   <img
                     className="selected-food-image"
-                    src={selectedFood.image_link}
+                    src={
+                      selectedFood.image_link?.startsWith("http")
+                        ? selectedFood.image_link
+                        : `https://firebasestorage.googleapis.com/v0/b/YOUR_BUCKET_NAME/o/${encodeURIComponent(
+                            selectedFood.image_link
+                          )}?alt=media`
+                    }
                     alt={selectedFood.name}
                   />
                 )}
