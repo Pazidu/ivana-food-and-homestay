@@ -16,6 +16,7 @@ import Profile from "./Pages/User/Profile/Profile";
 import Orders from "./Pages/Admin/Orders/Orders";
 import Menu from "./Pages/Admin/Menu/Menu";
 import Users from "./Pages/Admin/Users/Users";
+import Gallery from "./Pages/Admin/Gallery/Gallery";
 import Reviews from "./Pages/Admin/Reviews/Reviews";
 import Complaints from "./Pages/Admin/Complaints/Complaints";
 import RoomsHome from "./Pages/Guest/RoomsHome/RoomsHome";
@@ -87,6 +88,14 @@ function App() {
           element={
             <ProtectedRoute role="admin">
               <Users />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/gallery"
+          element={
+            <ProtectedRoute role="admin">
+              <Gallery />
             </ProtectedRoute>
           }
         />

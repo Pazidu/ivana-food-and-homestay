@@ -83,6 +83,11 @@ function Navbar() {
                 </Link>
               </li>
               <li className="nav-item">
+                <Link to="/admin/gallery" className="nav-link">
+                  Gallery
+                </Link>
+              </li>
+              <li className="nav-item">
                 <Link to="/admin/reviews" className="nav-link">
                   Reviews
                 </Link>
