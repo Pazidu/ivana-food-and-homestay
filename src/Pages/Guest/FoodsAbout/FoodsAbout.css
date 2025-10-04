@@ -1,7 +1,7 @@
 .aboutUS {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #fafafa;
-  color: #333;
+  background-color: #1E1E1E; /* dark background */
+  color: #E0E0E0; /* light neutral text */
 }
 
 /* Hero Section */
@@ -14,8 +14,8 @@
   justify-content: flex-start;
 }
 .heroText {
-  background: rgba(0, 0, 0, 0.55);
-  color: #fff;
+  background: rgba(0, 0, 0, 0.7); /* darker overlay */
+  color: #FFD700; /* gold text */
   padding: 2rem;
   border-radius: 10px;
   max-width: 500px;
@@ -23,11 +23,12 @@
 .heroText h1 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
-  color: #ffd700;
+  color: #FFD700; /* gold */
 }
 .heroText p {
   font-size: 1.1rem;
   line-height: 1.6;
+  color: #F0F0F0; /* lighter text */
 }
 
 /* Sections */
@@ -38,7 +39,7 @@
 .about-section h2 {
   font-size: 2rem;
   margin-bottom: 2rem;
-  color: #800000;
+  color: #FFD700; /* gold */
 }
 
 /* Cards */
@@ -48,11 +49,11 @@
   justify-content: center;
   gap: 2rem;
   max-width: 900px;
-  margin: 0 auto;
-  background: #fff;
+  margin: 0 auto 2rem auto;
+  background: #2C2C2C; /* dark card */
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
   text-align: left;
 }
 .about-card.reverse {
@@ -69,12 +70,13 @@
   aspect-ratio: 1 / 1; /* ensures 1:1 ratio */
   object-fit: cover;
   border-radius: 8px;
+  border: 2px solid #FFD700; /* gold border */
 }
 
 /* Highlight founder card */
 .highlight {
-  background: #fff7e6; /* subtle gold background */
-  border: 2px solid #ffd700;
+  background: #3A3A3A; /* slightly lighter dark card */
+  border: 2px solid #FFD700; /* gold border */
 }
 
 /* Square Image for other cards */
@@ -83,19 +85,19 @@
   height: 180px;
   object-fit: cover;
   border-radius: 8px;
-  border: 3px solid #800000;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  border: 3px solid #FFD700; /* gold border */
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.5);
 }
 
 .card-text h3 {
   font-size: 1.3rem;
   margin-bottom: 0.5rem;
-  color: #333;
+  color: #FFD700; /* gold heading */
 }
 .card-text p {
   font-size: 0.95rem;
   margin: 0.3rem 0;
-  color: #555;
+  color: #E0E0E0; /* light text */
 }
 
 /* Responsive */
