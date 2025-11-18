@@ -3,7 +3,6 @@ import Navbar from "../../../Components/Navbar/Navbar";
 import Footer from "../../../Components/Footer/Footer";
 import ContactUs from "../../../Components/ContactUs/ContactUs";
 import "./FoodsHome.css";
-import Slidebar from "../../../Components/Slidebar/Slidebar";
 import SpecialCard from "../../../Components/SpecialCard/SpecialCard";
 
 import basmathi from "../../../assets/basmathi.jpg";
@@ -18,10 +17,12 @@ import longfood from "../../../assets/long-food.jpg";
 import DeliveryIamge from "../../../assets/Delivery_image.png";
 import uber from "../../../assets/uber.png";
 import pickme from "../../../assets/pickme.png";
+
+import vi from "../../../assets/vi.mp4"; // <-- YOUR VIDEO IMPORT
+
 import { Link } from "react-router-dom";
 
 function FoodsHome() {
-  // Slider Data
   const slides = [
     {
       title: "Ivana Vegetable Special Rice",
@@ -49,7 +50,10 @@ function FoodsHome() {
       description:
         "A grand combination of premium meats and seafood served over perfectly spiced rice.",
       image: MeatAndSeafoodSpecialRicettu,
-      link: { topic: "Rice", subTopic: "Ivana Mix Meat & Seafood Special Rice" },
+      link: {
+        topic: "Rice",
+        subTopic: "Ivana Mix Meat & Seafood Special Rice",
+      },
     },
     {
       title: "Nasi Kottu",
@@ -62,7 +66,6 @@ function FoodsHome() {
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Auto-slide every 5 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -70,7 +73,6 @@ function FoodsHome() {
     return () => clearInterval(timer);
   }, [slides.length]);
 
-  // Navigate manually
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   };
@@ -86,23 +88,32 @@ function FoodsHome() {
       {/* Why We Are Special */}
       <div className="special">
         <div className="foodsHomeContainer">
-          <Slidebar />
+          {/* ▶️ Replaced Slidebar with Video */}
+          <video
+            src={vi}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="foods-video"
+          ></video>
+
           <h1 className="specialText">Why We Are Special ?</h1>
           <div className="specialItems">
             <SpecialCard
               imagelink={basmathi}
               topic="Only Basmathi Rice"
-              description="Our premium basmathi rice is sourced from trusted farms, cooked to perfection for fluffy, aromatic meals."
+              description="At our restaurant, every dish is prepared using only premium basmati rice. Its rich aroma and fluffy texture make each meal truly special and unforgettable."
             />
             <SpecialCard
               imagelink={quality}
               topic="Quality Ingredients"
-              description="We use only fresh, high-quality ingredients to ensure authentic flavors and a wholesome dining experience."
+              description="We prepare every meal with carefully selected, high-quality ingredients for the best taste and experience."
             />
             <SpecialCard
               imagelink={delivery}
               topic="Doorstep Delivery"
-              description="Get your food delivered hot and fresh directly to your doorstep, maintaining taste and quality every time."
+              description="Enjoy our delicious dishes from the comfort of your home with quick and safe doorstep delivery."
             />
           </div>
         </div>
@@ -115,7 +126,10 @@ function FoodsHome() {
         </button>
 
         <div className="slider-image">
-          <img src={slides[currentSlide].image} alt={slides[currentSlide].title} />
+          <img
+            src={slides[currentSlide].image}
+            alt={slides[currentSlide].title}
+          />
         </div>
 
         <div className="slider-text">
@@ -142,7 +156,10 @@ function FoodsHome() {
         <img src={longfood} alt="" className="longimage" />
         <h1 className="orderText">Order Your Favorite Food Now</h1>
         <button className="orderButton">
-          <Link to="/foods/menu" className="text-decoration-none z-100 text-black">
+          <Link
+            to="/foods/menu"
+            className="text-decoration-none z-100 text-black"
+          >
             Order Now
           </Link>
         </button>
@@ -162,7 +179,11 @@ function FoodsHome() {
             >
               <img src={uber} alt="Uber Eats" className="dtypes" />
             </a>
-            <a href="https://pickme.lk/services/food/" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://pickme.lk/services/food/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <img src={pickme} alt="PickMe Food" className="dtypes" />
             </a>
           </div>

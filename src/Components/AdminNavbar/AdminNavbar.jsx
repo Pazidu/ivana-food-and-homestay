@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import logo from "../../assets/logo.jpg";
 import "./AdminNavbar.css"; // Assuming you have a CSS file for styling
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Navbar() {
   const [user, setUser] = useState(null);
@@ -23,6 +23,7 @@ function Navbar() {
     setUser(null);
     navigate("/login");
   };
+
   return (
     <>
       <nav
@@ -30,16 +31,13 @@ function Navbar() {
         style={{ backgroundColor: "black" }}
       >
         <div className="container-fluid">
-          {/* <Link to="/admin" className="navbar-brand"> */}
           <img
             src={logo}
             alt="Logo"
             width="35"
             height="35"
-            className="d-inline-block
-            align-text-top"
+            className="d-inline-block align-text-top"
           />
-          {/* </Link> */}
           <button
             className="navbar-toggler"
             type="button"
@@ -97,7 +95,6 @@ function Navbar() {
                   Complaints
                 </Link>
               </li>
-              {/* Dropdown code commented out */}
             </ul>
             {!user ? (
               <Link to="/login">
@@ -116,9 +113,7 @@ function Navbar() {
                 </button>
                 {showMenu && (
                   <div className="dropdown-menu-custom">
-                    <button onClick={() => Navigate("/user/profile")}>
-                      Profile
-                    </button>
+                    {/* Profile option removed */}
                     <button onClick={handleLogout}>Logout</button>
                   </div>
                 )}
