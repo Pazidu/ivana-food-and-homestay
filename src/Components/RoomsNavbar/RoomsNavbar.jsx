@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./RoomsNavbar.css";
 import logo from "../../assets/logo.jpg";
 
 const RoomsNavbar = () => {
-  const [user, setUser] = useState(null);
-  const [showMenu, setShowMenu] = useState(false); // profile dropdown
+  // const [user, setUser] = useState(null);
+  // const [showMenu, setShowMenu] = useState(false); // profile dropdown
   const [menuOpen, setMenuOpen] = useState(false); // hamburger
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    const username = localStorage.getItem("username");
-    if (token && username) setUser({ username });
-  }, []);
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   const username = localStorage.getItem("username");
+  //   if (token && username) setUser({ username });
+  // }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("username");
-    localStorage.removeItem("user_type");
-    setUser(null);
-    navigate("/rooms/login");
-  };
+  // const handleLogout = () => {
+  //   localStorage.removeItem("token");
+  //   localStorage.removeItem("username");
+  //   localStorage.removeItem("user_type");
+  //   setUser(null);
+  //   navigate("/rooms/login");
+  // };
 
   return (
     <nav className="rooms-navbar">
@@ -30,7 +30,6 @@ const RoomsNavbar = () => {
         <img src={logo} alt="Logo" className="brand-logo" />
         <span className="brand-text">Ivana Homestay</span>
       </Link>
-
       {/* ===== Middle: Links ===== */}
       <div className="nav-links-wrapper">
         <ul className={`nav-links ${menuOpen ? "show" : ""}`}>
@@ -56,9 +55,8 @@ const RoomsNavbar = () => {
           </li>
         </ul>
       </div>
-
       {/* ===== Right: Auth Buttons ===== */}
-      <div className="auth-section">
+      {/* <div className="auth-section">
         {!user ? (
           <Link to="/rooms/login">
             <button className="btn login-btn">Login</button>
@@ -71,18 +69,18 @@ const RoomsNavbar = () => {
             >
               {user.username}
             </button>
-            {showMenu && (
+            {/* {showMenu && (
               <div className="dropdown-menu">
                 <button onClick={() => navigate("/user/profile")}>
                   Profile
                 </button>
                 <button onClick={handleLogout}>Logout</button>
               </div>
-            )}
-          </div>
+            )} */}
+      {/* </div>
         )}
-      </div>
-
+      </div> */}{" "}
+      */
       {/* ===== Mobile Hamburger ===== */}
       <div className="hamburger" onClick={() => setMenuOpen((prev) => !prev)}>
         <span></span>

@@ -5,8 +5,11 @@ function SpecialCard(props) {
   return (
     <div>
       <div className="cardContainer">
-        <img src={props.imagelink} alt="" />
         <span>{props.topic}</span>
+        <br />
+        <img src={props.imagelink} alt="" />
+
+        <p>{props.description}</p>
       </div>
     </div>
   );
