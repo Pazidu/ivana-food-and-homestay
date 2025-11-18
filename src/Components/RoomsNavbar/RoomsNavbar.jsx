@@ -26,7 +26,7 @@ const RoomsNavbar = () => {
   return (
     <nav className="rooms-navbar">
       {/* ===== Left: Brand ===== */}
-      <Link to="/rooms/home" className="brand">
+      <Link to="/" className="brand">
         <img src={logo} alt="Logo" className="brand-logo" />
         <span className="brand-text">Ivana Homestay</span>
       </Link>

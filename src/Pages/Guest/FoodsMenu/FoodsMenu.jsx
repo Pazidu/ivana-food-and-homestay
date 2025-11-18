@@ -9,6 +9,10 @@ function FoodsMenu() {
   const location = useLocation();
   const { topic, subTopic } = location.state || {};
   const [activeTopic, setActiveTopic] = useState("Rice");
+  
+  // State to manage the dropdown visibility
+  const [showSubTopics, setShowSubTopics] = useState(false); 
+
   const subTopics = {
     Rice: [
       "Fried Rice",
@@ -37,6 +41,26 @@ function FoodsMenu() {
   const [regularQty, setRegularQty] = useState(0);
   const [largeQty, setLargeQty] = useState(0);
 
+  // Function to handle main topic click (toggles dropdown visibility)
+  const handleTopicClick = (item) => {
+    // If clicking the current active topic, just toggle the dropdown
+    if (activeTopic === item) {
+      setShowSubTopics(!showSubTopics);
+    } else {
+      // If clicking a new topic, make it active and open the dropdown
+      setActiveTopic(item);
+      setActiveSubTopic(subTopics[item][0]); 
+      setShowSubTopics(true); 
+    }
+  };
+
+  // Function to handle sub-topic click
+  const handleSubTopicClick = (subItem) => {
+    setActiveSubTopic(subItem);
+    setShowSubTopics(false); // Close dropdown after selection
+  };
+  
+  // Data Fetching logic remains the same
   useEffect(() => {
     fetch(
       `http://localhost:5000/api/foods/menu?type=${encodeURIComponent(
@@ -45,7 +69,6 @@ function FoodsMenu() {
     )
       .then((res) => res.json())
       .then((data) => {
-        // filter out hidden items
         const visibleFoods = data.filter((food) => !food.is_hidden);
         setFoods(visibleFoods);
       })
@@ -67,13 +90,16 @@ function FoodsMenu() {
     setActiveSubTopic(subTopic || subTopics[activeTopic][0]);
   }, [activeTopic, subTopic]);
 
+  // Add to cart logic remains the same (omitted for brevity)
   const handleAddToCart = async () => {
     if (!selectedFood) return;
     if (regularQty === 0 && largeQty === 0) {
       alert("Please select at least one quantity.");
       return;
     }
-
+    // ... [rest of handleAddToCart logic] ...
+    // NOTE: Keeping the previous implementation for correctness, but simplified here for context.
+    
     const itemsToAdd = [];
     if (regularQty > 0)
       itemsToAdd.push({
@@ -95,7 +121,6 @@ function FoodsMenu() {
     const token = localStorage.getItem("token");
 
     if (token) {
-      // 🔹 Logged-in user → save to backend
       try {
         const res = await fetch("http://localhost:5000/api/cart/add", {
           method: "POST",
@@ -118,75 +143,83 @@ function FoodsMenu() {
         alert("Error adding to cart");
       }
     } else {
-      // 🔹 Guest user → save to localStorage
       const existingCart = JSON.parse(localStorage.getItem("guestCart")) || [];
       const updatedCart = [...existingCart, ...itemsToAdd];
       localStorage.setItem("guestCart", JSON.stringify(updatedCart));
       alert("Items added to cart (Guest Mode)!");
       window.dispatchEvent(new Event("storage"));
     }
-
-    // Reset after adding
     setRegularQty(0);
     setLargeQty(0);
     setSelectedFood(null);
   };
+  // End of handleAddToCart logic
 
   return (
     <div className="foodsMenu">
+      {/* Assuming Navbar now only has login/cart icons and no menu toggle */}
       <Navbar name="Login" />
 
-      {/* Main categories */}
+      {/* Main categories (Vertical Sidebar PC / Horizontal Scroll Mobile) */}
       <div className="foodsNav">
         {Object.keys(subTopics).map((item) => (
-          <button
-            key={item}
-            className={`foodsButton${activeTopic === item ? " active" : ""}`}
-            onClick={() => setActiveTopic(item)}
-          >
-            {item}
-          </button>
-        ))}
-      </div>
-
-      {/* Sub categories */}
-      <div className="foodsSubNav">
-        {subTopics[activeTopic].map((subItem) => (
-          <button
-            key={subItem}
-            className={`foodsSubButton${
-              activeSubTopic === subItem ? " active" : ""
-            }`}
-            onClick={() => setActiveSubTopic(subItem)}
-          >
-            {subItem}
-          </button>
-        ))}
-      </div>
-
-      {/* Food list */}
-      <div className="foodsContainer">
-        {foods.map((food) => (
-          <div
-            key={food.id}
-            onClick={() => setSelectedFood(food)}
-            style={{ cursor: "pointer" }}
-          >
-            <FoodCard
-              name={food.name}
-              foodImage={
-                food.image_link?.startsWith("http")
-                  ? food.image_link
-                  : `https://firebasestorage.googleapis.com/v0/b/YOUR_BUCKET_NAME/o/${encodeURIComponent(
-                      food.image_link
-                    )}?alt=media`
-              }
-            />
+          <div key={item} className="topic-dropdown-container"> 
+            <button
+              className={`foodsButton${activeTopic === item ? " active" : ""}`}
+              onClick={() => handleTopicClick(item)}
+            >
+              {item} 
+              {/* Add dropdown indicator */}
+              <span className="dropdown-indicator">
+                {activeTopic === item && showSubTopics ? '\u25B2' : '\u25BC'}
+              </span>
+            </button>
+            
+            {/* Dropdown for subtopics */}
+            {activeTopic === item && showSubTopics && (
+              <div className="foodsSubTopics">
+                {subTopics[item].map((subItem) => (
+                  <button
+                    key={subItem}
+                    className={`foodsSubButton${
+                      activeSubTopic === subItem ? " active" : ""
+                    }`}
+                    onClick={() => handleSubTopicClick(subItem)}
+                  >
+                    {subItem}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         ))}
       </div>
 
-      {/* Food popup */}
+      {/* Wrapper for Food list */}
+      <div className="foodsContentWrapper">
+        <div className="foodsContainer">
+          {foods.map((food) => (
+            <div
+              key={food.id}
+              onClick={() => setSelectedFood(food)}
+              style={{ cursor: "pointer" }}
+            >
+              <FoodCard
+                name={food.name}
+                foodImage={
+                  food.image_link?.startsWith("http")
+                    ? food.image_link
+                    : `https://firebasestorage.googleapis.com/v0/b/YOUR_BUCKET_NAME/o/${encodeURIComponent(
+                        food.image_link
+                      )}?alt=media`
+                }
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Food popup (Kept as is) */}
       {selectedFood && (
         <div
           className="food-popup-overlay"
