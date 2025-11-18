@@ -85,6 +85,7 @@ function Signup() {
       <Navbar name="Login" />
       <div className="signupContainer">
         <div className="signup-left">
+          {/* Sign Up Header is placed here */}
           <h1 className="signup-header">Sign Up</h1>
           <div className="signup-form-container">
             {!otpSent ? (
