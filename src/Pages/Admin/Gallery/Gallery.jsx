@@ -9,7 +9,7 @@ export default function AdminGallery() {
   const [homestayGallery, setHomestayGallery] = useState([]);
   const [zoomImage, setZoomImage] = useState(null);
 
-  // ✅ Fetch gallery data
+  // Fetch gallery data
   const fetchGallery = async () => {
     try {
       const resPending = await fetch(
@@ -22,6 +22,7 @@ export default function AdminGallery() {
       );
       const approvedData = await resApproved.json();
 
+      // Filter by type from both pending and approved
       const foods = [...pendingData, ...approvedData].filter(
         (item) => item.type === "foods"
       );
@@ -40,7 +41,7 @@ export default function AdminGallery() {
     fetchGallery();
   }, []);
 
-  // ✅ Approve
+  // Approve an image
   const handleApprove = async (id) => {
     try {
       await fetch(`http://localhost:5000/api/gallery/${id}/approve`, {
@@ -52,7 +53,7 @@ export default function AdminGallery() {
     }
   };
 
-  // ✅ Reject
+  // Reject an image
   const handleReject = async (id) => {
     try {
       await fetch(`http://localhost:5000/api/gallery/${id}/reject`, {
@@ -64,7 +65,7 @@ export default function AdminGallery() {
     }
   };
 
-  // ✅ Delete
+  // Delete an image
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this image?")) return;
     try {
@@ -84,7 +85,7 @@ export default function AdminGallery() {
     }
   };
 
-  // ✅ Render Table
+  // Render table for a gallery type
   const renderTable = (gallery) => (
     <table className="admin-gallery-table">
       <thead>
@@ -93,6 +94,7 @@ export default function AdminGallery() {
           <th>Name</th>
           <th>Phone</th>
           <th>Image</th>
+          <th>Status</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -116,6 +118,7 @@ export default function AdminGallery() {
                   onClick={() => setZoomImage(item.image_link)}
                 />
               </td>
+              <td>{item.status}</td>
               <td>
                 {item.status === "pending" ? (
                   <>
@@ -147,7 +150,7 @@ export default function AdminGallery() {
           ))
         ) : (
           <tr>
-            <td colSpan="5" style={{ textAlign: "center" }}>
+            <td colSpan="6" style={{ textAlign: "center" }}>
               No images found
             </td>
           </tr>
@@ -182,7 +185,7 @@ export default function AdminGallery() {
         </div>
       </div>
 
-      {/* ✅ Zoom Modal */}
+      {/* Zoom Modal */}
       {zoomImage && (
         <div className="zoom-modal" onClick={() => setZoomImage(null)}>
           <img src={zoomImage} alt="Zoom" className="zoom-image" />

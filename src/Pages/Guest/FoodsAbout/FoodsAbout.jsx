@@ -19,13 +19,13 @@ function FoodsAbout() {
         style={{ backgroundImage: `url(${heroImg})` }}
       >
         <div className="heroText">
-          <h1>Welcome to Ivana Food Court</h1>
+          {/* <h1>Welcome to Ivana Food Court</h1> */}
           <p>
             Ivana Food Court is dedicated to serving authentic flavors with love
             and passion. Our mission is to create unforgettable dining
             experiences for everyone who walks through our doors. Enjoy a
-            variety of dishes crafted from the finest ingredients, with care
-            and attention to detail.
+            variety of dishes crafted from the finest ingredients, with care and
+            attention to detail.
           </p>
         </div>
       </div>
@@ -34,7 +34,11 @@ function FoodsAbout() {
       <section className="about-section">
         <h2>Founder</h2>
         <div className="about-card founder-card highlight">
-          <img src={founderImg} alt="Founder" className="square-img founder-img" />
+          <img
+            src={founderImg}
+            alt="Founder"
+            className="square-img founder-img"
+          />
           <div className="card-text">
             <h3>Mr. Pavitha</h3>
             <p>Email: pavitha@ivana.com</p>
@@ -64,16 +68,16 @@ function FoodsAbout() {
       </section>
 
       {/* Contact Section */}
-      <section className="about-section">
-        <h2>Contact & Location</h2>
-        <div className="about-card contact-card">
-          <div className="card-text">
-            <p>📍 Kandy, Sri Lanka</p>
-            <p>📞 +94 77 123 4567</p>
-            <p>📧 info@ivanafood.com</p>
+        {/* <section className="about-section">
+          <h2>Contact & Location</h2>
+          <div className="about-card contact-card">
+            <div className="card-text">
+              <p>📍 Kandy, Sri Lanka</p>
+              <p>📞 +94 77 123 4567</p>
+              <p>📧 info@ivanafood.com</p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section> */}
 
       <Footer />
     </div>
