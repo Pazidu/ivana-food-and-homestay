@@ -92,9 +92,9 @@ export default function AdminGallery() {
         <tr>
           <th>No</th>
           <th>Name</th>
-          <th>Phone</th>
+          {/* <th>Phone</th> */}
           <th>Image</th>
-          <th>Status</th>
+          {/* <th>Status</th> */}
           <th>Action</th>
         </tr>
       </thead>
@@ -104,7 +104,7 @@ export default function AdminGallery() {
             <tr key={item.id}>
               <td>{idx + 1}</td>
               <td>{item.name}</td>
-              <td>{item.phone}</td>
+              {/* <td>{item.phone}</td> */}
               <td>
                 <img
                   src={item.image_link}
@@ -118,7 +118,7 @@ export default function AdminGallery() {
                   onClick={() => setZoomImage(item.image_link)}
                 />
               </td>
-              <td>{item.status}</td>
+              {/* <td>{item.status}</td> */}
               <td>
                 {item.status === "pending" ? (
                   <>

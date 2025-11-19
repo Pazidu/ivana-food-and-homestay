@@ -59,7 +59,7 @@ function ContactUs() {
               </a>
 
               <a
-                href="https://www.twitter.com/IvanaFoodCourt"
+                href="https://wa.me/94779815386"
                 target="_blank"
                 rel="noopener noreferrer"
               >
