@@ -34,10 +34,10 @@ export default function RoomsGallery() {
     fetchGallery();
   }, []);
 
-  const handleImgError = (e) => {
-    e.target.onerror = null;
-    e.target.src = "/fallback-image.png";
-  };
+  // const handleImgError = (e) => {
+  //   e.target.onerror = null;
+  //   e.target.src = "/fallback-image.png";
+  // };
 
   const homestayGallery = gallery.filter((item) => item.type === "homestay");
 

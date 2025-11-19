@@ -391,50 +391,62 @@
   border: 2px solid #d4af37;
 }
 
-/* Gallery Preview */
+/* ===== Rooms Gallery Section ===== */
 .rooms-gallery-preview {
-  text-align: center;
   padding: 60px 20px;
+  text-align: center;
+  width: 100%;
+  background: linear-gradient(135deg, #222, #111);
+  color: #fcb72c;
 }
 
 .rooms-gallery-preview h2 {
-  color: #800000;
-  margin-bottom: 20px;
+  font-size: 2.4rem;
+  margin-bottom: 30px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
+/* ===== Image Grid ===== */
 .gallery-grid {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  justify-items: center; /* ❤️ centers images horizontally */
+  width: 100%;
 }
 
 .gallery-grid img {
-  width: 250px;
-  height: 160px;
-  object-fit: cover;
+  width: 100%;
+  max-width: 300px; /* prevents oversized stretch */
   border-radius: 10px;
-  border: 2px solid #d4af37;
-  transition: transform 0.3s;
+  object-fit: cover;
+  display: block;
 }
 
+/* Hover Effect */
 .gallery-grid img:hover {
   transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(252, 183, 44, 0.4);
+  border-color: #fcb72c;
 }
 
+/* ===== Gallery Button ===== */
 .gallery-btn {
   display: inline-block;
-  background: #800000;
-  color: #f5deb3;
-  padding: 12px 24px;
+  padding: 12px 28px;
+  background: #fcb72c;
+  color: #000;
+  font-weight: 600;
+  border-radius: 30px;
   text-decoration: none;
-  border-radius: 8px;
-  transition: background 0.3s;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .gallery-btn:hover {
-  background: #a52a2a;
+  background: #e3a427;
+  transform: translateY(-2px);
 }
 
 /* Call To Action */

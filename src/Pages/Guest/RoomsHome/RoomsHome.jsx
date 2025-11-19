@@ -1,6 +1,13 @@
 import React from "react";
 import RoomsNavbar from "../../../Components/RoomsNavbar/RoomsNavbar";
 import RoomsFooter from "../../../Components/RoomsFooter/RoomsFooter";
+import room1 from "../../../assets/room1.jpg";
+import room2 from "../../../assets/room2.jpg";
+import room3 from "../../../assets/room3.jpg";
+import room4 from "../../../assets/room4.jpg";
+import room5 from "../../../assets/room5.jpg";
+import room6 from "../../../assets/room6.jpg";
+
 import "./RoomsHome.css";
 
 const RoomsHome = () => {
@@ -53,24 +60,26 @@ const RoomsHome = () => {
         <div className="testimonial-grid">
           <div className="testimonial-card">
             <p>
-              "Ivana Homestay was the perfect getaway! The rooms were spotless
-              and the staff so friendly."
+              "I tried a chicken koththu and a All meat Nasigoreng yesterday.
+              ❤️"
             </p>
-            <h4>- Sarah M.</h4>
+            <h4>- Singhe Silva</h4>
           </div>
           <div className="testimonial-card">
             <p>
-              "The food was absolutely delicious and the hospitality unmatched.
-              Highly recommend!"
+              "Tucked within the vibrant hangout food court, Dragon's Den is a
+              hidden gem that promises an unforgettable Chinese culinary
+              experience. This takeaway outlet redefines fast food with its
+              authentic flavors and modern twists on traditional recipes🐲"
             </p>
-            <h4>- John D.</h4>
+            <h4>- Kanishka Sandaruwan</h4>
           </div>
           <div className="testimonial-card">
             <p>
-              "Beautiful location, warm people, and cozy rooms. I’ll definitely
-              come back again!"
+              "Awesome delicious food and very friendly owners. I will come back
+              for sure."
             </p>
-            <h4>- Priya S.</h4>
+            <h4>- Hokushin Dojo Online</h4>
           </div>
         </div>
       </section>
@@ -79,9 +88,12 @@ const RoomsHome = () => {
       <section className="rooms-gallery-preview">
         <h2>Our Homestay</h2>
         <div className="gallery-grid">
-          <img src="/images/room1.jpg" alt="Room 1" />
-          <img src="/images/room2.jpg" alt="Room 2" />
-          <img src="/images/room3.jpg" alt="Room 3" />
+          <img src={room1} alt="Room 1" />
+          <img src={room2} alt="Room 2" />
+          <img src={room3} alt="Room 3" />
+          <img src={room4} alt="Room 4" />
+          <img src={room5} alt="Room 5" />
+          <img src={room6} alt="Room 6" />
         </div>
         <a href="/rooms/gallery" className="gallery-btn">
           View Full Gallery

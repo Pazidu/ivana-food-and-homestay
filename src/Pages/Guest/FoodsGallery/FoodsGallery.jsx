@@ -37,10 +37,10 @@ export default function FoodsGallery() {
   }, []);
 
   // Image error fallback handler
-  const handleImgError = (e) => {
-    e.target.onerror = null; // Prevent infinite loop if fallback image fails
-    e.target.src = "/fallback-image.png"; // Use a local fallback image or a reliable URL
-  };
+  // const handleImgError = (e) => {
+  //   e.target.onerror = null;
+  //   e.target.src = "/fallback-image.png";
+  // };
 
   // Filter gallery to show only type "foods"
   const foodsGallery = gallery.filter((item) => item.type === "foods");
