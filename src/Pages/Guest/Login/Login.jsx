@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../../../Components/Navbar/Navbar";
 import Footer from "../../../Components/Footer/Footer";
-import googleSignIn from "../../../assets/signGoogle.png";
+// import googleSignIn from "../../../assets/signGoogle.png";
 import "./Login.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
@@ -160,14 +160,14 @@ function Login() {
           </span>
 
           {/* Google SignIn */}
-          <a
+          {/* <a
             href="http://localhost:5000/auth/google"
             className="text-decoration-none ms-3"
           >
             <div className="google-signin d-flex justify-content-center align-items-center">
               <img src={googleSignIn} alt="google-signin" />
             </div>
-          </a>
+          </a> */}
 
           <hr />
           <div className="text-center mt-3">

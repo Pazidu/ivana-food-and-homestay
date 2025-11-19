@@ -5,14 +5,18 @@ import "./FoodsGallery.css";
 
 export default function FoodsGallery() {
   const [gallery, setGallery] = useState([]);
-  const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState("");
 
-  // ✅ Fetch only approved images
+  const STORAGE_BASE_URL =
+    "https://storage.googleapis.com/contra-cloud.firebasestorage.app/";
+
+  // Fetch approved images
   const fetchGallery = async () => {
     try {
       const res = await fetch("http://localhost:5000/api/gallery/approved");
       const data = await res.json();
+
+      console.log("Fetched gallery data:", data);
 
       if (Array.isArray(data)) {
         setGallery(data);
@@ -24,6 +28,7 @@ export default function FoodsGallery() {
     } catch (err) {
       console.error("Error fetching gallery:", err);
       setError("Failed to fetch gallery");
+      setGallery([]);
     }
   };
 
@@ -31,32 +36,21 @@ export default function FoodsGallery() {
     fetchGallery();
   }, []);
 
-  // ✅ Handle image upload
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
+  // Image error fallback handler
+  const handleImgError = (e) => {
+    e.target.onerror = null; // Prevent infinite loop if fallback image fails
+    e.target.src = "/fallback-image.png"; // Use a local fallback image or a reliable URL
+  };
 
-    try {
-      const res = await fetch("http://localhost:5000/api/gallery/add", {
-        method: "POST",
-        body: formData,
-      });
+  // Filter gallery to show only type "foods"
+  const foodsGallery = gallery.filter((item) => item.type === "foods");
 
-      const result = await res.json();
-      if (!res.ok) {
-        alert(result.error || "Upload failed");
-      } else {
-        alert(
-          "Image uploaded successfully! Admin will review it before showing."
-        );
-        e.target.reset();
-        fetchGallery();
-        setShowModal(false);
-      }
-    } catch (err) {
-      console.error("Upload error:", err);
-      alert("Something went wrong while uploading.");
-    }
+  // Build full valid URL for image
+  const getImageUrl = (link) => {
+    const trimmed = link.trim();
+    const res = trimmed.split("https");
+    console.log("Processed image link:", res);
+    return "https" + res[2];
   };
 
   return (
@@ -64,62 +58,24 @@ export default function FoodsGallery() {
       <Navbar name="Log In" />
 
       <div className="gallery-container">
-        {/* Add button */}
-        <button className="add-btn" onClick={() => setShowModal(true)}>
-          + Add Yours
-        </button>
-
-        {/* Error message */}
         {error && <p className="error-message">{error}</p>}
 
-        {/* Gallery grid */}
         <div className="gallery-grid">
-          {gallery.length > 0 ? (
-            gallery.map((item) => (
+          {foodsGallery.length > 0 ? (
+            foodsGallery.map((item) => (
               <div key={item.id} className="gallery-card">
                 <img
-                  src={item.image_link}
-                  alt={item.name}
+                  src={getImageUrl(item.image_link)}
+                  alt={item.name || "Gallery Image"}
                   className="gallery-img"
                 />
-                <p className="gallery-text">{item.name}</p>
+                {/* <p className="gallery-text">{item.name || "No Name"}</p> */}
               </div>
             ))
           ) : (
-            <p className="no-data">No images yet.</p>
+            <p className="no-data">No food images yet.</p>
           )}
         </div>
-
-        {/* Modal form */}
-        {showModal && (
-          <div className="modal-overlay" onClick={() => setShowModal(false)}>
-            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-              <h2>Add New Image</h2>
-              <form className="upload-form" onSubmit={handleSubmit}>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Enter Name"
-                  required
-                />
-                <input
-                  type="text"
-                  name="phone"
-                  placeholder="Enter Phone"
-                  required
-                />
-                <input type="file" name="image" accept="image/*" required />
-                <input type="hidden" name="type" value="foods" />
-                <div className="modal-buttons">
-                  <button type="submit">Upload</button>
-                  <button type="button" onClick={() => setShowModal(false)}>
-                    Cancel
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        )}
       </div>
 
       <Footer />
