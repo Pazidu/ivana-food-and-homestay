@@ -80,7 +80,6 @@ const RoomsNavbar = () => {
       {/* </div>
         )}
       </div> */}{" "}
-      */
       {/* ===== Mobile Hamburger ===== */}
       <div className="hamburger" onClick={() => setMenuOpen((prev) => !prev)}>
         <span></span>
