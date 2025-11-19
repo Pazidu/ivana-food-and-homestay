@@ -30,7 +30,7 @@ function ContactUs() {
             <img src={logo} alt="" className="contactUsLogoImage" />
             <hr />
             <h5>
-              <AddLocationIcon /> {"  "} No 1, Colombo Road, Kandy, Sri Lanka
+              <AddLocationIcon /> {"  "} 3/7, Sirimalwatta road, Arangala, Kandy
             </h5>
             {/* <h5>
               <EmailIcon />
@@ -43,7 +43,7 @@ function ContactUs() {
 
             <div className="socialIcons">
               <a
-                href="https://www.facebook.com/IvanaFoodCourt"
+                href="https://www.facebook.com/share/1Co4BqtoSo/?mibextid=wwXIfr"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -51,7 +51,7 @@ function ContactUs() {
               </a>
 
               <a
-                href="https://www.instagram.com/ivanacourt/"
+                href="https://www.instagram.com/ivana_food_court?igsh=MTlyeXI3OWx3aHZtYQ=="
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -67,7 +67,7 @@ function ContactUs() {
               </a>
 
               <a
-                href="https://www.linkedin.com/company/ivanacourt"
+                href="https://www.tiktok.com/@ivanafoodcourt?_r=1&_t=ZS-91WGG8leiqG"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -75,7 +75,7 @@ function ContactUs() {
               </a>
 
               <a
-                href="https://www.linkedin.com/company/ivanacourt"
+                href="mailto:ivanafoodcourt3.7@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
               >
