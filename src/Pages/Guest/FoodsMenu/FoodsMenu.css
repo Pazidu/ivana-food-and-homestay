@@ -98,7 +98,6 @@
 }
 
 
-/* --- Main Content Area Wrapper --- */
 .foodsContentWrapper {
   flex-grow: 1; 
   display: flex;

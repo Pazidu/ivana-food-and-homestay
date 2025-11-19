@@ -118,7 +118,7 @@ function Signup() {
                   <label>Confirm Password</label>
                   <input type="password" className="form-control" placeholder="Re-enter your password" name="confirmPassword" onChange={handleChanges} required />
                 </div>
-                <button type="submit" className="btn btn-primary">Send OTP</button>
+                <button type="submit" className="btn btn-primary">Send OTP to verify Email</button>
               </form>
             ) : (
               <div className="otp-container">

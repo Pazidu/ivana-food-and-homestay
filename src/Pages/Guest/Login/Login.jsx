@@ -183,8 +183,8 @@ function Login() {
 
       {/* Forgot Password Modal */}
       {showModal && (
-        <div className="modal">
-          <div className="modal-content">
+        <div className="custom-modal">
+          <div className="custom-modal-content">
             <h3>Forgot Password</h3>
 
             {step === "email" && (

@@ -57,7 +57,7 @@ function FoodsMenu() {
   // Function to handle sub-topic click
   const handleSubTopicClick = (subItem) => {
     setActiveSubTopic(subItem);
-    setShowSubTopics(false); // Close dropdown after selection
+    //setShowSubTopics(false);
   };
   
   // Data Fetching logic remains the same
