@@ -1,32 +1,64 @@
-/* ----------- VIDEO (replacing Slidebar) ----------- */
-.foods-video {
+/* ---------------------------------------------------
+   GLOBAL RESET
+--------------------------------------------------- */
+* {
   margin: 0;
-  width: 100%;
-  max-height: 100vh;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 40px;
-  /* position: fixed;  */
-  top: 0;
-  left: 0;
-  width: 100vw; /* full width */
-  height: 100vh; /* full height */
-  object-fit: cover; /* cover entire screen */
-  z-index: -1; /* behind all content */
-  margin: 0; /* remove margins */
-  border-radius: 0;
-  /* box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4); */
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Mobile video scaling */
+.home {
+  width: 100%;
+  overflow-x: hidden;
+  background: #f9f9f9;
+}
+
+/* ---------------------------------------------------
+   VIDEO SECTION
+--------------------------------------------------- */
+.foods-video {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  border-radius: 0;
+  margin-bottom: 40px;
+  z-index: -1;
+  display: block;
+}
+
+/* Mobile video height fix */
 @media screen and (max-width: 900px) {
   .foods-video {
-    max-height: 300px;
-    border-radius: 8px;
+    height: 300px;
   }
 }
 
-/* Food Slider */
+/* ---------------------------------------------------
+   SPECIAL SECTION
+--------------------------------------------------- */
+.special {
+  padding: 40px 20px;
+  background: #ffffff;
+}
+
+.specialText {
+  text-align: center;
+  color: #fcb72c;
+  margin-bottom: 25px;
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+.specialItems {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+/* ---------------------------------------------------
+   FOOD SLIDER SECTION
+--------------------------------------------------- */
 .food-slider {
   position: relative;
   display: flex;
@@ -34,60 +66,55 @@
   align-items: center;
   background: #2c2c2c;
   color: white;
-  padding: 40px 20px;
+  padding: 50px 20px;
   gap: 40px;
   flex-wrap: wrap;
 }
 
-/* Slider Image Container */
 .slider-image {
   flex: 1 1 500px;
   max-width: 600px;
-  height: 400px; /* Fixed height for uniform size */
+  height: 400px;
   overflow: hidden;
-  border-radius: 10px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
 }
 
 .slider-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Cover image without stretching */
-  display: block;
+  object-fit: cover;
 }
 
-/* Slider Text Container */
 .slider-text {
   flex: 1 1 400px;
   max-width: 600px;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Vertical center relative to image */
   gap: 20px;
+  justify-content: center;
 }
 
 .slider-text h1 {
-  color: #fcb72c;
   font-size: 2rem;
-  margin: 0;
+  color: #fcb72c;
 }
 
 .slider-text p {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #f1f1f1;
-  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #e6e6e6;
 }
 
 .slider-button {
   background: #fcb72c;
-  color: #000;
+  color: #222;
   padding: 12px 25px;
   font-size: 1rem;
-  border: none;
   border-radius: 6px;
+  border: none;
+  font-weight: 700;
   cursor: pointer;
-  font-weight: 600;
   width: fit-content;
   transition: 0.3s;
 }
@@ -96,23 +123,23 @@
   background: #e0a418;
 }
 
-/* Slider Navigation Buttons */
+/* Slider arrows */
 .slide-nav {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   font-size: 3rem;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.45);
   color: #fcb72c;
-  border: none;
   border-radius: 50%;
   width: 50px;
   height: 50px;
+  border: none;
   cursor: pointer;
+  z-index: 20;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10;
   transition: 0.3s;
 }
 
@@ -128,27 +155,27 @@
   right: 20px;
 }
 
-/* Responsive Slider */
+/* Mobile slider */
 @media screen and (max-width: 900px) {
   .food-slider {
     flex-direction: column;
     text-align: center;
+    padding: 30px 15px;
   }
 
   .slider-text {
     max-width: 100%;
     align-items: center;
-    text-align: center;
   }
 
-  .slider-button {
-    margin: 0 auto;
+  .slider-image {
+    height: 280px;
   }
 
   .slide-nav {
-    font-size: 2rem;
     width: 40px;
     height: 40px;
+    font-size: 2rem;
   }
 
   .slide-nav.left {
@@ -158,8 +185,132 @@
   .slide-nav.right {
     right: 10px;
   }
+}
 
-  .slider-image {
-    height: 300px; /* Adjust height for mobile */
+/* ---------------------------------------------------
+   ORDER NOW BAR
+--------------------------------------------------- */
+.ordernowbar {
+  position: relative;
+  width: 100%;
+  padding: 50px 20px;
+  text-align: center;
+  background: #000;
+  color: white;
+}
+
+.longimage {
+  width: 100%;
+  max-height: 260px;
+  object-fit: cover;
+  opacity: 0.5;
+  border-radius: 6px;
+}
+
+.orderText {
+  margin-top: -180px;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.orderButton {
+  margin-top: 20px;
+  padding: 12px 30px;
+  background: #fcb72c;
+  color: black;
+  border-radius: 6px;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Mobile order now */
+@media screen and (max-width: 600px) {
+  .orderText {
+    margin-top: -120px;
+    font-size: 1.5rem;
+  }
+
+  .longimage {
+    max-height: 200px;
+  }
+}
+
+/* ---------------------------------------------------
+   DELIVERY SECTION
+--------------------------------------------------- */
+.deliveryPart {
+  display: flex;
+  padding: 60px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.deliveryBody h1 {
+  font-size: 2.4rem;
+  color: #fcb72c;
+}
+
+.deliverytypes {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.dtypes {
+  width: 140px;
+  height: auto;
+  object-fit: contain;
+  transition: 0.3s;
+}
+
+.dtypes:hover {
+  transform: scale(1.05);
+}
+
+.deliveryImage img {
+  width: 320px;
+  border-radius: 10px;
+}
+
+/* Mobile delivery */
+@media screen and (max-width: 768px) {
+  .deliveryPart {
+    text-align: center;
+  }
+
+  .deliveryImage img {
+    width: 250px;
+  }
+}
+
+/* ---------------------------------------------------
+   CONTACT BAR
+--------------------------------------------------- */
+.contactNoBar {
+  background: #2c2c2c;
+  padding: 40px 20px;
+  text-align: center;
+  color: white;
+}
+
+.contactButton {
+  margin-top: 10px;
+  background: #fcb72c;
+  color: black;
+  padding: 12px 25px;
+  border: none;
+  font-size: 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Mobile contact bar */
+@media screen and (max-width: 600px) {
+  .contactText {
+    font-size: 1.6rem;
   }
 }
