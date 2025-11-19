@@ -197,7 +197,7 @@ function FoodsHome() {
       <div className="contactNoBar">
         <h2 className="contactText">Call Us</h2>
         <p className="contactDescription">To get your takeaway ready</p>
-        <button className="contactButton">+94 77 981 5386</button>
+        <button className="contactButton">081 7633 200</button>
       </div>
 
       <ContactUs />

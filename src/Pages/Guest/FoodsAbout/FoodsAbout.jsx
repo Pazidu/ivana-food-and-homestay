@@ -4,8 +4,8 @@ import Navbar from "../../../Components/Navbar/Navbar";
 import "./FoodsAbout.css";
 
 // Import your images
-import founderImg from "../../../assets/user.png";
-import chefImg from "../../../assets/chef.jpeg";
+import founderImg from "../../../assets/owner.jpg";
+import chefImg from "../../../assets/cheff.jpg";
 import heroImg from "../../../assets/ivanaFront.jpg";
 
 function FoodsAbout() {
@@ -41,9 +41,9 @@ function FoodsAbout() {
           />
           <div className="card-text">
             <h3>Mr. Pavitha</h3>
-            <p>Email: pavitha@ivana.com</p>
+            {/* <p>Email: pavitha@ivana.com</p> */}
             <p>
-              John started Ivana Food Court with a vision to bring authentic
+              Pavitha started Ivana Food Court with a vision to bring authentic
               local and international flavors together in a warm and inviting
               environment.
             </p>
@@ -57,7 +57,7 @@ function FoodsAbout() {
         <div className="about-card reverse">
           <img src={chefImg} alt="Chef" className="square-img" />
           <div className="card-text">
-            <h3>Chef Santha</h3>
+            <h3>Chef Bandara</h3>
             <p>Master of Authentic Sri Lankan Cuisine</p>
             <p>
               With over 15 years of culinary expertise, Chef Maria crafts each

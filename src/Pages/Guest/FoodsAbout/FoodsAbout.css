@@ -83,12 +83,11 @@
 
 /* Square Image for other cards */
 .square-img {
-  width: 180px;
-  height: 180px;
+  width: 300px;
+  aspect-ratio: 1 / 1; /* ensures 1:1 ratio */
   object-fit: cover;
   border-radius: 8px;
-  border: 3px solid #ffd700; /* gold border */
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.5);
+  border: none; /* gold border */
 }
 
 .card-text h3 {
