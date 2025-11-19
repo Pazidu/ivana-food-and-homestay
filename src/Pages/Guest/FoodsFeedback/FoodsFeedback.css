@@ -1,8 +1,6 @@
-/* FoodsFeedback.css */
 
-/* Global Container */
 .feedback-container {
-  margin-top: 10vh; /* Adjust based on Navbar height */
+  margin-top: 10vh;
   background-color: #121212;
   min-height: 100vh;
   color: #e5e5e5;

@@ -1,6 +1,3 @@
-/* =========================
-   GENERAL
-========================= */
 body {
   font-family: "Poppins", sans-serif;
   margin: 0;
@@ -15,9 +12,7 @@ body {
   color: #222;
 }
 
-/* =========================
-   BACKGROUND
-========================= */
+/* background css */
 .cart-background {
   position: fixed;
   top: 0;
@@ -30,9 +25,8 @@ body {
   z-index: -1;
 }
 
-/* =========================
-   CART CONTAINER
-========================= */
+/* cart container css*/
+
 .cart-container {
   max-width: 950px;
   margin: 2rem auto;
@@ -44,12 +38,12 @@ body {
   overflow-x: auto;
 }
 
-/* =========================
-   CART TABLE
-========================= */
+/* cart table css*/
+
 .cart-table {
   width: 100%;
   border-collapse: collapse;
+  min-width: 600px;
 }
 
 .cart-table th,
@@ -99,9 +93,8 @@ body {
   color: #fcb72c;
 }
 
-/* =========================
-   REMOVE BUTTON
-========================= */
+/* remove button csc*/
+
 .remove-btn {
   background: #e63946;
   color: #fff;
@@ -118,9 +111,7 @@ body {
   transform: scale(1.05);
 }
 
-/* =========================
-   CHECKOUT BUTTON
-========================= */
+/* checkout button css*/
 .checkout-container {
   display: flex;
   justify-content: center;
@@ -144,9 +135,7 @@ body {
   transform: scale(1.05);
 }
 
-/* =========================
-   MODAL OVERLAY
-========================= */
+/* modal css*/
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -169,9 +158,7 @@ body {
   }
 }
 
-/* =========================
-   GUEST FORM
-========================= */
+/* form css */
 .guest-form {
   background: #fff;
   padding: 2rem;
@@ -208,9 +195,7 @@ body {
   border-color: #007bff;
 }
 
-/* =========================
-   GUEST FORM BUTTONS
-========================= */
+/* button css */
 .guest-form-buttons {
   display: flex;
   justify-content: space-between;
@@ -248,4 +233,56 @@ body {
 .guest-cancel:hover {
   background: #bbb;
   transform: scale(1.05);
+}
+
+
+/*for tab*/
+@media (max-width: 768px) {
+  .cart-container {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  .cart-title {
+    font-size: 1.7rem;
+  }
+
+  .checkout-btn {
+    width: 100%;
+  }
+}
+
+/* mobile responsive */
+
+@media (max-width: 480px) {
+  .cart-container {
+    padding: 1rem;
+  }
+
+  .cart-title {
+    font-size: 1.5rem;
+  }
+
+  .cart-table {
+    min-width: 480px;
+  }
+
+  .qty-input {
+    width: 45px;
+  }
+
+  .remove-btn {
+    padding: 5px 10px;
+    font-size: 0.85rem;
+  }
+
+  .guest-form {
+    padding: 1.5rem;
+  }
+
+  .guest-submit,
+  .guest-cancel {
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
 }
