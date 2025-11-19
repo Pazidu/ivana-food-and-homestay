@@ -81,6 +81,17 @@ export default function AdminGallery() {
     }
   };
 
+  const getImageUrl = (link) => {
+    if (!link) return "";
+
+    const trimmed = link.trim();
+    const res = trimmed.split("https");
+
+    if (res.length < 3) return trimmed; // fallback if link is already correct
+
+    return "https" + res[2];
+  };
+
   const renderTable = (gallery) => (
     <table className="admin-gallery-table">
       <thead>
@@ -99,7 +110,7 @@ export default function AdminGallery() {
               <td>{item.name}</td>
               <td>
                 <img
-                  src={item.image_link}
+                  src={getImageUrl(item.image_link)}
                   alt={item.name}
                   style={{
                     width: "100px",
@@ -107,7 +118,7 @@ export default function AdminGallery() {
                     objectFit: "cover",
                     cursor: "pointer",
                   }}
-                  onClick={() => setZoomImage(item.image_link)}
+                  onClick={() => setZoomImage(getImageUrl(item.image_link))}
                 />
               </td>
               <td>
