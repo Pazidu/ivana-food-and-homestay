@@ -130,8 +130,8 @@ function MenuList() {
 
       {/* Add/Edit Modal */}
       {showModal && (
-        <div className="modal-overlay">
-          <div className="modal">
+        <div className="custom-modal">
+          <div className="custom-modal-content">
             <h3>{formData.id ? "Edit Menu Item" : "Add Menu Item"}</h3>
             <form className="modal__form" onSubmit={handleFormSubmit}>
               <input
