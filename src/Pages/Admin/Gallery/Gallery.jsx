@@ -13,16 +13,15 @@ export default function AdminGallery() {
   const fetchGallery = async () => {
     try {
       const resPending = await fetch(
-        `http://localhost:5000/api/gallery/pending`
+        "http://localhost:5000/api/gallery/pending"
       );
       const pendingData = await resPending.json();
 
       const resApproved = await fetch(
-        `http://localhost:5000/api/gallery/approved`
+        "http://localhost:5000/api/gallery/approved"
       );
       const approvedData = await resApproved.json();
 
-      // Filter by type from both pending and approved
       const foods = [...pendingData, ...approvedData].filter(
         (item) => item.type === "foods"
       );
@@ -73,6 +72,7 @@ export default function AdminGallery() {
         method: "DELETE",
       });
       const result = await res.json();
+
       if (res.ok) {
         alert(result.message);
         fetchGallery();
@@ -85,7 +85,7 @@ export default function AdminGallery() {
     }
   };
 
-  // Render table for a gallery type
+  // Render table
   const renderTable = (gallery) => (
     <table className="admin-gallery-table">
       <thead>
@@ -162,7 +162,53 @@ export default function AdminGallery() {
   return (
     <>
       <AdminNavbar name="Admin" />
+
       <div className="admin-gallery-container">
+        {/* --------------------------- */}
+        {/* ADMIN UPLOAD IMAGE SECTION */}
+        {/* --------------------------- */}
+        <div className="admin-upload-box">
+          <h3>Upload New Image</h3>
+
+          <form
+            onSubmit={async (e) => {
+              e.preventDefault();
+              const formData = new FormData(e.target);
+
+              const res = await fetch(
+                "http://localhost:5000/api/gallery/admin/add",
+                {
+                  method: "POST",
+                  body: formData,
+                }
+              );
+
+              const data = await res.json();
+
+              if (res.ok) {
+                alert("Image Uploaded Successfully!");
+                fetchGallery();
+                e.target.reset();
+              } else {
+                alert(data.error);
+              }
+            }}
+          >
+            <select name="type" required>
+              <option value="">Select Type</option>
+              <option value="foods">Foods</option>
+              <option value="homestay">Homestay</option>
+            </select>
+
+            <input type="file" name="image" accept="image/*" required />
+
+            <button type="submit" className="upload-btn">
+              Upload
+            </button>
+          </form>
+        </div>
+
+        {/* Tabs */}
         <div className="admin-gallery-tabs">
           <button
             className={activeTab === "foods" ? "active" : ""}
@@ -170,6 +216,7 @@ export default function AdminGallery() {
           >
             Foods Images ({foodsGallery.length})
           </button>
+
           <button
             className={activeTab === "homestay" ? "active" : ""}
             onClick={() => setActiveTab("homestay")}
@@ -178,6 +225,7 @@ export default function AdminGallery() {
           </button>
         </div>
 
+        {/* Table Section */}
         <div className="admin-gallery-section">
           {activeTab === "foods"
             ? renderTable(foodsGallery)

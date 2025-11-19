@@ -48,11 +48,11 @@ const RoomsNavbar = () => {
               Gallery
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/rooms/aboutus" onClick={() => setMenuOpen(false)}>
               About us
             </Link>
-          </li>
+          </li> */}
         </ul>
       </div>
       {/* ===== Right: Auth Buttons ===== */}

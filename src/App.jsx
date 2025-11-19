@@ -22,7 +22,6 @@ import Complaints from "./Pages/Admin/Complaints/Complaints";
 import RoomsHome from "./Pages/Guest/RoomsHome/RoomsHome";
 import RoomsBooking from "./Pages/Guest/RoomsBooking/RoomsBooking";
 import RoomsGallery from "./Pages/Guest/RoomsGallery/RoomsGallery";
-import RoomsAbout from "./Pages/Guest/RoomsAbout/RoomsAbout";
 import AdminBookings from "./Pages/Admin/Bookings/Bookings";
 
 function App() {
@@ -44,7 +43,6 @@ function App() {
         <Route path="/rooms/home" element={<RoomsHome />} />
         <Route path="/rooms/booking" element={<RoomsBooking />} />
         <Route path="/rooms/gallery" element={<RoomsGallery />} />
-        <Route path="/rooms/aboutus" element={<RoomsAbout />} />
 
         {/* user protected */}
         <Route path="/cart" element={<Cart />} />
