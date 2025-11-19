@@ -53,7 +53,6 @@ const Carousel = () => {
             <img src={img} alt={`Slide ${i}`} />
           </div>
         ))}
-        {/* Clone of first image */}
         <div className="carousel-slide">
           <img src={images[0]} alt="Slide 0 Clone" />
         </div>

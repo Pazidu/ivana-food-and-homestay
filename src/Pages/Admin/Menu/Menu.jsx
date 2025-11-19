@@ -128,7 +128,6 @@ function MenuList() {
         + Add New Item
       </button>
 
-      {/* Add/Edit Modal */}
       {showModal && (
         <div className="custom-modal">
           <div className="custom-modal-content">
@@ -207,7 +206,6 @@ function MenuList() {
         </div>
       )}
 
-      {/* Delete Confirmation Modal */}
       {showDeleteModal && (
         <div className="modal-overlay">
           <div className="modal">
@@ -227,7 +225,7 @@ function MenuList() {
         </div>
       )}
 
-      {/* Menu Table */}
+
       <table className="menu__table">
         <thead>
           <tr>

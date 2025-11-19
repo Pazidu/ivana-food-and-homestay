@@ -37,7 +37,6 @@ function OrdersList() {
     }
   };
 
-  // 🔹 Function to render a table
   const renderTable = (orders, isOngoing) => (
     <table className="orders__table">
       <thead>

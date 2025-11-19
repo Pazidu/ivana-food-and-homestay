@@ -2,13 +2,13 @@ import React from "react";
 import AddLocationIcon from "@mui/icons-material/AddLocation";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import EmailIcon from "@mui/icons-material/Email";
-import "./ContactUs.css"; // Assuming you have a CSS file for styling
-import logo from "../../assets/logo.jpg"; // Replace with your actual logo path
-import facebook from "../../assets/facebook.png"; // Replace with your actual Facebook icon path
-import instagram from "../../assets/instagram.png"; // Replace with your actual Instagram icon path
-import whatsapp from "../../assets/whatsapp.png"; // Replace with your actual WhatsApp icon path
-import tiktok from "../../assets/tiktok.png"; // Replace with your actual TikTok icon path
-import email from "../../assets/gmail.png"; // Replace with your actual Email icon path
+import "./ContactUs.css"; 
+import logo from "../../assets/logo.jpg"; 
+import facebook from "../../assets/facebook.png"; 
+import instagram from "../../assets/instagram.png"; 
+import whatsapp from "../../assets/whatsapp.png"; 
+import tiktok from "../../assets/tiktok.png"; 
+import email from "../../assets/gmail.png"; 
 
 function ContactUs() {
   return (
@@ -32,10 +32,6 @@ function ContactUs() {
             <h5>
               <AddLocationIcon /> {"  "} 3/7, Sirimalwatta road, Arangala, Kandy
             </h5>
-            {/* <h5>
-              <EmailIcon />
-              {"  "} ivanafoods@gmail.com
-            </h5> */}
           </div>
           <hr />
           <div className="findUS">

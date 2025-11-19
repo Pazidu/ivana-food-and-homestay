@@ -9,7 +9,6 @@ export default function AdminGallery() {
   const [homestayGallery, setHomestayGallery] = useState([]);
   const [zoomImage, setZoomImage] = useState(null);
 
-  // Fetch gallery data
   const fetchGallery = async () => {
     try {
       const resPending = await fetch(
@@ -40,7 +39,6 @@ export default function AdminGallery() {
     fetchGallery();
   }, []);
 
-  // Approve an image
   const handleApprove = async (id) => {
     try {
       await fetch(`http://localhost:5000/api/gallery/${id}/approve`, {
@@ -52,7 +50,6 @@ export default function AdminGallery() {
     }
   };
 
-  // Reject an image
   const handleReject = async (id) => {
     try {
       await fetch(`http://localhost:5000/api/gallery/${id}/reject`, {
@@ -64,7 +61,6 @@ export default function AdminGallery() {
     }
   };
 
-  // Delete an image
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this image?")) return;
     try {
@@ -85,16 +81,13 @@ export default function AdminGallery() {
     }
   };
 
-  // Render table
   const renderTable = (gallery) => (
     <table className="admin-gallery-table">
       <thead>
         <tr>
           <th>No</th>
           <th>Name</th>
-          {/* <th>Phone</th> */}
           <th>Image</th>
-          {/* <th>Status</th> */}
           <th>Action</th>
         </tr>
       </thead>
@@ -104,7 +97,6 @@ export default function AdminGallery() {
             <tr key={item.id}>
               <td>{idx + 1}</td>
               <td>{item.name}</td>
-              {/* <td>{item.phone}</td> */}
               <td>
                 <img
                   src={item.image_link}
@@ -118,7 +110,6 @@ export default function AdminGallery() {
                   onClick={() => setZoomImage(item.image_link)}
                 />
               </td>
-              {/* <td>{item.status}</td> */}
               <td>
                 {item.status === "pending" ? (
                   <>
@@ -164,9 +155,6 @@ export default function AdminGallery() {
       <AdminNavbar name="Admin" />
 
       <div className="admin-gallery-container">
-        {/* --------------------------- */}
-        {/* ADMIN UPLOAD IMAGE SECTION */}
-        {/* --------------------------- */}
         <div className="admin-upload-box">
           <h3>Upload New Image</h3>
 
@@ -208,7 +196,6 @@ export default function AdminGallery() {
           </form>
         </div>
 
-        {/* Tabs */}
         <div className="admin-gallery-tabs">
           <button
             className={activeTab === "foods" ? "active" : ""}
@@ -225,7 +212,6 @@ export default function AdminGallery() {
           </button>
         </div>
 
-        {/* Table Section */}
         <div className="admin-gallery-section">
           {activeTab === "foods"
             ? renderTable(foodsGallery)
@@ -233,7 +219,6 @@ export default function AdminGallery() {
         </div>
       </div>
 
-      {/* Zoom Modal */}
       {zoomImage && (
         <div className="zoom-modal" onClick={() => setZoomImage(null)}>
           <img src={zoomImage} alt="Zoom" className="zoom-image" />

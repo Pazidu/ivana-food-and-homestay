@@ -24,7 +24,7 @@ function BookingsList() {
 
   const handleDeleteClick = (id) => {
     setDeleteId(id);
-    setShowConfirm(true); // open modal
+    setShowConfirm(true);
   };
 
   const confirmDelete = async () => {
@@ -92,7 +92,6 @@ function BookingsList() {
         </tbody>
       </table>
 
-      {/* Confirmation Modal */}
       {showConfirm && (
         <div className="modal-overlay">
           <div className="modal">

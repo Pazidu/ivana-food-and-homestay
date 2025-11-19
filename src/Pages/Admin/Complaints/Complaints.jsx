@@ -1,4 +1,4 @@
-// src/Pages/Admin/Reviews/Complaints.jsx
+
 import React, { useEffect, useState } from "react";
 import AdminNavbar from "../../../Components/AdminNavbar/AdminNavbar";
 import axios from "axios";
@@ -10,7 +10,6 @@ function ComplaintsList() {
   const [showModal, setShowModal] = useState(false);
   const [confirmDeleteId, setConfirmDeleteId] = useState(null);
 
-  // Fetch complaints
   useEffect(() => {
     axios
       .get("http://localhost:5000/api/foods/complaints")
@@ -18,7 +17,6 @@ function ComplaintsList() {
       .catch((err) => console.error(err));
   }, []);
 
-  // Delete complaint
   const handleDelete = async (id) => {
     try {
       await axios.delete(`http://localhost:5000/api/foods/complaints/${id}`);

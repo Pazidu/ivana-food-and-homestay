@@ -45,7 +45,6 @@
   justify-content: center;
 }
 
-/* ===== Buttons ===== */
 .btn {
   padding: 6px 12px;
   border: none;
@@ -64,7 +63,6 @@
   background: #b52a37;
 }
 
-/* ===== Empty row ===== */
 .bookings__empty {
   text-align: center;
   color: #666;
@@ -72,9 +70,6 @@
   font-style: italic;
 }
 
-/* ===== Modal Styles ===== */
-
-/* Dark overlay background */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -88,7 +83,6 @@
   z-index: 1000;
 }
 
-/* Modal card */
 .modal {
   background: #ffffff;
   height: 200px;
@@ -107,7 +101,6 @@
   animation: fadeIn 0.25s ease-in-out;
 }
 
-/* Modal text */
 .modal p {
   font-size: 17px;
   font-weight: 500;
@@ -115,14 +108,12 @@
   color: #222;
 }
 
-/* Buttons wrapper */
 .modal-buttons {
   display: flex;
   justify-content: center;
   gap: 12px;
 }
 
-/* Confirm button */
 .btn--confirm {
   background: #e63946;
   color: #fff;
@@ -138,7 +129,6 @@
   background: #c82333;
 }
 
-/* Cancel button */
 .btn--cancel {
   background: #6c757d;
   color: #fff;
@@ -154,7 +144,6 @@
   background: #5a6268;
 }
 
-/* Fade-in animation */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -166,7 +155,6 @@
   }
 }
 
-/* ===== Responsive (optional) ===== */
 @media (max-width: 768px) {
   .bookings {
     padding: 16px;

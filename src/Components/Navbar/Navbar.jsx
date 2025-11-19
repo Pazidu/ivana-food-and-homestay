@@ -11,7 +11,6 @@ function Navbar() {
   const [cartCount, setCartCount] = useState(0);
   const navigate = useNavigate();
 
-  // 🔹 Reusable function to update cart count
   const updateCartCount = async () => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -29,7 +28,6 @@ function Navbar() {
     }
   };
 
-  // 🔹 Load on mount
   useEffect(() => {
     const token = localStorage.getItem("token");
     const username = localStorage.getItem("username");
@@ -38,7 +36,6 @@ function Navbar() {
     }
     updateCartCount();
 
-    // Listen for cart updates (triggered by Menu)
     window.addEventListener("storage", updateCartCount);
 
     return () => {
@@ -58,12 +55,10 @@ function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg">
       <div className="container-fluid">
-        {/* Brand Logo */}
         <Link to="/" className="navbar-brand">
           <img src={logo} alt="Logo" width="40" height="40" />
         </Link>
 
-        {/* Mobile Toggler */}
         <button
           className="navbar-toggler"
           type="button"
@@ -107,7 +102,6 @@ function Navbar() {
           </ul>
         </div>
 
-        {/* Right Corner Section */}
         <div className="navbar-right">
           {/* Cart */}
           <Link to="/cart" className="cart" style={{ position: "relative" }}>
@@ -115,7 +109,6 @@ function Navbar() {
             {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
           </Link>
 
-          {/* Login / User */}
           {!user ? (
             <Link to="/login">
               <button className="btn btn-outline-success" type="button">

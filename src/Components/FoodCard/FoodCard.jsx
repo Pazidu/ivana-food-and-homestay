@@ -1,6 +1,5 @@
 import React from "react";
-import "./FoodCard.css"; // Assuming you have a CSS file for styling
-// import foodImage from "../../assets/nasikottu.jpg"; // Replace with your actual image path
+import "./FoodCard.css";
 function FoodCard(props) {
   return (
     <>
@@ -8,10 +7,6 @@ function FoodCard(props) {
         <img src={props.foodImage} alt="Food image" className="food-image" />
         <div className="food-details">
           <h3 className="food-title">{props.name}</h3>
-          {/* <p className="food-description">
-            A brief description of the food item goes here.
-          </p>
-          <span className="food-price">$10.00</span> */}
         </div>
       </div>
     </>
