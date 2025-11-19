@@ -14,6 +14,7 @@ export default function RoomsGallery() {
     try {
       const res = await fetch("http://localhost:5000/api/gallery/approved");
       const data = await res.json();
+      console.log("Fetched gallery data:", data);
 
       if (Array.isArray(data)) {
         setGallery(data);
@@ -42,7 +43,9 @@ export default function RoomsGallery() {
 
   const getImageUrl = (link) => {
     const trimmed = link.trim();
-    return trimmed.startsWith("http") ? trimmed : STORAGE_BASE_URL + trimmed;
+    const res = trimmed.split("https");
+    console.log("Processed image link:", res);
+    return "https" + res[2];
   };
 
   return (
@@ -60,8 +63,6 @@ export default function RoomsGallery() {
                   src={getImageUrl(item.image_link)}
                   alt={item.name || "Gallery Image"}
                   className="gallery-img"
-                  onError={handleImgError}
-                  crossOrigin="anonymous"
                 />
                 {/* <p className="gallery-text">{item.name || "No Name"}</p> */}
               </div>
