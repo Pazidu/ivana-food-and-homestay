@@ -1,24 +1,24 @@
 import React from "react";
 import Navbar from "../../../Components/Navbar/Navbar";
 import Footer from "../../../Components/Footer/Footer";
-import ContactUs from "../../../Components/ContactUs/ContactUs"; // Assuming you have a ContactUs component
-import "./FoodsHome.css"; // Assuming you have a CSS file for styling
+import ContactUs from "../../../Components/ContactUs/ContactUs"; 
+import "./FoodsHome.css"; 
 import Slidebar from "../../../Components/Slidebar/Slidebar";
 import SpecialCard from "../../../Components/SpecialCard/SpecialCard";
-import basmathi from "../../../assets/basmathi.jpg"; // Replace with your actual image path
-import quality from "../../../assets/quality.jpg"; // Replace with your actual image path
-import delivery from "../../../assets/delivery.png"; // Replace with your actual image path
-import nasikottu from "../../../assets/nasikottu.jpg"; // Replace with your actual image path
-import longfood from "../../../assets/long-food.jpg"; // Replace with your actual image path
-import DeliveryIamge from "../../../assets/Delivery_image.png"; // Replace with your actual image path
-import uber from "../../../assets/uber.png"; // Replace with your actual image path
-import pickme from "../../../assets/pickme.png"; // Replace with your actual image path
+import basmathi from "../../../assets/basmathi.jpg"; 
+import quality from "../../../assets/quality.jpg"; 
+import delivery from "../../../assets/delivery.png"; 
+import nasikottu from "../../../assets/nasikottu.jpg"; 
+import longfood from "../../../assets/long-food.jpg"; 
+import DeliveryIamge from "../../../assets/Delivery_image.png"; 
+import uber from "../../../assets/uber.png"; 
+import pickme from "../../../assets/pickme.png"; 
 import { Link } from "react-router-dom";
 
 function FoodsHome() {
   return (
     <div className="home">
-      <Navbar name="Pasindu" />
+      <Navbar name="nav1" />
 
       <div className="special">
         <div className="foodsHomeContainer">
