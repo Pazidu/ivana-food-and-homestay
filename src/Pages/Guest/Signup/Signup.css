@@ -16,9 +16,8 @@
   max-width: 400px; 
   width: 100%;
   align-items: center; 
-  /* FIX: Increased top margin significantly to move content down below the fixed top bar */
   margin-top: 150px; 
-  margin-bottom: 50px; /* Add some space above the footer */
+  margin-bottom: 50px; 
 }
 
 .signup-header {

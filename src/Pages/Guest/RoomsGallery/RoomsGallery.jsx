@@ -34,11 +34,6 @@ export default function RoomsGallery() {
     fetchGallery();
   }, []);
 
-  // const handleImgError = (e) => {
-  //   e.target.onerror = null;
-  //   e.target.src = "/fallback-image.png";
-  // };
-
   const homestayGallery = gallery.filter((item) => item.type === "homestay");
 
   const getImageUrl = (link) => {
@@ -64,7 +59,6 @@ export default function RoomsGallery() {
                   alt={item.name || "Gallery Image"}
                   className="gallery-img"
                 />
-                {/* <p className="gallery-text">{item.name || "No Name"}</p> */}
               </div>
             ))
           ) : (

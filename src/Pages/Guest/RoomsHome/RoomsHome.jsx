@@ -84,7 +84,6 @@ const RoomsHome = () => {
         </div>
       </section>
 
-      {/* Gallery Preview */}
       <section className="rooms-gallery-preview">
         <h2>Our Homestay</h2>
         <div className="gallery-grid">
@@ -100,7 +99,6 @@ const RoomsHome = () => {
         </a>
       </section>
 
-      {/* Call To Action */}
       <section className="rooms-cta">
         <h2>Ready to Experience True Hospitality?</h2>
         <a href="/rooms/booking" className="cta-btn">

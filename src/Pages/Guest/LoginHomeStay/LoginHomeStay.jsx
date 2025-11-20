@@ -6,24 +6,23 @@ import "./LoginHomeStay.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
-function LoginHomeStay  () {
+function LoginHomeStay() {
   const [values, setValues] = useState({ email: "", password: "" });
   const [showModal, setShowModal] = useState(false);
-  const [step, setStep] = useState("email"); // email -> otp -> newPassword
+  const [step, setStep] = useState("email");
   const [forgotEmail, setForgotEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
 
-  // ===== Handle Google login redirect token =====
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const token = params.get("token");
     const username = params.get("username");
     const role = params.get("role");
     const id = params.get("id");
-    const isNew = params.get("isNew"); // detect new Google user
+    const isNew = params.get("isNew");
 
     if (token) {
       localStorage.setItem("token", token);
@@ -32,10 +31,8 @@ function LoginHomeStay  () {
       if (id) localStorage.setItem("userId", id);
 
       if (isNew === "1") {
-        // New Google user → redirect to profile completion form
         navigate(`/google-form?token=${token}&email=${username}`);
       } else {
-        // Existing user → redirect to profile
         navigate("/user/profile");
       }
     }
@@ -67,7 +64,6 @@ function LoginHomeStay  () {
     }
   };
 
-  // ===== Forgot Password Handlers =====
   const handleSendOtp = async () => {
     try {
       await axios.post("http://localhost:5000/auth/send-otp", {

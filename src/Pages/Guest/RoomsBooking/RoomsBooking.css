@@ -4,7 +4,6 @@
   min-height: 100vh;
 }
 
-/* Hero Section */
 .booking-hero {
   position: relative;
   height: 250px;
@@ -69,7 +68,6 @@
   background-color: #a00000;
 }
 
-/* Calendar Section */
 .calendar-section {
   padding: 20px;
   text-align: center;
@@ -80,7 +78,6 @@
   margin-bottom: 15px;
 }
 
-/* Rooms Popup */
 .rooms-popup {
   position: fixed;
   top: 0;
@@ -105,7 +102,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center all children horizontally */
+  align-items: center;
 }
 
 .close-btn {
@@ -122,7 +119,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  justify-content: center; /* Center room cards */
+  justify-content: center;
 }
 
 .room-card {
@@ -134,7 +131,7 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center content inside card */
+  align-items: center;
 }
 
 .room-card img {
@@ -147,7 +144,7 @@
   padding: 15px;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center text & form */
+  align-items: center; 
 }
 
 .room-info h3 {
@@ -194,14 +191,13 @@
   background-color: #aaa;
 }
 
-/* Guest Form */
 .guest-form {
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-top: 15px;
-  width: 80%; /* Form smaller than card */
-  align-items: center; /* Center inputs & button */
+  width: 80%; 
+  align-items: center; 
 }
 
 .guest-form input {
@@ -209,7 +205,7 @@
   border-radius: 5px;
   border: 1px solid #ccc;
   width: 100%;
-  max-width: 300px; /* Consistent input width */
+  max-width: 300px; 
 }
 
 .guest-form button {
