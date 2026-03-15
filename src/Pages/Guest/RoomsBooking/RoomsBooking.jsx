@@ -4,7 +4,7 @@ import moment from "moment";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-
+import roomimage from "../../../assets/room1.jpg";
 import RoomsNavbar from "../../../Components/RoomsNavbar/RoomsNavbar";
 import RoomsFooter from "../../../Components/RoomsFooter/RoomsFooter";
 import "./RoomsBooking.css";
@@ -34,7 +34,7 @@ const RoomsBooking = () => {
         const res = await fetch("http://localhost:5000/api/bookings/all");
         const data = await res.json();
         const events = data.bookings.map((b) => ({
-          title: `${b.guestName} - Booked`,
+          //title: `Booked`,
           start: new Date(b.checkIn),
           end: new Date(b.checkOut),
           allDay: true,
@@ -202,7 +202,7 @@ const RoomsBooking = () => {
                 <div className="rooms-grid">
                   {rooms.map((room) => (
                     <div key={room.id} className="room-card">
-                      <img src={room.image} alt={room.type} />
+                      <img src={roomimage} alt={room.type} />
                       <div className="room-info">
                         <h3>{room.type} Room</h3>
                         <p>Guests: {room.guests}</p>

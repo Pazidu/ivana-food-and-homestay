@@ -9,9 +9,9 @@ function FoodsMenu() {
   const location = useLocation();
   const { topic, subTopic } = location.state || {};
   const [activeTopic, setActiveTopic] = useState("Rice");
-  
+
   // State to manage the dropdown visibility
-  const [showSubTopics, setShowSubTopics] = useState(false); 
+  const [showSubTopics, setShowSubTopics] = useState(false);
 
   const subTopics = {
     Rice: [
@@ -34,7 +34,7 @@ function FoodsMenu() {
   };
 
   const [activeSubTopic, setActiveSubTopic] = useState(
-    subTopics[activeTopic][0]
+    subTopics[activeTopic][0],
   );
   const [foods, setFoods] = useState([]);
   const [selectedFood, setSelectedFood] = useState(null);
@@ -49,8 +49,8 @@ function FoodsMenu() {
     } else {
       // If clicking a new topic, make it active and open the dropdown
       setActiveTopic(item);
-      setActiveSubTopic(subTopics[item][0]); 
-      setShowSubTopics(true); 
+      setActiveSubTopic(subTopics[item][0]);
+      setShowSubTopics(true);
     }
   };
 
@@ -59,13 +59,13 @@ function FoodsMenu() {
     setActiveSubTopic(subItem);
     //setShowSubTopics(false);
   };
-  
+
   // Data Fetching logic remains the same
   useEffect(() => {
     fetch(
       `http://localhost:5000/api/foods/menu?type=${encodeURIComponent(
-        activeSubTopic
-      )}`
+        activeSubTopic,
+      )}`,
     )
       .then((res) => res.json())
       .then((data) => {
@@ -78,8 +78,8 @@ function FoodsMenu() {
   useEffect(() => {
     fetch(
       `http://localhost:5000/api/foods/menu?type=${encodeURIComponent(
-        activeSubTopic
-      )}`
+        activeSubTopic,
+      )}`,
     )
       .then((res) => res.json())
       .then((data) => setFoods(data))
@@ -99,7 +99,7 @@ function FoodsMenu() {
     }
     // ... [rest of handleAddToCart logic] ...
     // NOTE: Keeping the previous implementation for correctness, but simplified here for context.
-    
+
     const itemsToAdd = [];
     if (regularQty > 0)
       itemsToAdd.push({
@@ -163,18 +163,18 @@ function FoodsMenu() {
       {/* Main categories (Vertical Sidebar PC / Horizontal Scroll Mobile) */}
       <div className="foodsNav">
         {Object.keys(subTopics).map((item) => (
-          <div key={item} className="topic-dropdown-container"> 
+          <div key={item} className="topic-dropdown-container">
             <button
               className={`foodsButton${activeTopic === item ? " active" : ""}`}
               onClick={() => handleTopicClick(item)}
             >
-              {item} 
+              {item}
               {/* Add dropdown indicator */}
               <span className="dropdown-indicator">
-                {activeTopic === item && showSubTopics ? '\u25B2' : '\u25BC'}
+                {activeTopic === item && showSubTopics ? "\u25B2" : "\u25BC"}
               </span>
             </button>
-            
+
             {/* Dropdown for subtopics */}
             {activeTopic === item && showSubTopics && (
               <div className="foodsSubTopics">
@@ -198,24 +198,18 @@ function FoodsMenu() {
       {/* Wrapper for Food list */}
       <div className="foodsContentWrapper">
         <div className="foodsContainer">
-          {foods.map((food) => (
-            <div
-              key={food.id}
-              onClick={() => setSelectedFood(food)}
-              style={{ cursor: "pointer" }}
-            >
-              <FoodCard
-                name={food.name}
-                foodImage={
-                  food.image_link?.startsWith("http")
-                    ? food.image_link
-                    : `https://firebasestorage.googleapis.com/v0/b/YOUR_BUCKET_NAME/o/${encodeURIComponent(
-                        food.image_link
-                      )}?alt=media`
-                }
-              />
-            </div>
-          ))}
+          {foods.map((food) => {
+            console.log(food.image_link);
+            return (
+              <div
+                key={food.id}
+                onClick={() => setSelectedFood(food)}
+                style={{ cursor: "pointer" }}
+              >
+                <FoodCard name={food.name} foodImage={food.image_link} />
+              </div>
+            );
+          })}
         </div>
       </div>
 
@@ -238,13 +232,7 @@ function FoodsMenu() {
                 {selectedFood.image_link && (
                   <img
                     className="selected-food-image"
-                    src={
-                      selectedFood.image_link?.startsWith("http")
-                        ? selectedFood.image_link
-                        : `https://firebasestorage.googleapis.com/v0/b/YOUR_BUCKET_NAME/o/${encodeURIComponent(
-                            selectedFood.image_link
-                          )}?alt=media`
-                    }
+                    src={selectedFood.image_link}
                     alt={selectedFood.name}
                   />
                 )}
