@@ -18,13 +18,11 @@ function Cart() {
   });
   const navigate = useNavigate();
 
-  // Fetch cart items and user info
   useEffect(() => {
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
 
     if (token && userId) {
-      // Logged in
       Promise.all([
         axios.get("http://localhost:5000/api/cart", {
           headers: { Authorization: `Bearer ${token}` },
@@ -42,14 +40,13 @@ function Cart() {
           alert("Failed to load cart.");
         });
     } else {
-      // Guest
       setIsGuest(true);
       const guestCart = JSON.parse(localStorage.getItem("guestCart")) || [];
       setCartItems(guestCart);
     }
   }, []);
 
-  // Remove item
+
   const removeItem = (id) => {
     if (isGuest) {
       const updatedCart = cartItems.filter((_, idx) => idx !== id);
@@ -69,7 +66,7 @@ function Cart() {
     }
   };
 
-  // Update quantity
+
   const updateQuantity = (itemId, newQuantity) => {
     if (newQuantity < 1) return;
 
@@ -103,13 +100,13 @@ function Cart() {
     }
   };
 
-  // Subtotal
+
   const subtotal = cartItems.reduce(
     (sum, item) => sum + (item.unit_price || item.price) * item.quantity,
     0
   );
 
-  // Checkout
+
   const handleCheckout = () => {
     if (cartItems.length === 0) {
       alert("Your cart is empty!");
@@ -117,9 +114,8 @@ function Cart() {
     }
 
     if (isGuest) {
-      setShowGuestForm(true); // open modal
+      setShowGuestForm(true); 
     } else {
-      // logged in
       const orderData = {
         userName: user.username,
         address: user.address,
@@ -132,7 +128,6 @@ function Cart() {
     }
   };
 
-  // Guest form submit
   const handleGuestSubmit = (e) => {
     e.preventDefault();
     if (!guestData.name || !guestData.address || !guestData.phone) {
@@ -140,7 +135,7 @@ function Cart() {
       return;
     }
     const normalizedItems = cartItems.map((item, idx) => ({
-      id: item.id || idx + 1, // generate an id if not present
+      id: item.id || idx + 1,
       item_id: item.item_id || item.id || idx + 1,
       item_name: item.item_name || item.name,
       description: item.description || "",
@@ -171,7 +166,6 @@ function Cart() {
       />
 
       <div className="cart-container">
-        {/* cart table */}
         <table className="cart-table">
           <thead>
             <tr>
@@ -234,7 +228,6 @@ function Cart() {
         </div>
       </div>
 
-      {/* Guest Modal */}
       {showGuestForm && (
         <div className="modal-overlay">
           <div className="guest-form">

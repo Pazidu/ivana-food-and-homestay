@@ -6,7 +6,7 @@ import AdminNavbar from "../../../Components/AdminNavbar/AdminNavbar";
 function OrdersList() {
   const [ongoingOrders, setOngoingOrders] = useState([]);
   const [completedOrders, setCompletedOrders] = useState([]);
-  const [activeTab, setActiveTab] = useState("ongoing"); // 🔹 which tab is active
+  const [activeTab, setActiveTab] = useState("ongoing");
 
   useEffect(() => {
     fetch("http://localhost:5000/api/orders")

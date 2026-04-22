@@ -10,7 +10,6 @@ function ReviewsList() {
   const [showModal, setShowModal] = useState(false);
   const [confirmDeleteId, setConfirmDeleteId] = useState(null);
 
-  // Fetch all reviews
   useEffect(() => {
     axios
       .get("http://localhost:5000/api/foods/reviews")
@@ -18,7 +17,6 @@ function ReviewsList() {
       .catch((err) => console.error(err));
   }, []);
 
-  // Delete review
   const handleDelete = async (id) => {
     try {
       await axios.delete(`http://localhost:5000/api/foods/reviews/${id}`);

@@ -87,7 +87,7 @@ export default function AdminGallery() {
     const trimmed = link.trim();
     const res = trimmed.split("https");
 
-    if (res.length < 3) return trimmed; // fallback if link is already correct
+    if (res.length < 3) return trimmed;
 
     return "https" + res[2];
   };

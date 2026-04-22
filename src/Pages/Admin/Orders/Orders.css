@@ -12,7 +12,6 @@
   color: #333;
 }
 
-/* Table */
 .orders__table {
   margin-top: 10vh;
   width: 100%;
@@ -56,20 +55,19 @@
   background: #218838;
 }
 
-/* Empty table row */
 .orders__empty {
   text-align: center;
   padding: 20px;
   color: #777;
 }
 
-/* Optional: adjust specific column widths */
-.orders__table th:nth-child(4), /* Items column */
+
+.orders__table th:nth-child(4),
 .orders__table td:nth-child(4) {
-  width: 300px; /* increase width for items with names & quantity */
+  width: 300px; 
 }
 
-.orders__table th:nth-child(5), /* Total Price column */
+.orders__table th:nth-child(5), 
 .orders__table td:nth-child(5) {
   text-align: left;
 }

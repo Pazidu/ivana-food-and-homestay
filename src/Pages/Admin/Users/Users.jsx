@@ -56,11 +56,11 @@ function UsersList() {
 
       const res = await axios.put(
         `http://localhost:5000/api/users/${formData.id}`,
-        payload
+        payload,
       );
 
       setUsers(
-        users.map((user) => (user.id === formData.id ? res.data : user))
+        users.map((user) => (user.id === formData.id ? res.data : user)),
       );
 
       handleCloseModal();
