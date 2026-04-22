@@ -14,3 +14,9 @@ If you are developing a production application, we recommend using TypeScript wi
 Some Screenshots
 
 ![image alt](https://github.com/Pazidu/ivana-food-and-homestay/blob/cf6492d13eea66964ac28a1a50ea1dcc4f0ce6fd/1773577106383.jfif)
+![image alt](https://github.com/Pazidu/ivana-food-and-homestay/blob/1205c8bcc88e4a2d764b523c2da1e9a395ebc734/1773577106799.jfif)
+![image alt](https://github.com/Pazidu/ivana-food-and-homestay/blob/1205c8bcc88e4a2d764b523c2da1e9a395ebc734/1773577114671.jfif)
+![image alt](https://github.com/Pazidu/ivana-food-and-homestay/blob/1205c8bcc88e4a2d764b523c2da1e9a395ebc734/1773577115048.jfif)
+![image alt](https://github.com/Pazidu/ivana-food-and-homestay/blob/1205c8bcc88e4a2d764b523c2da1e9a395ebc734/1773577117073.jfif)
+![image alt](https://github.com/Pazidu/ivana-food-and-homestay/blob/1205c8bcc88e4a2d764b523c2da1e9a395ebc734/1773577117777.jfif)
+![image alt](https://github.com/Pazidu/ivana-food-and-homestay/blob/1205c8bcc88e4a2d764b523c2da1e9a395ebc734/1773577119624.jfif)
